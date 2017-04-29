@@ -19,7 +19,7 @@ const activitiesController = require('./controllers/activities.js');
 
 // MIDDLEWARE //
 // app.use(express.static('public'));
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 // app.use(session({
 //   secret: "the-best-group-evva",
 //   resave: false,

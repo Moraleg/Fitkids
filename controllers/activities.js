@@ -2,10 +2,13 @@
 
 var express = require('express'),
     router = express.Router(),
+    // User = require('../controllers/users.js'),
     Activity = require('../models/activities.js');
 
 // -------------------------------- SEED ROUTE ---------------------------------
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // JUST FOR TESTING PURPOSES! NOTE: To make this work, I commented out the creator key in the activities model! Don't forget to revert!
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 var seedData = [
   {
@@ -23,7 +26,7 @@ var seedData = [
     typeOfExercise: 'anaerobic',
     outdoor: 'false',
     weather: 'rainy',
-    ageRange: ['Ten'],
+    ageRange: ['Teen'],
     tags: ['bla', 'splash', 'blo']
   }
 ];
@@ -42,7 +45,7 @@ router.get('/seed', function (req, res) {
 });
 
 // ------------------------------- GET ROUTES ----------------------------------
-// tested
+// tested in browser and with curl
 router.get('/', function (req, res) {
   // find all activities in the database
   Activity.find({}, function (error, allActivities) {
@@ -57,7 +60,7 @@ router.get('/', function (req, res) {
 });
 
 // -------------------------------- POST ROUTE ---------------------------------
-// not tested
+// tested with curl
 router.post('/new', function (req, res)  {
   // Create new database entry based on user input
   Activity.create(req.body, function (error, createdActivity) {
@@ -72,14 +75,17 @@ router.post('/new', function (req, res)  {
 });
 
 // --------------------------------- PUT ROUTE ---------------------------------
-// not tested
-
-// NOTE: Why not just findByIdAndUpdate: If we want to run authentication (--> is the user making the put request the creator of the database entry?), we'll need to compare the current user's id to the database entry's value for creator first. If they match, we will can allow an update, if not, we will want to send a 403. We cannot solely rely on the frontend for authentication, since you could also try to use curl to make a PUT request. This is why I opted for this update version. If you don't agree or know a better way to do it, let me know and I'll change it.
+// tested with curl
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// NOTE: Why not just findByIdAndUpdate: If we want to run authentication (--> is the user making the put request the creator of the database entry?), we'll need to compare the current user's id to the database entry's value for creator first. If they match, we will can allow an update, if not, we will want to send a 403. We cannot solely rely on the frontend for authentication, since you could also try to use curl to make a PUT request. This is why I opted for this update version. If you don't agree or know a better way to do it, let me know and I'll change it. I wrote the basic conditional for this, but commented it out for now.
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 router.put('/:id', function (req, res) {
   // find activity to be updated
   Activity.findById(req.params.id, function (error, foundActivity) {
-    // !! fill with correct code for authentication!!
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // NOTE: just basic logic, fill with correct variable names for authentication!!
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // if logged-in user is author of activity, make update to database entry
     // if (currentUserID === foundActivity.creator) {
       Activity.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (error, updatedActivity) {
@@ -99,21 +105,26 @@ router.put('/:id', function (req, res) {
 });
 
 // ------------------------------- DELETE ROUTE --------------------------------
-// not tested
-
+// tested with curl
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // NOTE: Why not just findByIdAndRemove: see put route
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 router.delete('/:id', function (req, res) {
   // find activity to be deleted
   Activity.findById(req.params.id, function (error, foundActivity) {
-    // !! fill with correct code for authentication!!
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // NOTE: just basic logic, fill with correct variable names for authentication!!
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // if logged-in user is the author of the activity, delete
     // if (currentUserID === foundActivity.creator) {
       Activity.findByIdAndRemove(req.params.id,
         function (error, deletedActivity) {
           // if no error occurs
-          if (!err) {
-            // //NOTE: the following will only work, if a user's favorites array holds the IDs of the liked activities! It will find
+          if (!error) {
+            //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            // //NOTE: the following will only work, if  connected to users controller and a user's favorites array holds the IDs of the liked activities! This is why I commented it out for now. Code NOT tested yet! Might contain bugs!
+            //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             // // find all users
             // User.find({}, function (error, allUsers) {
             //   // loop through allUsers array
