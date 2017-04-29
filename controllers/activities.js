@@ -45,6 +45,8 @@ router.get('/seed', function (req, res) {
 });
 
 // ------------------------------- GET ROUTES ----------------------------------
+
+// ------------ GET all database entries ------------
 // tested in browser and with curl
 router.get('/', function (req, res) {
   // find all activities in the database
@@ -58,6 +60,22 @@ router.get('/', function (req, res) {
     }
   });
 });
+
+// ------------ GET all distinct tags ------------
+// tested in browser and with curl
+router.get('/tags', function (req, res) {
+  // find all distinct tags
+  Activity.find().distinct('tags', function (error, distinctTags) {
+    // if no error occurs, send tags array back as json
+    if (!error) {
+      res.json(distinctTags);
+    } else {
+      // in case of error, send error
+      res.json(error);
+    }
+  });
+});
+
 
 // -------------------------------- POST ROUTE ---------------------------------
 // tested with curl
