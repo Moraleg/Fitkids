@@ -7,7 +7,8 @@ var express = require('express'),
 
 // -------------------------------- SEED ROUTE ---------------------------------
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// JUST FOR TESTING PURPOSES! NOTE: To make this work, I commented out the creator key in the activities model! Don't forget to revert!
+// JUST FOR TESTING PURPOSES! NOTE: To make this work, I commented out the
+// creator key in the activities model! Don't forget to revert!
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 var seedData = [
@@ -95,7 +96,15 @@ router.post('/new', function (req, res)  {
 // --------------------------------- PUT ROUTE ---------------------------------
 // tested with curl
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// NOTE: Why not just findByIdAndUpdate: If we want to run authentication (--> is the user making the put request the creator of the database entry?), we'll need to compare the current user's id to the database entry's value for creator first. If they match, we will can allow an update, if not, we will want to send a 403. We cannot solely rely on the frontend for authentication, since you could also try to use curl to make a PUT request. This is why I opted for this update version. If you don't agree or know a better way to do it, let me know and I'll change it. I wrote the basic conditional for this, but commented it out for now.
+// NOTE: Why not just findByIdAndUpdate: If we want to run authentication (-->
+// is the user making the put request the creator of the database entry?), we'll
+// need to compare the current user's id to the database entry's value for
+// creator first. If they match, we will can allow an update, if not, we will
+// want to send a 403. We cannot solely rely on the frontend for authentication,
+// since you could also try to use curl to make a PUT request. This is why I
+// opted for this update version. If you don't agree or know a better way to do
+// it, let me know and I'll change it. I wrote the basic conditional for this,
+// but commented it out for now.
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 router.put('/:id', function (req, res) {
@@ -132,7 +141,8 @@ router.delete('/:id', function (req, res) {
   // find activity to be deleted
   Activity.findById(req.params.id, function (error, foundActivity) {
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // NOTE: just basic logic, fill with correct variable names for authentication!!
+    // NOTE: just basic logic, fill with correct variable names for
+    // authentication!!
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // if logged-in user is the author of the activity, delete
     // if (currentUserID === foundActivity.creator) {
@@ -141,7 +151,10 @@ router.delete('/:id', function (req, res) {
           // if no error occurs
           if (!error) {
             //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            // //NOTE: the following will only work, if  connected to users controller and a user's favorites array holds the IDs of the liked activities! This is why I commented it out for now. Code NOT tested yet! Might contain bugs!
+            // //NOTE: the following will only work, if  connected to users
+            // controller and a user's favorites array holds the IDs of the
+            // liked activities! This is why I commented it out for now. Code
+            // NOT tested yet! Might contain bugs!
             //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             // // find all users
             // User.find({}, function (error, allUsers) {
