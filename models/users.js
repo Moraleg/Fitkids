@@ -5,8 +5,9 @@ var mongoose = require('mongoose');
 var userSchema = mongoose.Schema({
   username: {type: String, required: true, unique: true },
   password: {type: String, required: true},
-  // I had to remove the Object keyword from the array to make this work for
+  // NOTE: I had to remove the ObjectId keyword from the array to make this work for
   // testing my routes properly, bc req.params.id comes back as string
+  // Revert after REVIEW!
   favorites: [],
   stats: [{
     child: String,
