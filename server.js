@@ -1,4 +1,4 @@
-
+// MAIN SERVER //
 
 // DEPENDENCIES //
 const express = require('express');
@@ -8,27 +8,27 @@ const mongoose = require('mongoose');
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/project_3';
 const db = mongoose.connection;
 const bodyParser = require('body-parser');
-// const session = require('express-session');
+const session = require('express-session');
 const bcrypt = require('bcrypt');
 
 // CONTROLLERS //
 // const sessionsController = require('./controllers/sessions.js');
-// const usersController = require('./controllers/users.js');
+const usersController = require('./controllers/users.js');
 const activitiesController = require('./controllers/activities.js');
 
 
 // MIDDLEWARE //
-// app.use(express.static('public'));
+app.use(express.static('public'));
 app.use(bodyParser.json());
-// app.use(session({
-//   secret: "the-best-group-evva",
-//   resave: false,
-//   saveUninitialized: false
-// }));
+app.use(session({
+  secret: "the-best-group-evva",
+  resave: false,
+  saveUninitialized: false
+}));
 
 // CONTROLLER ROUTES //
 // app.use('/sessions/', sessionsController);
-// app.use('/users/', usersController);
+app.use('/users/', usersController);
 app.use('/activities/', activitiesController);
 
 // CONNECTION //

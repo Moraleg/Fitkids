@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var activitySchema = new Schema({
-  // creator: {type: Object, required: true},
+  creator: {type: Object, required: true},
   title: {type: String, required: true},
   description: {type: String, required: true},
   typeOfExercise: String,
