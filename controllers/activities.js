@@ -7,13 +7,12 @@ var express = require('express'),
 
 // -------------------------------- SEED ROUTE ---------------------------------
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// JUST FOR TESTING PURPOSES! NOTE: To make this work, I commented out the
-// creator key in the activities model! Don't forget to revert!
+// NOTE: JUST FOR TESTING PURPOSES! TAKE OUT AFTER REVIEW!
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 var seedData = [
   {
-    /* creator: 'insert user id here', */
+    /*creator: 'create user first and insert user id here', */
     title: 'This is an exercise',
     description: 'It is so much fun!',
     typeOfExercise: 'aerobic',
@@ -23,7 +22,7 @@ var seedData = [
     tags: ['fun', 'splash', 'splish']
   },
   {
-    /* creator: 'insert user id here', */
+    /*creator: 'create user first and insert user id here', */
     title: 'This is another exercise',
     description: 'It is so much more fun!',
     typeOfExercise: 'anaerobic',
@@ -108,13 +107,15 @@ router.post('/new', function (req, res)  {
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // NOTE: THIS IS JUST FOR TESTING --> needed this to be able to test if my
 // delete route logic also removes deleted activity from users' favorites arrays
+// TAKE OUT AFTER REVIEW! Real route should be on user controller and should use
+// ObjectIds not req.params
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 router.put('/:id/favorite/:userID', function (req, res) {
   // find activity by id
       User.findByIdAndUpdate(req.params.userID,
         // update by pushing the id of foundActivity into favorites array on user
-        { $push: { 'favorites': req.params.id } }, {new: true},
+        { $addToSet: { 'favorites': req.params.id } }, {new: true},
          function (error, updatedUser) {
            if (!error) {
              // if no error occurs, send json of updated user entry
@@ -184,27 +185,15 @@ router.delete('/:id', function (req, res) {
       Activity.findByIdAndRemove(req.params.id,
         function (error, deletedActivity) {
           // if no error occurs
+          var id = deletedActivity._id.toString(); // JUST FOR TESTING, proper route will have to work with ObjectIds!
           if (!error) {
-            // // find all users
-            User.find({}, function (error, allUsers) {
-              // loop through allUsers array
-              for (var i = 0; i < allUsers.length; i++) {
-                // loop through favorites array on User object
-                for (var j = 0; j < allUsers[i].favorites.length; j++) {
-                  // if saved favorite is identical to id of deleted activity
-                  if (allUsers[i].favorites[j] == deletedActivity._id) {
-                    // remove this favorite from array
-                    allUsers[i].favorites.splice(j, 1);
-                    // saves changes
-                    allUsers[i].save(function(error) {
-                      if (error) {
-                        console.log(error);
-                      }
-                    }); // closes save() + callback
-                  } // closes if inside inner loop
-                } // closes inner loop
-              } // closes outer loop
-            }); // closes User.find() and callback
+            User.update(
+              { },
+              { $pull: { favorites: id } },
+              { multi: true },
+              function (error) {
+                console.log(error);
+              });
             res.json(deletedActivity)
           } else {
             res.json(error);
