@@ -13,7 +13,7 @@ const bcrypt = require('bcrypt');
 
 // CONTROLLERS //
 // const sessionsController = require('./controllers/sessions.js');
-// const usersController = require('./controllers/users.js');
+const usersController = require('./controllers/users.js');
 // const activitiesController = require('./controllers/activities.js');
 
 
@@ -28,7 +28,7 @@ app.use(session({
 
 // CONTROLLER ROUTES //
 // app.use('/sessions/', sessionsController);
-// app.use('/users/', usersController);
+app.use('/users/', usersController);
 // app.use('/activities/', activitiesController);
 
 // CONNECTION //
