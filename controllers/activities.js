@@ -89,8 +89,6 @@ router.get('/tags', function (req, res) {
 // --> tested with curl
 
 router.post('/new', function (req, res)  {
-  // set logged-in user as creator
-  req.body.creator = req.session.currentuser._id
   // Create new database entry based on user input
   Activity.create(req.body, function (error, createdActivity) {
     if(!error) {
