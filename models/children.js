@@ -2,9 +2,9 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var childSchema = new Schema({
-  parent: {type: ObjectId, required: true},
+  parent: {type: Schema.Types.ObjectId, required: true},
   name: {type: String, required: true},
-  numberOfBadges: Number,
+  numberOfBadges: {type: Number, default: 0},
   activity: [{
     day: { type: Date, default: Date.now },
     minutes: Number, default: 0

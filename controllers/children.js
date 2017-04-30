@@ -8,9 +8,9 @@ var express = require('express'),
 // ------------------------------- GET ROUTE -----------------------------------
 
 // *** get all children ***
-// --> NOT TESTED
+// --> tested with curl
 // find all child entries for a specific parent in the database
-// --> id parent ObjectId
+// --> parentId = parent ObjectId
 router.get('/:parentId', function (req, res) {
   Child.find({parent: req.params.parentId}, function(foundChildren, error) {
     // if (req.session.currentuser._id === foundChildren.parent) {
@@ -27,11 +27,10 @@ router.get('/:parentId', function (req, res) {
 
 // ------------------------------- POST ROUTE ----------------------------------
 // *** create a new child ***
-// --> NOT TESTED
-
+// --> tested with curl
 router.post('/', function (req, res) {
   // set logged-in user as parent
-  req.body.parent = req.session.currentuser._id
+  // req.body.parent = req.session.currentuser._id
   Child.create(req.body, function (createdChild, error) {
     if(!error) {
       res.json(createdChild);
@@ -44,7 +43,7 @@ router.post('/', function (req, res) {
 // ------------------------------- PATCH ROUTE ----------------------------------
 
 // *** update activity OR name OR number of badges ***
-// --> NOT TESTED
+// --> tested with curl
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // NOTE: We will have to have completely different updates (one for
 // name, one for activity, one for badges) on the front end side.
@@ -53,9 +52,9 @@ router.post('/', function (req, res) {
 // otherwise gotten too complicated and illegible. We can also handle deleting an // activity that way and just splice it out of the array in Angular and then patch.
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-router.patch('/:id', function () {
+router.patch('/:id', function (req, res) {
   Child.findById(req.params.id, function(foundChild, error) {
-    if(!error) {
+    //if(!error) { --> figure out why it causes problems OR TAKE OUT!
       // if (req.session.currentuser._id === foundChild.parent) {
         if (req.body.activity !== undefined) {
           // ADD OR EDIT NEW ACTIVITY
@@ -92,19 +91,19 @@ router.patch('/:id', function () {
       // } else {
       //   res.status(403).send('Forbidden');
       // }
-    } else {
-      res.json(error);
-    }
+    //} else {
+    //  res.json(error);
+  //  }
   }); // closes findById and callback
 }); // closes patch route function
 
-// ------------------------------- DELETE ROUTE -------------------------------
+// -------------------------------- DELETE ROUTE -------------------------------
 
 // *** DELETE child ***
-// --> NOT TESTED
+// --> tested with curl
 router.delete('/:id', function (req, res) {
   Child.findById(req.params.id, function(foundChild, error) {
-    if(!error) {
+    // if(!error) { --> figure out why it causes problems OR TAKE OUT!
       // if (req.session.currentuser._id === foundChild.parent) {
         Child.findByIdAndRemove(req.params.id, function (deletedChild, error) {
           if(!error) {
@@ -116,9 +115,9 @@ router.delete('/:id', function (req, res) {
       // } else {
       //   res.status(403).send('Forbidden');
       // }
-    } else {
-      res.json(error);
-    }
+    //} else {
+    //  res.json(error);
+    //}
   }); // closes findByID and callback
 }); // closes delete route function
 
