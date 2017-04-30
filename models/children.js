@@ -5,10 +5,10 @@ var childSchema = new Schema({
   parent: {type: ObjectId, required: true},
   name: {type: String, required: true},
   numberOfBadges: Number,
-  activity: {
+  activity: [{
     day: { type: Date, default: Date.now },
     minutes: Number, default: 0
-  }
+  }]
 });
 
 var Child = mongoose.model('Child', childSchema);
