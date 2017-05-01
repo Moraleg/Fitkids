@@ -45,9 +45,9 @@ router.post('/', function (req, res) {
 // *** update activity OR name OR number of badges ***
 // --> tested with curl
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// NOTE: We will have to have completely different updates (one for
+// NOTE: We will have to have completely different - independent - updates (one for
 // name, one for activity, one for badges) on the front end side.
-// They both post to this route - but never at the same time!
+// They all post to this route - but never at the same time!
 // Angular will also have handle updates and edits for activities and then send the // ENTIRE array. I chose to do it this way, because the patch route would have
 // otherwise gotten too complicated and illegible. We can also handle deleting an // activity that way and just splice it out of the array in Angular and then patch.
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
