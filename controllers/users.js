@@ -38,8 +38,12 @@ router.post('/', function(req, res){
   });
 });
 
-//PUT ROUTE
-router.put('/:id', function(req, res){
+//PATCH ROUTES
+
+
+
+// password change
+router.put('/:id', function(req, res) {
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
   User.findById(req.params.id, function(err, updatedUsers){
     // if(req.sessions.currentuser._id === updatedUsers){
