@@ -12,12 +12,12 @@ var express = require('express'),
 // find all child entries for a specific parent in the database
 // --> parentId = parent ObjectId
 router.get('/:parentId', function (req, res) {
-  Child.find({parent: req.params.parentId}, function(foundChildren, error) {
+  Child.find({parent: req.params.parentId}, function(err, foundChildren) {
     // if (req.session.currentuser._id === foundChildren.parent) {
-        if (!error) {
+        if (!err) {
           res.json(foundChildren);
         } else {
-          res.json(error);
+          res.json(err);
         }
     // } else {
     //   res.status(403).send('Forbidden');
@@ -31,11 +31,11 @@ router.get('/:parentId', function (req, res) {
 router.post('/', function (req, res) {
   // set logged-in user as parent
   // req.body.parent = req.session.currentuser._id
-  Child.create(req.body, function (createdChild, error) {
-    if(!error) {
+  Child.create(req.body, function (err, createdChild) {
+    if(!err) {
       res.json(createdChild);
     } else {
-      res.json(error);
+      res.json(err);
     }
   }); // closes Child.create and callback
 }); // closes post route function
@@ -53,36 +53,36 @@ router.post('/', function (req, res) {
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 router.patch('/:id', function (req, res) {
-  Child.findById(req.params.id, function(foundChild, error) {
-    //if(!error) { --> figure out why it causes problems OR TAKE OUT!
+  Child.findById(req.params.id, function(err, foundChild) {
+    if(!err) {
       // if (req.session.currentuser._id === foundChild.parent) {
         if (req.body.activity !== undefined) {
           // ADD OR EDIT NEW ACTIVITY
           Child.findByIdAndUpdate(req.params.id,
-            { $set: {activity: req.body.activity} }, {new: true}, function(updatedChild, error) {
-              if (!error) {
+            { $set: {activity: req.body.activity} }, {new: true}, function(err, updatedChild) {
+              if (!err) {
                 res.json(updatedChild)
               } else {
-                res.json(error);
+                res.json(err);
               }
           }); // closes findByIdAndUpdate and callback for activity
         } else if (req.body.name !== undefined) {
           // UPDATE NAME
-          Child.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name } }, {new: true}, function(updatedChild, error) {
-              if (!error) {
+          Child.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name } }, {new: true}, function(err, updatedChild) {
+              if (!err) {
                 res.json(updatedChild)
               } else {
-                res.json(error);
+                res.json(err);
               }
           }); // closes findByIdAndUpdate and callback for name
         } else if (req.body.numberOfBadges !== undefined) {
           Child.findByIdAndUpdate(req.params.id,
             { $set: {numberOfBadges: req.body.numberOfBadges} }, {new: true},
-            function (updatedChild, error) {
-              if (!error) {
+            function (err, updatedChild) {
+              if (!err) {
                 res.json(updatedChild)
               } else {
-                res.json(error);
+                res.json(err);
               }
           }); // closes findByIdAndUpdate and callback for numberOfBadges
         } else { // no other updates are allowed!
@@ -91,9 +91,9 @@ router.patch('/:id', function (req, res) {
       // } else {
       //   res.status(403).send('Forbidden');
       // }
-    //} else {
-    //  res.json(error);
-  //  }
+    } else {
+     res.json(err);
+   }
   }); // closes findById and callback
 }); // closes patch route function
 
@@ -102,22 +102,22 @@ router.patch('/:id', function (req, res) {
 // *** DELETE child ***
 // --> tested with curl
 router.delete('/:id', function (req, res) {
-  Child.findById(req.params.id, function(foundChild, error) {
-    // if(!error) { --> figure out why it causes problems OR TAKE OUT!
+  Child.findById(req.params.id, function(err, foundChild) {
+    if(!err) {
       // if (req.session.currentuser._id === foundChild.parent) {
-        Child.findByIdAndRemove(req.params.id, function (deletedChild, error) {
-          if(!error) {
+        Child.findByIdAndRemove(req.params.id, function (err, deletedChild) {
+          if(!err) {
             res.send(deletedChild);
           } else {
-            res.send(error);
+            res.send(err);
           }
         }); // closes findByIdAndRemove and callback
       // } else {
       //   res.status(403).send('Forbidden');
       // }
-    //} else {
-    //  res.json(error);
-    //}
+    } else {
+     res.json(err);
+    }
   }); // closes findByID and callback
 }); // closes delete route function
 
