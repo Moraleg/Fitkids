@@ -14,21 +14,45 @@ var seedData = [
   {
     /*creator: 'create user first and insert user id here', */
     title: 'This is an exercise',
+    creator: 'Hannah',
     description: 'It is so much fun!',
-    typeOfExercise: 'aerobic',
+    typeOfExercise: 'Aerobic',
     outdoor: 'true',
-    weather: 'sunny',
-    ageRange: ['Toddler', 'Kindergardener'],
+    weather: 'Sunny',
+    minAge: 3,
     tags: ['fun', 'splash', 'splish']
   },
   {
     /*creator: 'create user first and insert user id here', */
     title: 'This is another exercise',
+    creator: 'Hannah',
     description: 'It is so much more fun!',
-    typeOfExercise: 'anaerobic',
-    outdoor: 'false',
-    weather: 'rainy',
-    ageRange: ['Teen'],
+    typeOfExercise: 'Balance',
+    outdoor: false,
+    weather: 'Rainy',
+    minAge: 16,
+    tags: ['bla', 'splash', 'blo']
+  },
+  {
+    /*creator: 'create user first and insert user id here', */
+    title: 'This is a third exercise',
+    creator: 'Hannah',
+    description: 'It is even much more fun!',
+    typeOfExercise: 'Cardio',
+    outdoor: true,
+    weather: 'Snow',
+    minAge: 13,
+    tags: ['bla', 'splash', 'blo']
+  },
+  {
+    /*creator: 'create user first and insert user id here', */
+    title: 'This is a fourth exercise',
+    creator: 'Hannah',
+    description: 'It is not fun!',
+    typeOfExercise: 'Flexibility',
+    outdoor: true,
+    weather: 'Rainy',
+    minAge: 6,
     tags: ['bla', 'splash', 'blo']
   }
 ];

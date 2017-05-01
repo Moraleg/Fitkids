@@ -10,8 +10,8 @@ var activitySchema = new Schema({
   description: {type: String, required: true},
   typeOfExercise: String,
   outdoor: {type: Boolean, required: true} ,
-  weather: [{type: String, required: true}],
-  ageRange: [{type: String , required: true}],
+  weather: {type: String, required: true},
+  minAge: {type: Number , required: true},
   tags: [String]
 });
 
