@@ -114,6 +114,7 @@ router.delete('/:id', function(req, res){
         User.findByIdAndRemove(req.params.id, function(err, deletedUser){
           if (!err) {
             res.json(deletedUser);
+            req.session.destroy(/* Callback goes here */);
           } else {
             res.json(err);
           }

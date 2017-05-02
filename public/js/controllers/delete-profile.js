@@ -25,15 +25,7 @@ angular.module('MyApp').controller('deleteProfileController', ['$http',
          ctrl.showMsg = true;
          setTimeout(function() {
            console.log('logging out now');
-          //  $http({
-          //    method: 'DELETE',
-          //    url: '/sessions'
-          //  }).then(
-          //    function (response) {
-          //      console.log(response);
-          //    }, function (error) {
-          //      console.log(error);
-          //    });
+           // page reload!
          }, 3000);
        },
        function (error) {
