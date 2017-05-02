@@ -12,7 +12,7 @@ var express = require('express'),
 
 var seedData = [
   {
-    /*creator: 'create user first and insert user id here', */
+    /*creator: '5908ab38137910051a6e14ae', */
     title: 'This is an exercise',
     description: 'It is so much fun!',
     typeOfExercise: 'aerobic',

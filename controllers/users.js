@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/users.js');
 var bcrypt = require('bcrypt');
+var Activity = require('../models/activities.js');
 
 //================ROUTES=================
 
@@ -17,15 +18,16 @@ router.get('/', function(req, res){
 });
 //---------------------------------
 //get user by ID
-router.get('/:userId', function(req, res){
-  User.find({user: req.params.userId}, function(err, foundUsers){
-    // if (req.session.currentuser._id === foundUsers) {
+router.get('/:id', function(req, res){
+  User.find({user: req.params.id}, function(err, foundUser){
+    if (req.session.currentuser &&
+      req.session.currentuser._id.toString() === foundUser._id.toString()) {
       if (!err) {
-        res.json(foundUsers);
+        res.json(foundUser);
       } else {
         res.json(err);
       }
-    // }
+    }
   });
 });
 
@@ -33,39 +35,107 @@ router.get('/:userId', function(req, res){
 //tested with curl
 router.post('/', function(req, res){
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-  User.create(req.body, function(err, createdUsers){
-    res.json(createdUsers);
+  User.create(req.body, function(err, createdUser){
+    res.json(createdUser);
   });
 });
 
-//PUT ROUTE
-router.put('/:id', function(req, res){
-  req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-  User.findById(req.params.id, function(err, updatedUsers){
-    // if(req.sessions.currentuser._id === updatedUsers){
-      User.findByIdAndUpdate(req.params.id, req.body, {new:true}, function(err, updatedUsers){
-        if(!err) {
-          res.json(updatedUsers);
-        } else {
-          res.json(err);
-        }
-      });
-    // }
+//PATCH ROUTES
+
+// user profile update
+router.patch('/:id', function(req, res) {
+  // search for user
+  User.findById(req.params.id, function(err, foundUser) {
+    // check if session data identical to database entry --> authorization
+    if (req.session.currentuser && req.session.currentuser._id.toString() === foundUser._id.toString()) {
+      if(!err) {
+        // check if request body contains password information and if the password
+        // is at least 8 characters long ( --> also checked in front end, this is to
+        // cover curl requests)
+          if (req.body.password !== undefined && req.body.password.length >= 8) {
+            console.log('in changing PW');
+            // encrypt password
+            req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+            // update user's password and respond with information as json
+            User.findByIdAndUpdate(req.params.id,
+              { $set: { password: req.body.password } }, {new:true},
+              function(err, updatedUser){
+                if(!err) {
+                  // save updated user data in session
+                  req.session.currentuser = updatedUser;
+                  // remove password before sending response with updatedUser to
+                  // the browser (I tried to delete the key, but that did not
+                  // work)
+                  updatedUser.password = "";
+                  res.json(updatedUser);
+                } else {
+                  // if error, send error
+                  res.json(err);
+                }
+            });
+            // check if request body contains user name information and if username
+            // is not an empty string or only spaces ( --> also checked in front
+            // end, this is to cover curl requests)
+          } else if (req.body.username !== undefined && req.body.username.trim() !== "") {
+              // update user's username and respond with information as json
+              console.log('in changing username');
+              User.findByIdAndUpdate(req.params.id,
+              { $set: { username: req.body.username } }, {new:true},
+              function(err, updatedUser){
+                if(!err) {
+                  // save updated user data in session
+                  req.session.currentuser = updatedUser;
+                  // remove password before sending response with updatedUser to
+                  // the browser (I tried to delete the key, but that did not
+                  // work)
+                  updatedUser.password = "";
+                  res.json(updatedUser);
+                } else {
+                  // if error, send error
+                  res.json(err);
+                }
+            });
+          } else {
+            // do not allow any other patch requests to this route
+            console.log('Forbidden request');
+            res.status(403).send('Forbidden');
+          }
+      } else {
+        res.json(err);
+      }
+    } else {
+      console.log('Not authrized!');
+      res.status(403).send('Forbidden');
+    }
   });
 });
 
 //DELETE ROUTE
 //user delete route needs to loop through existing children and delete those who have this particular user's ObjectId as value listed under key 'parent'
 router.delete('/:id', function(req, res){
-  User.findById(req.params.id, function(err, deletedUsers){
-    if(req.session.currentuser._id === deletedUsers){
-      User.findByIdAndRemove(req.params.id, function(err, deletedUsers){
-        res.json(deletedUsers);
-      });
+  User.findById(req.params.id, function(err, foundUser){
+    if(req.session.currentuser && req.session.currentuser._id.toString() === foundUser._id.toString()){
+      if (!err) {
+        User.findByIdAndRemove(req.params.id, function(err, deletedUser){
+          if (!err) {
+            // remove all activities authored by the user
+            Activity.find({creator: deletedUser._id}).remove(function(err, deletedActivities) {
+              console.log(deletedActivities);
+            });
+            req.session.destroy(function() {
+              res.json({data: 'success'})
+            });
+          } else {
+            res.json(err);
+          }
+        });
+      } else {
+        res.json(err);
+      }
+    } else {
+      res.status(403).send('Forbidden');
     }
   });
 });
-
-
 
 module.exports = router;

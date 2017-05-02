@@ -18,5 +18,6 @@ angular.module('MyApp').controller('loginFormCtrl', ['$http', function($http){
       console.log(error);
     });
 
+
   };//End submitLogin()
 }]); //End Controller

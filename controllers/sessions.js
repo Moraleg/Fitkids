@@ -3,7 +3,8 @@
 // DEPENDENCIES //
 const express = require('express');
 const router = express.Router();
-const  bcrypt = require('bcrypt');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
 
 
 // MODELS //
