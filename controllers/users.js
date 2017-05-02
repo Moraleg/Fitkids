@@ -58,6 +58,12 @@ router.patch('/:id', function(req, res) {
               { $set: { password: req.body.password } }, {new:true},
               function(err, updatedUser){
                 if(!err) {
+                  // save updated user data in session
+                  req.session.currentuser = updatedUser;
+                  // remove password before sending response with updatedUser to
+                  // the browser (I tried to delete the key, but that did not
+                  // work)
+                  updatedUser.password = "";
                   res.json(updatedUser);
                 } else {
                   // if error, send error
@@ -74,6 +80,12 @@ router.patch('/:id', function(req, res) {
               { $set: { username: req.body.username } }, {new:true},
               function(err, updatedUser){
                 if(!err) {
+                  // save updated user data in session
+                  req.session.currentuser = updatedUser;
+                  // remove password before sending response with updatedUser to
+                  // the browser (I tried to delete the key, but that did not
+                  // work)
+                  updatedUser.password = "";
                   res.json(updatedUser);
                 } else {
                   // if error, send error
@@ -114,6 +126,5 @@ router.delete('/:id', function(req, res){
     // }
   });
 });
-
 
 module.exports = router;
