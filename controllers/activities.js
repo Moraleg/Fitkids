@@ -78,8 +78,8 @@ router.get('/seed', function (req, res) {
 // sth like that depending on user stories
 
 router.get('/', function (req, res) {
-  // find all activities in the database
-  Activity.find({}, function (error, allActivities) {
+  // find most recent activities in the database
+  Activity.find({}).sort({"date": -1}).limit(10).exec(function (error, allActivities) {
     if (!error) {
       // if no error occurs, send array of all found database entries as json
       res.json(allActivities);
@@ -231,12 +231,11 @@ router.delete('/:id', function (req, res) {
 });
 
 router.post('/search', function (req, res) {
-  // find all activities in the database
-  Activity.find({ title: { $regex: req.body.pattern, $options: 'i' }}, function (error, foundActivities) {
+  // find activities based on query pattern
+  Activity.find({ title: { $regex: req.body.pattern, $options: 'i' }}).sort({"date": -1}).exec(function (error, foundActivities) {
     if (!error) {
       // if no error occurs, send array of all found database entries as json
       res.json(foundActivities);
-      // res.json(foundActivities);
     } else {
       // else send error
       res.json(error);
