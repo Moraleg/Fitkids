@@ -230,6 +230,19 @@ router.delete('/:id', function (req, res) {
   });
 });
 
+router.post('/search', function (req, res) {
+  // find all activities in the database
+  Activity.find({ title: { $regex: req.body.pattern, $options: 'i' }}, function (error, foundActivities) {
+    if (!error) {
+      // if no error occurs, send array of all found database entries as json
+      res.json(foundActivities);
+      // res.json(foundActivities);
+    } else {
+      // else send error
+      res.json(error);
+    }
+  });
+});
 // ------------------------------- ROUTER EXPORT -------------------------------
 
 module.exports = router;
