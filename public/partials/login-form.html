@@ -1,10 +1,10 @@
 <form ng-submit="ctrl.submitLogin()">
   <legend>Login</legend>
   <label for="username">Username:</label>
-  <input id="username" type="text" placeholder="username" ng-model="ctrl.username" required/>
+  <input id="username" type="text" placeholder="username" ng-model="login.username" required/>
   <br/>
   <label for="password">Password:</label>
-  <input id="password" type="password" placeholder="password" ng-model="ctrl.password" required min-length="8"/>
+  <input id="password" type="password" placeholder="password" ng-model="login.password" required min-length="8"/>
   <br/>
   <input type="submit" value="LOGIN"/>
 </form>

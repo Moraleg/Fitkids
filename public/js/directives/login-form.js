@@ -3,6 +3,6 @@ angular.module('MyApp').directive('loginForm', function(){
     restrict: 'E',
     templateUrl: '../../partials/login-form.html',
     controller: 'loginFormCtrl',
-    controllerAs: 'ctrl'
+    controllerAs: 'login'
   };
 });

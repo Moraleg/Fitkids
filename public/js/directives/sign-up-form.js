@@ -3,6 +3,6 @@ angular.module('MyApp').directive('signUpForm', function () {
     restrict: 'E',
     templateUrl: '../../partials/sign-up-form.html',
     controller: 'signUpFormCtrl',
-    controllerAs: 'ctrl'
+    controllerAs: 'signUp'
   };
 });
