@@ -41,7 +41,9 @@ router.post('/', function(req, res) {
 
 /* Destroy Session */
 router.delete('/', function(req, res) {
-  req.session.destroy(/* Callback goes here */);
+  req.session.destroy(function(){
+    res.json({currentStatus: 'logged-out'});
+  });
 });
 
 // EXPORT //
