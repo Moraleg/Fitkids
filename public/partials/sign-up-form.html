@@ -1,15 +1,15 @@
-<form ng-submit="ctrl.createAccount()">
+<form ng-submit="signUp.createAccount()">
   <legend>Create Account</legend>
     <label for="username">Username: </label>
-    <input id="username" type="text" placeholder="username" ng-model="ctrl.username" required/>
+    <input id="username" type="text" placeholder="username" ng-model="signUp.username" required/>
     <br />
     <label for="password">Password: </label>
-    <input id="password" type="password" placeholder="password" ng-model="ctrl.password" required minlength="8" />
+    <input id="password" type="password" placeholder="password" ng-model="signUp.password" required min-length="8" />
     <br />
     <label for="confirmPassword">Confirm password: </label>
-    <input id="confirmPassword" type="password" placeholder="confirm password" ng-model="ctrl.confirmPassword" required minlength="8"/>
+    <input id="confirmPassword" type="password" placeholder="confirm password" ng-model="signUp.confirmPassword" required minlength="8"/>
     <br />
     <input type="submit" />
 </form>
-<p ng-if="ctrl.mismatchedPW">Sorry, the passwords you entered did not match.</p>
+<p ng-if="signUp.mismatchedPW">Sorry, the passwords you entered did not match.</p>
 <p>Already have an account? <a href="#">Log in here</a>.</p>
