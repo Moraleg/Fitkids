@@ -19,13 +19,14 @@ router.get('/', function(req, res){
 //get user by ID
 router.get('/:id', function(req, res){
   User.find({user: req.params.id}, function(err, foundUser){
-    // if (req.session.currentuser._id.toString() === foundUser._id.toString()) {
+    if (req.session.currentuser &&
+      req.session.currentuser._id.toString() === foundUser._id.toString()) {
       if (!err) {
         res.json(foundUser);
       } else {
         res.json(err);
       }
-    // }
+    }
   });
 });
 
@@ -40,12 +41,12 @@ router.post('/', function(req, res){
 
 //PATCH ROUTES
 
-// password change
+// user profile update
 router.patch('/:id', function(req, res) {
   // search for user
   User.findById(req.params.id, function(err, foundUser) {
     // check if session data identical to database entry --> authorization
-    if (req.session.currentuser._id.toString() === foundUser._id.toString()) {
+    if (req.session.currentuser && req.session.currentuser._id.toString() === foundUser._id.toString()) {
       if(!err) {
         // check if request body contains password information and if the password
         // is at least 8 characters long ( --> also checked in front end, this is to
@@ -112,7 +113,7 @@ router.patch('/:id', function(req, res) {
 //user delete route needs to loop through existing children and delete those who have this particular user's ObjectId as value listed under key 'parent'
 router.delete('/:id', function(req, res){
   User.findById(req.params.id, function(err, foundUser){
-    if(req.session.currentuser._id.toString() === foundUser._id.toString()){
+    if(req.session.currentuser && req.session.currentuser._id.toString() === foundUser._id.toString()){
       if (!err) {
         User.findByIdAndRemove(req.params.id, function(err, deletedUser){
           if (!err) {
