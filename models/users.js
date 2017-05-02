@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
   username: {type: String, required: true, unique: true },
   password: {type: String, required: true},
-  favorites: [{type: Schema.Types.ObjectId}],
+  favorites: [{type: Schema.Types.ObjectId}]
 });
 
 var User = mongoose.model('User', userSchema);
