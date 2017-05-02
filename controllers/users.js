@@ -40,20 +40,49 @@ router.post('/', function(req, res){
 
 //PATCH ROUTES
 
-
-
 // password change
-router.put('/:id', function(req, res) {
-  req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-  User.findById(req.params.id, function(err, updatedUsers){
-    // if(req.sessions.currentuser._id === updatedUsers){
-      User.findByIdAndUpdate(req.params.id, req.body, {new:true}, function(err, updatedUsers){
-        if(!err) {
-          res.json(updatedUsers);
-        } else {
-          res.json(err);
-        }
-      });
+router.patch('/:id', function(req, res) {
+  // search for user
+  User.findById(req.params.id, function(err, foundUser) {
+    // check if session data identical to database entry --> authorization
+    // if (req.sessions.currentuser._id === foundUser._id) {
+    // check if request body contains password information and if the password
+    // is at least 8 characters long ( --> also checked in front end, this is to
+    // cover curl requests)
+      if (req.body.password !== undefined && req.body.password.length >= 8) {
+        // encrypt password
+        req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+        // update user's password and respond with information as json
+        User.findByIdAndUpdate(req.params.id,
+          { $set: { password: req.body.password } }, {new:true},
+          function(err, updatedUser){
+            if(!err) {
+              res.json(updatedUser);
+            } else {
+              res.json(err);
+            }
+        });
+        // check if request body contains user name information and if username
+        // is not an empty string or only spaces ( --> also checked in front
+        // end, this is to cover curl requests)
+      } else if (req.body.username !== undefined &&
+        req.body.username.trim() !== '') {
+          // update user's username and respond with information as json
+          User.findByIdAndUpdate(req.params.id,
+          { $set: { username: req.body.username } }, {new:true},
+          function(err, updatedUser){
+            if(!err) {
+              res.json(updatedUser);
+            } else {
+              res.json(err);
+            }
+        });
+      } else {
+        // do not allow any other patch requests to this route
+        res.status(403).send('Forbidden');
+      }
+    // } else {
+    //   res.status(403).send('Forbidden');
     // }
   });
 });
