@@ -108,8 +108,8 @@ router.patch('/:id', function(req, res) {
 //DELETE ROUTE
 //user delete route needs to loop through existing children and delete those who have this particular user's ObjectId as value listed under key 'parent'
 router.delete('/:id', function(req, res){
-  User.findById(req.params.id, function(err, deletedUser){
-    // if(req.session.currentuser._id === deletedUser._id){
+  User.findById(req.params.id, function(err, foundUser){
+    // if(req.session.currentuser._id === foundUser._id){
       if (!err) {
         User.findByIdAndRemove(req.params.id, function(err, deletedUser){
           if (!err) {

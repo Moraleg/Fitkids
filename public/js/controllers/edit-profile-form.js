@@ -15,7 +15,7 @@ function ($http) {
       //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       // NOTE: This ID here is taken from one of my DB entries and then hardcoded into the url for testing. TAKE OUT once login works!
       //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-      url: '/users/59078755dfabec06e91ae6cc',
+      url: '/users/', // + id
       data: {
         username: this.newUsername
       }
@@ -55,7 +55,7 @@ function ($http) {
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // NOTE: This ID here is taken from one of my DB entries and then hardcoded into the url for testing. TAKE OUT once login works!
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        url: '/users/59078755dfabec06e91ae6cc',
+        url: '/users/', // + id
         data: {
           password: this.newPassword
         }
