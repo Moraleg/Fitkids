@@ -1,0 +1,40 @@
+<div id="activity-search">
+  <form ng-submit="activCtrl.getActivitiesByTitle(activCtrl.query.title)">
+    <input type="text" ng-model="activCtrl.query.title" placeholder="Search and filter...">
+    <input type="submit" value="Search">
+  </form>
+</div>
+<div id="activity-sidebar">
+  <div>
+    <h4>Exercise Type</h4>
+    <input type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Aerobic" ng-init="activCtrl.filter.typeOfExercise.Aerobic = false"> <label>Aerobic</label><br>
+    <input type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Balance" ng-init="activCtrl.filter.typeOfExercise.Balance = false"> <label>Balance</label><br>
+    <input type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Cardio" ng-init="activCtrl.filter.typeOfExercise.Cardio = false"> <label>Cardio</label><br>
+    <input type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Flexibility" ng-init="activCtrl.filter.typeOfExercise.Flexibility = false"> <label>Flexibility</label><br>
+  </div>
+  <div>
+    <h4>Age</h4>
+    <input type="range" step="1" min="1" max="18" ng-model="activCtrl.filter.minAge" list="age-range">
+    <datalist id="age-range" ng-init="activCtrl.getAgeRange(1,18)">
+      <option ng-repeat="age in activCtrl.ageRange">{{age}}</option>
+    </datalist> <label>{{activCtrl.filter.minAge}}</label><br>
+  </div>
+  <div>
+    <h4>Weather</h4>
+    <input type="checkbox" ng-model="activCtrl.filter.weather.Sunny" ng-init="activCtrl.filter.weather.Sunny = false"> <label>Sunny</label><br>
+    <input type="checkbox" ng-model="activCtrl.filter.weather.Rainy" ng-init="activCtrl.filter.weather.Rainy = false"> <label>Rainy</label><br>
+    <input type="checkbox" ng-model="activCtrl.filter.weather.Snow" ng-init="activCtrl.filter.weather.Snow = false"> <label>Snow</label><br>
+  </div>
+</div>
+<div id="activity-container">
+  <div class="activity" ng-repeat="activity in activCtrl.activities | filter:activCtrl.filterActivity | filter:activCtrl.query">
+    <h3 class="activity-title">{{activity.title}}</h3>
+    <p class="activity-attr"><small>submitted by <a href="#">{{activity.creator}}</a></small></p>
+    <div class="activity-info-container">
+      <p class="activity-info">{{activity.typeOfExercise}}</p>
+      <p class="activity-info">{{activity.weather}}</p>
+      <p class="activity-info">{{activity.minAge}}+ yrs</p>
+    </div>
+    <p class="activity-desc">{{activity.description}}</p>
+  </div>
+</div>
