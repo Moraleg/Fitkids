@@ -3,7 +3,7 @@
 angular.module('MyApp').controller('ActivitiesController', ['$http', function($http) {
   var ctrl = this;
   ctrl.activities = [];
-  ctrl.filter = { minAge: 3 };
+  ctrl.filter = { minAge: 18 };
   ctrl.ageRange = [];
   ctrl.getActivities = function() {
     $http({
