@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/users.js');
 var bcrypt = require('bcrypt');
+var Activity = require('../models/activities.js');
 
 //================ROUTES=================
 
@@ -117,6 +118,10 @@ router.delete('/:id', function(req, res){
       if (!err) {
         User.findByIdAndRemove(req.params.id, function(err, deletedUser){
           if (!err) {
+            // remove all activities authored by the user
+            Activity.find({creator: deletedUser._id}).remove(function(err, deletedActivities) {
+              console.log(deletedActivities);
+            });
             req.session.destroy(function() {
               res.json({data: 'success'})
             });
