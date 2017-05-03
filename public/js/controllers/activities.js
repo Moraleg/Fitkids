@@ -53,17 +53,21 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', function($h
     ctrl.ageRange = agesArr;
   };
   ctrl.getActivitiesByTitle = function(string) {
-    $http({
-      method: 'POST',
-      url: '/activities/search',
-      data: { pattern: string }
-    }).then(function(response) {
-      ctrl.lastQuery = Object.assign({}, ctrl.query);
-      ctrl.hasSearched = true;
-      ctrl.activities = response.data;
-    }, function(error) {
-      console.log('Error');
-    });
+    if (string.length) {
+      $http({
+        method: 'POST',
+        url: '/activities/search',
+        data: { pattern: string }
+      }).then(function(response) {
+        ctrl.lastQuery = Object.assign({}, ctrl.query);
+        ctrl.hasSearched = true;
+        ctrl.activities = response.data;
+      }, function(error) {
+        console.log('Error');
+      });
+    } else {
+      ctrl.getActivities();
+    }
   };
   ctrl.refreshActivities = function() {
     if (ctrl.hasSearched) {
