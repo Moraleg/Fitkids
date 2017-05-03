@@ -7,6 +7,7 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', function($h
   ctrl.lastQuery = { title: "" }
   ctrl.filter = { minAge: 18 };
   ctrl.newActivity = { typeOfExercise: 'Aerobic', weather: 'Sunny', creator: 'Test' };
+  ctrl.editActivity = {};
   ctrl.newActivityTemplate = { typeOfExercise: 'Aerobic', weather: 'Sunny', creator: 'Test' };
   ctrl.ageRange = [];
   ctrl.exerciseTypes = [
