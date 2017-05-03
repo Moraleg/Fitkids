@@ -253,7 +253,7 @@ edit-profile-form  h2{
 }
 
 .edit-span {
-  color: #2BCEC5;
+  color: #f65C5B;
 }
 
 .edit-submit {
@@ -263,5 +263,42 @@ edit-profile-form  h2{
   padding: 2px 18px;
   margin: 10px 10px 0 10px;
   border-radius: 20px;
+  cursor: pointer;
 
+}
+
+#delete-acc {
+  letter-spacing: 0.46px;
+  color: white;
+  border: 2px solid #f65C5B;
+  background-color: #f65C5B;
+  padding: 8px 48px;
+  border-radius: 20px;
+  text-align: center;
+  display: block;
+  margin: 15px auto;
+  cursor: pointer;
+}
+
+#no-delete {
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  color: white;
+  padding: 4px 18px;
+  margin: 18px 10px 0 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#yes-delete {
+  letter-spacing: 0.46px;
+  color: white;
+  border: 2px solid #f65C5B;
+  background-color: #f65C5B;
+  padding: 4px 16px;
+  border-radius: 20px;
+  text-align: center;
+  display: block;
+  margin: 5px auto 15px auto;
+  cursor: pointer;
 }
