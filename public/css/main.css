@@ -1,0 +1,379 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F7F7F7;
+  font-family: 'Helvetica Neue', 'sans-serif';
+}
+
+header {
+  position: static;
+  top: 0;
+  width: 100%;
+  height: 74px;
+  background-color: white;
+}
+
+.logo {
+  display: inline-block;
+  float: left;
+  color: #333;
+  margin: 25px 0 17px 3.2%;
+  letter-spacing: 0.49px;
+
+}
+
+nav {
+  display: inline-block;
+  float: right;
+  margin-top: 18px;
+  margin-right: 3.2%;
+  letter-spacing: 0.46px;
+  width: 800px;
+}
+
+nav a {
+  float: right;
+  display: inline-block;
+  text-decoration: none;
+  color: #929292;
+  margin-right: 3%;
+}
+
+nav a:hover {
+  color: #333;
+}
+
+nav a:before {
+  content: "";
+ position: absolute;
+ width: 100%;
+ height: 2px;
+ bottom: 0;
+ left: 0;
+ background-color: #2BCEC5;
+ visibility: hidden;
+ -webkit-transform: scaleX(0);
+ transform: scaleX(0);
+ -webkit-transition: all 0.3s ease-in-out 0s;
+ transition: all 0.3s ease-in-out 0s;
+}
+
+nav a:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.reg {
+  margin-top: 12px;
+}
+
+.signup {
+  border: 2px solid #2BCEC5;
+  color: #2BCEC5;
+  padding: 8px 24px;
+  border-radius: 20px;
+}
+
+.banner {
+  position: relative;
+}
+
+.banner-img {
+  width: 100vw;
+  background-color: #333;
+}
+
+.banner-h1 {
+  text-align: center;
+  position: absolute;
+  top: 200px;
+  left: 27%;
+  color: white;
+  line-height: 40px;
+  letter-spacing: 2px;
+  font-family: 'Apercu', 'sans-serif';
+  font-weight: normal;
+}
+
+.browse {
+  position: absolute;
+  bottom: 35%;
+  left: 43%;
+  font-size: 14px;
+  text-decoration: none;
+  letter-spacing: 0.46px;
+  color: white;
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.main-content {
+  margin-top: 25px;
+}
+.mid {
+  display: inline-block;
+  text-align: center;
+  margin: 0 12px 0 auto;
+  width: 32%;
+  border-left: 1px solid #ACACAC;
+}
+
+.mid h3 {
+  color: #333;
+}
+
+.mid p {
+  color: #ACACAC;
+}
+
+/*****************UNIVERSAL MODAL CODE*******************/
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(48, 48, 48, 0.7);
+}
+
+.modal-input-box {
+  background-color: white;
+  width: 450px;
+  border-radius: 4px;
+  margin: 150px auto;
+  padding: 2%;
+  line-height: 120%;
+}
+
+.legend-container {
+  display: flex
+}
+
+.legend-container legend {
+  margin: auto;
+  margin-bottom: 12px;
+}
+
+label {
+  margin-left: 12px;
+}
+
+#username, #password, #confirmPassword {
+  padding: 10px;
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.modal-text {
+  text-align: center;
+}
+
+/*****************GET STARTED MODAL*******************/
+
+#signup-modal {
+  overflow: auto;
+  display: none;
+}
+
+sign-up-form {
+  text-align: left;
+  color: #333;
+}
+
+sign-up-form h2 {
+  font-weight: normal;
+  text-align: center;
+}
+
+#create-account-btn {
+  letter-spacing: 0.46px;
+  color: white;
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.login-anchor {
+  text-decoration: none;
+  color: #2BCEC5;
+}
+
+
+/**********************LOGIN MODAL*******************/
+
+#login-modal {
+  overflow: auto;
+  display: none;
+}
+
+login-form {
+  text-align: left;
+  color: #333;
+}
+
+login-form h2 {
+  font-weight: normal;
+  text-align: center;
+}
+
+#login-btn {
+  letter-spacing: 0.46px;
+  color: white;
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  padding: 10px 55px;
+  border-radius: 20px;
+  text-align: center;
+  display: block;
+  margin: 15px auto;
+  cursor: pointer;
+}
+
+/**********************EDIT USER MODAL*******************/
+
+#edit-user-modal {
+  overflow: auto;
+  display: none;
+}
+
+edit-profile-form {
+  text-align: left;
+  color: #333;
+}
+
+edit-profile-form  h2 {
+  font-weight: normal;
+  text-align: center;
+}
+
+.edit-span {
+  color: #f65C5B;
+}
+
+.edit-submit {
+  border: 2px solid #2BCEC5;
+  background-color: white;
+  color: #2BCEC5;
+  padding: 2px 18px;
+  margin: 10px 10px 0 10px;
+  border-radius: 20px;
+  cursor: pointer;
+
+}
+
+#delete-acc {
+  letter-spacing: 0.46px;
+  color: white;
+  border: 2px solid #f65C5B;
+  background-color: #f65C5B;
+  padding: 8px 48px;
+  border-radius: 20px;
+  text-align: center;
+  display: block;
+  margin: 15px auto;
+  cursor: pointer;
+}
+
+#no-delete {
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  color: white;
+  padding: 4px 18px;
+  margin: 18px 10px 0 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#yes-delete {
+  letter-spacing: 0.46px;
+  color: white;
+  border: 2px solid #f65C5B;
+  background-color: #f65C5B;
+  padding: 4px 16px;
+  border-radius: 20px;
+  text-align: center;
+  display: block;
+  margin: 5px auto 15px auto;
+  cursor: pointer;
+}
+
+/**********************CREATE ACTIVITY MODAL*******************/
+#activity-modal {
+  overflow: auto;
+  display: none;
+}
+
+activities {
+  text-align: left;
+  color: #333;
+}
+
+activities h2 {
+  font-weight: normal;
+  text-align: center;
+}
+
+textarea {
+  resize: none;
+}
+
+#new-activity-description, #new-activity-title, #new-activity-age, #new-activity-exercise-type, #new-activity-weather-type  {
+  padding: 10px;
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
+
+#create-activity {
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  color: white;
+  padding: 7px 44px;
+  margin: 0 auto;
+  border-radius: 20px;
+  cursor: pointer;
+  display: block;
+}
+
+#new-activity-exercise-type, #new-activity-weather-type  {
+  width: 95%;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+/**********************TRACK PROGRESS*******************/
+
+.child-header {
+  display: block;
+}
+
+.child-header h2 {
+  display: inline-block;
+  font-weight: normal;
+  margin-left: 3.5%;
+}
+
+.child-header a {
+  text-decoration: none;
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  color: white;
+  padding: 7px 32px;
+  border-radius: 20px;
+  cursor: pointer;
+  float: right;
+  margin-right: 3.5%;
+  margin-top: 20px;
+}

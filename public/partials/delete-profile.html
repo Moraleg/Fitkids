@@ -1,10 +1,10 @@
-<button ng-hide="deleteProfileCtrl.showConfirm" ng-click="deleteProfileCtrl.confirmDelete()">DELETE my account</button>
-<div ng-if="deleteProfileCtrl.showConfirm">
-  Are you sure that you want to close your account? All your data will be
-  deleted!
-  <button ng-click="deleteProfileCtrl.abortDelete()">NO, nevermind.</button>
+<button id="delete-acc" ng-hide="deleteProfileCtrl.showConfirm" ng-click="deleteProfileCtrl.confirmDelete()">Delete Account</button>
+<div class="modal-text" ng-if="deleteProfileCtrl.showConfirm">
+  Are you sure that you want to close your account? <br/><span class="edit-span">All your data will be
+  deleted!</span><br/>
+  <button id="no-delete" ng-click="deleteProfileCtrl.abortDelete()">NO, nevermind.</button>
   <form ng-submit="deleteProfileCtrl.deleteProfile()">
-      <input type="submit" value="YES, delete my account"/>
+      <input id="yes-delete" type="submit" value="YES, delete my account."/>
   </form>
 </div>
-<p ng-if="deleteProfileCtrl.showMsg">{{deleteProfileCtrl.msgContent}}</p>
+<p class="modal-text" ng-if="deleteProfileCtrl.showMsg">{{deleteProfileCtrl.msgContent}}</p>
