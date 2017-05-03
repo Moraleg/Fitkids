@@ -21,6 +21,7 @@
   </form>
 </div>
 <div id="activity-sidebar">
+  <button id="btn-viewfavorites">View Favorites</button>
   <div>
     <h4>Exercise Type</h4>
     <input id="type-aerobic" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Aerobic" ng-init="activCtrl.filter.typeOfExercise.Aerobic = false"> <label for="type-aerobic">Aerobic</label><br>
@@ -68,7 +69,9 @@
       <p class="activity-info">{{activity.minAge}}+ yrs</p>
     </div>
     <p class="activity-desc">{{activity.description}}</p>
-    <button>Favorite</button> <button ng-click="activCtrl.edit(activity)">Edit</button>
+    <div class="activity-btn-container" ng-if="viewCtrl.sessionData">
+      <button ng-if="!activCtrl.isFavorite(activity)" ng-click="activCtrl.addToFavorites(activity)">Favorite</button><button ng-if="activCtrl.isFavorite(activity)" ng-click="activCtrl.removeFromFavorites(activity)">Unfavorite</button> <button ng-click="activCtrl.edit(activity)">Edit</button>
+    </div>
   </div>
   <dir-pagination-controls pagination-id="activities"></dir-pagination-controls>
 </div>

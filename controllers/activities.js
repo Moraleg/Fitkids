@@ -151,6 +151,16 @@ router.put('/:id/favorite/:userID', function (req, res) {
       });
 });
 
+router.delete('/:id/favorite/:userID', function(req, res) {
+  User.findByIdAndUpdate(req.params.userID,
+    { $pull: { favorites: req.params.id } }, {new:true}, function(error, updatedUser) {
+      if (!error) {
+        res.json(updatedUser);
+      } else {
+        res.json(error);
+      }
+    });
+});
 
 // *** UPDATE an existing activity ***
 // --> tested with curl

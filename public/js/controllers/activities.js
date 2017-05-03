@@ -118,16 +118,29 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', '$scope', f
     }, function(error) {
       console.log(error);
     });
+  };
+  ctrl.addToFavorites = function(activity) {
+    $http({
+      method: 'PUT',
+      url: '/activities/' + activity._id + '/favorite/' + $scope.viewCtrl.sessionData._id
+    }).then(function(response) {
+      $scope.viewCtrl.sessionData = response.data;
+    }, function(error) {
+      console.log(error);
+    });
+  };
+  ctrl.removeFromFavorites = function(activity) {
+    $http({
+      method: 'DELETE',
+      url: '/activities/' + activity._id + '/favorite/' + $scope.viewCtrl.sessionData._id
+    }).then(function(response) {
+      $scope.viewCtrl.sessionData = response.data;
+    }, function(error) {
+      console.log(error);
+    });
+  };
+  // Favorites check adapted from http://stackoverflow.com/questions/6116474/how-to-find-if-an-array-contains-a-specific-string-in-javascript-jquery
+  ctrl.isFavorite = function(activity) {
+    return ($scope.viewCtrl.sessionData.favorites.indexOf(activity._id) > -1);
   }
-  // ctrl.seed = function() {
-  //   $http({
-  //     method: 'GET',
-  //     url: '/activities/seed'
-  //   }).then(function(response) {
-  //     console.log('Seed successful');
-  //   }, function(error) {
-  //     console.log('Error');
-  //   });
-  // }
-  // ctrl.seed();
 }]);
