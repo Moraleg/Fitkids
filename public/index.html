@@ -22,52 +22,55 @@
     <!-- delete profile form directive and controller -->
     <script src="js/directives/delete-profile.js" charset="utf-8"></script>
     <script src="js/controllers/delete-profile.js" charset="utf-8"></script>
+    <!--Modal JS & jQuery Links-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/modal.js"></script>
   </head>
   <body>
     <!--MAIN PAGE-->
     <header>
-      <h1 class="logo">LOGO</h1>
+      <h2 class="logo">FIT KIDS</h2>
       <nav>
         <a href="#">LOGIN</a>
-        <a href="#">GET STARTED</a>
+        <a id="openModal" class="signup" href="#">GET STARTED</a>
         <a href="#">ACTIVITIES</a>
         <a href="#">TRACK PROGRESS</a>
         <a href="#">FAVORITES</a>
         <user-logout></user-logout>
       </nav>
     </header>
-    <main>
-      <section>
-        <img src="/" alt="">
-        <h2>Browse hundreds of exercise and activity ideas to get your kids moving</h2>
-        <a href="#">GET STARTED</a>
+      <section class="banner">
+        <img class="banner-img" src="/images/banner-img.png" alt="banner image">
+        <h1 class="banner-h1">Browse hundreds of exercise and activity ideas<br/> to get your kids moving</h1>
+        <a class="browse" href="#">BROWSE ACTIVITIES</a>
       </section>
-      <section>
-        <h3>Benefit</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
-      </section>
-      <section>
-        <h3>Benefit</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
-      </section>
-      <section>
-        <h3>Benefit</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
-      </section>
+      <main>
+        <section class="mid">
+          <h3>Benefit</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
+        </section>
+        <section class="mid">
+          <h3>Benefit</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
+        </section>
+        <section class="mid">
+          <h3>Benefit</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
+        </section>
     </main>
     <!--END MAIN PAGE-->
 
     <!--CREATE ACCOUNT MODAL-->
-    <section>
-      <section>
+    <section id="signup-modal" class="modal">
+      <section class="modal-input-box">
         <sign-up-form></sign-up-form>
       </section>
     </section>
     <!--END CREATE ACCOUNT MODAL-->
 
     <!--LOGIN MODAL-->
-    <section>
-      <section>
+    <section id="login-modal" class="modal">
+      <section class="modal-input-box">
         <login-form></login-form>
       </section>
     </section>
@@ -120,6 +123,7 @@
     </section>
     <!--END USER EDIT MODAL-->
 
-
+    <!--FOOTER-->
+    <footer></footer>
   </body>
 </html>
