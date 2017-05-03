@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Site Blueprint</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+    <!-- sign up form directive and controller -->
+    <script src="js/directives/sign-up-form.js" charset="utf-8"></script>
+    <script src="js/controllers/sign-up-form.js" charset="utf-8"></script>
+    <!--Login form directive and controller-->
+    <script src="js/directives/login-form.js" charset="utf-8"></script>
+    <script src="js/controllers/login-form.js" charset="utf-8"></script>
+    <!--Logout directive and controller-->
+    <script src="js/directives/logout.js" charset="utf-8"></script>
+    <script src="js/controllers/logout.js" charset="utf-8"></script>
+    <!-- edit profile form directive and controller -->
+    <script src="js/directives/edit-profile-form.js" charset="utf-8"></script>
+    <script src="js/controllers/edit-profile-form.js" charset="utf-8"></script>
+    <!-- delete profile form directive and controller -->
+    <script src="js/directives/delete-profile.js" charset="utf-8"></script>
+    <script src="js/controllers/delete-profile.js" charset="utf-8"></script>
+    <!-- activities directive and controller -->
+    <script src="js/directives/activities.js" charset="utf-8"></script>
+    <script src="js/controllers/activities.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <!--MAIN PAGE-->
+    <header>
+      <h1>LOGO</h1>
+      <nav>
+        <a href="#">LOGIN</a>
+        <a href="#">GET STARTED</a>
+        <a href="#">ACTIVITIES</a>
+        <a href="#">TRACK PROGRESS</a>
+        <a href="#">FAVORITES</a>
+        <user-logout></user-logout>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <img src="/" alt="">
+        <h2>Browse hundreds of exercise and activity ideas to get your kids moving</h2>
+        <a href="#">GET STARTED</a>
+      </section>
+      <section>
+        <h3>Benefit</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
+      </section>
+      <section>
+        <h3>Benefit</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
+      </section>
+      <section>
+        <h3>Benefit</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
+      </section>
+    </main>
+    <!--END MAIN PAGE-->
+
+    <!--CREATE ACCOUNT MODAL-->
+    <section>
+      <section>
+        <sign-up-form></sign-up-form>
+      </section>
+    </section>
+    <!--END CREATE ACCOUNT MODAL-->
+
+    <!--LOGIN MODAL-->
+    <section>
+      <section>
+        <login-form></login-form>
+      </section>
+    </section>
+    <!--END LOGIN MODAL-->
+
+    <!--ACTIVITIES FEED-->
+    <main>
+    <activities><activities>
+    </main>
+    <!--END ACTIVITIES FEED-->
+
+    <!--CREATE ACTIVITIES MODAL-->
+    <section>
+      <section></section>
+    </section>
+    <!--END ACTIVITIES MODAL-->
+
+    <!--EDIT ACTIVITIES MODAL-->
+    <section>
+      <section></section>
+    </section>
+    <!--END EDIT ACTIVITIES MODAL-->
+
+    <!--CHILD'S DAILY PROGRESS-->
+    <main>
+      <section>
+        <h2>Daily Progress</h2>
+        <a href="#">ADD CHILD</a>
+      </section>
+      <section></section>
+    </main>
+    <!--END CHILD'S DAILY PROGRESS-->
+
+    <!--CHILD EDIT MODAL-->
+    <section>
+      <section></section>
+    </section>
+    <!--END CHILD EDIT MODAL-->
+
+    <!--USER EDIT MODAL-->
+    <section>
+      <edit-profile-form></edit-profile-form>
+      <br />
+      <delete-profile></delete-profile>
+    </section>
+    <!--END USER EDIT MODAL-->
+  </body>
+</html>
