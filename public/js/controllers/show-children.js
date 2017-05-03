@@ -2,16 +2,16 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
   // initialize variables
   var ctrl = this;
   ctrl.allChildren = [];
+  // set time stamp for today's date to midnight
+  // this way, all dates will have the exact same time down to the milisecond // and can be compared to today's date
+  ctrl.today = new Date();
+  ctrl.today.setHours(0);
+  ctrl.today.setMinutes(0);
+  ctrl.today.setSeconds(0);
+  ctrl.today.setMilliseconds(0);
 
   // get data for today
   ctrl.getTodaysActivityLevels = function () {
-    // set time stamp for today's date to midnight
-    // this way, all dates will have the exact same time down to the milisecond // and can be compared to today's date
-    var today = new Date;
-    today.setHours(0);
-    today.setMinutes(0);
-    today.setSeconds(0);
-    today.setMilliseconds(0);
 
     // loops through all all children
     for (var i = 0; i < ctrl.allChildren.length; i++) {
@@ -23,7 +23,7 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
           // if there already is an activity in the activity array
           for (var j = 0; j < ctrl.allChildren[i].activity.length; j++) {
             // find the activity that corresponds with today's date
-            if (today.toJSON() === ctrl.allChildren[i].activity[j].day) {
+            if (ctrl.today.toJSON() === ctrl.allChildren[i].activity[j].day) {
               ctrl.allChildren[i].todaysActivity = ctrl.allChildren[i].activity[j].minutes; // set todaysActivity to that number
             }
           }
@@ -75,17 +75,9 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
   ctrl.addActiveMinutes = function (child) { // function allows to add
     // activity in minutes for current date only
 
-    // set time stamp for today's date to midnight
-    // this way, all dates will have the exact same time down to the milisecond // and can be compared to today's date
-    var today = new Date();
-    today.setHours(0);
-    today.setMinutes(0);
-    today.setSeconds(0);
-    today.setMilliseconds(0);
-
     // holds today's date and minutes from userInput
     newActivity = {
-      day: today,
+      day: ctrl.today,
       minutes: child.newMinutes
     };
 
@@ -93,8 +85,8 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
     // levels on current day
     var updateActivity = function () {
       for (var i = 0; i < child.activity.length; i++) { // loop over array
-        if (child.activity[i].day === today.toJSON()) { // find entries with
-          // today's date
+        if (child.activity[i].day === ctrl.today.toJSON()) { // find entries
+          // with today's date
           child.activity[i].minutes += newActivity.minutes; // increase
           // activity by new value
           return true; // return true and end loop
