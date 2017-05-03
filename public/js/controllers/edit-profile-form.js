@@ -47,6 +47,8 @@ function ($http) {
       }, function (error) {
         console.log(error);
       });
+    // clears form
+    this.newUsername = "";
   };
 
   // *** password update ***
@@ -78,10 +80,6 @@ function ($http) {
                   // displays success message with the following content
                   ctrl.msgContent = "Thank you! Your password was changed."
                   ctrl.displayMessage = true;
-                  // clears form
-                  ctrl.newUsername = "";
-                  ctrl.newPassword  = "";
-                  ctrl.confirmNewPassword = "";
                 } else {
                   ctrl.msgContent = "Sorry, something went wrong! Your changes were not saved. Please try again."
                   ctrl.displayMessage = true;
@@ -101,9 +99,13 @@ function ($http) {
           console.log(error);
         });
     } else {
-      // displays success message with the following content
+      // displays fail message with the following content
       ctrl.msgContent = "Sorry, the passwords you entered did not match."
       ctrl.displayMessage  = true;
     }
+    // clears form
+    this.newUsername = "";
+    this.newPassword  = "";
+    this.confirmNewPassword = "";
   };
 }]);

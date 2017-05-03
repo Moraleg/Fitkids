@@ -11,5 +11,5 @@
     <br />
     <input type="submit" />
 </form>
-<p ng-if="signUp.mismatchedPW">Sorry, the passwords you entered did not match.</p>
+<p ng-if="signUp.displayMessage">{{signUp.msgContent}}</p>
 <p>Already have an account? <a href="#">Log in here</a>.</p>

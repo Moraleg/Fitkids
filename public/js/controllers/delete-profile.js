@@ -38,7 +38,6 @@ angular.module('MyApp').controller('deleteProfileController', ['$http', '$window
                    console.log(error);
                    ctrl.showMsg = true;
                    ctrl.msg = 'Sorry, something went wrong. Please try again.'
-                   this.showConfirm = false;
                  });
              } else {
                console.log('not logged in');
@@ -46,5 +45,6 @@ angular.module('MyApp').controller('deleteProfileController', ['$http', '$window
            }, function (error) {
              console.log(error);
            });
+           this.showConfirm = false;
    };
 }]);

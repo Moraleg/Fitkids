@@ -36,7 +36,11 @@ router.get('/:id', function(req, res){
 router.post('/', function(req, res){
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
   User.create(req.body, function(err, createdUser){
-    res.json(createdUser);
+    if (!err) {
+      res.json(createdUser);
+    } else {
+      res.json(err);
+    }
   });
 });
 
