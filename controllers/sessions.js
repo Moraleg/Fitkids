@@ -19,6 +19,9 @@ router.get('/login/', function(req, res) {
 /* Get Current User */
 /* Route for Angular to get session information? Needs testing when we implement AngularJS */
 router.get('/', function(req, res) {
+  if (req.session.currentuser) {
+    req.session.currentuser.password = '';
+  }
   res.json(req.session.currentuser);
 });
 
@@ -41,7 +44,9 @@ router.post('/', function(req, res) {
 
 /* Destroy Session */
 router.delete('/', function(req, res) {
-  req.session.destroy(/* Callback goes here */);
+  req.session.destroy(function(){
+    res.json({currentStatus: 'logged-out'});
+  });
 });
 
 // EXPORT //
