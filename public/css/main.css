@@ -9,7 +9,7 @@ header {
   position: static;
   top: 0;
   width: 100%;
-  height: 72px;
+  height: 74px;
   background-color: white;
 }
 
@@ -32,6 +32,7 @@ nav {
 }
 
 nav a {
+  float: right;
   display: inline-block;
   text-decoration: none;
   color: #929292;
@@ -63,10 +64,14 @@ nav a:hover:before {
   transform: scaleX(1);
 }
 
+.reg {
+  margin-top: 12px;
+}
+
 .signup {
   border: 2px solid #2BCEC5;
   color: #2BCEC5;
-  padding: 10px 28px;
+  padding: 8px 24px;
   border-radius: 20px;
 }
 
@@ -105,7 +110,7 @@ nav a:hover:before {
   border-radius: 20px;
 }
 
-main {
+.main-content {
   margin-top: 25px;
 }
 .mid {
@@ -247,7 +252,7 @@ edit-profile-form {
   color: #333;
 }
 
-edit-profile-form  h2{
+edit-profile-form  h2 {
   font-weight: normal;
   text-align: center;
 }
@@ -301,4 +306,74 @@ edit-profile-form  h2{
   display: block;
   margin: 5px auto 15px auto;
   cursor: pointer;
+}
+
+/**********************CREATE ACTIVITY MODAL*******************/
+#activity-modal {
+  /*overflow: auto;*/
+  /*display: none;*/
+}
+
+activities {
+  text-align: left;
+  color: #333;
+}
+
+activities h2 {
+  font-weight: normal;
+  text-align: center;
+}
+
+textarea {
+  resize: none;
+}
+
+#new-activity-description, #new-activity-title, #new-activity-age, #new-activity-exercise-type, #new-activity-weather-type  {
+  padding: 10px;
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
+
+#create-activity {
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  color: white;
+  padding: 7px 44px;
+  margin: 0 auto;
+  border-radius: 20px;
+  cursor: pointer;
+  display: block;
+}
+
+#new-activity-exercise-type, #new-activity-weather-type  {
+  width: 95%;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+/**********************TRACK PROGRESS*******************/
+
+.child-header {
+  display: block;
+}
+
+.child-header h2 {
+  display: inline-block;
+  font-weight: normal;
+  margin-left: 3.5%;
+}
+
+.child-header a {
+  text-decoration: none;
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  color: white;
+  padding: 7px 32px;
+  border-radius: 20px;
+  cursor: pointer;
+  float: right;
+  margin-right: 3.5%;
+  margin-top: 20px;
 }

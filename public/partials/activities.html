@@ -1,19 +1,24 @@
-<div id="activity-form-new-container">
+<div class="modal-input-box" id="activity-form-new-container">
   <div id="activity-form-new-unauth">
-    <p>You must be logged in to use this feature.</p>
+    <!-- <p>You must be logged in to use this feature.</p> -->
   </div>
   <div id="activity-form-new">
     <form ng-submit="activCtrl.addNewActivity()">
-      <legend>Create Activity</legend>
+      <div class="legend-container">
+        <legend><h2>Create Activity</h2></legend>
+      </div>
       <label for="new-activity-title">Activity Title:</label> <input id="new-activity-title" type="text" ng-model="activCtrl.newActivity.title" placeholder="Enter the title of your activity here" required><br>
+      <label for="new-activity-age">Minimum Age:</label> <input id="new-activity-age" type="number" step="1" min="1" max="18" ng-model="activCtrl.newActivity.minAge" required><br>
+      <div class="dropdown-container">
+      <label for="new-activity-exercise-type">Exercise Type:</label><br> <select id="new-activity-exercise-type" ng-model="activCtrl.newActivity.typeOfExercise" ng-options="exercise.name as exercise.name for exercise in activCtrl.exerciseTypes" required></select><br>
+      <label for="new-activity-weather-type">Weather:</label><br/> <select id="new-activity-weather-type" ng-model="activCtrl.newActivity.weather" ng-options="weather.name as weather.name for weather in activCtrl.weatherTypes" required></select><br>
+      </div>
       <label for="new-activity-description">Description:</label><br> <textarea id="new-activity-description" rows="8" cols="80" ng-model="activCtrl.newActivity.description" placeholder="Enter a short description of the activity" required></textarea><br>
-      <label for="new-activity-exercise-type">Exercise Type:</label> <select id="new-activity-exercise-type" ng-model="activCtrl.newActivity.typeOfExercise" ng-options="exercise.name as exercise.name for exercise in activCtrl.exerciseTypes" required></select><br>
-      <label for="new-activity-age">Minimum Age:</label> <input type="number" step="1" min="1" max="18" ng-model="activCtrl.newActivity.minAge" required><br>
-      <label for="new-activity-weather-type">Weather:</label> <select id="new-activity-weather-type" ng-model="activCtrl.newActivity.weather" ng-options="weather.name as weather.name for weather in activCtrl.weatherTypes" required></select><br>
-      <input type="submit" value="Submit">
+      <input id="create-activity" type="submit" value="Create">
     </form>
   </div>
 </div>
+<!---->
 <div id="activity-search">
   <form ng-submit="activCtrl.getActivitiesByTitle(activCtrl.query.title)">
     <input type="text" ng-model="activCtrl.query.title" placeholder="Search and filter...">
