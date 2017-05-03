@@ -3,10 +3,12 @@ angular.module('MyApp').controller('loginFormCtrl', ['$http', function($http){
   this.username = '';
   this.password = '';
   this.showMsg = false;
-  this.msgContent;
+  this.msgContent= '';
 
   this.submitLogin = function(){
-
+    this.showMsg = false;
+    this.msgContent= '';
+    
     $http({
       method: 'POST',
       url: '/sessions',

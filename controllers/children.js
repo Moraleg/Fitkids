@@ -30,17 +30,21 @@ router.get('/:parentId', function (req, res) {
 // --> tested with curl
 router.post('/', function (req, res) {
   // set logged-in user as parent
-  // req.body.parent = req.session.currentuser._id
-  Child.create(req.body, function (err, createdChild) {
-    if(!err) {
-      res.json(createdChild);
-    } else {
-      res.json(err);
-    }
-  }); // closes Child.create and callback
+  if (req.session.currentuser) {
+    req.body.parent = req.session.currentuser._id
+    Child.create(req.body, function (err, createdChild) {
+      if(!err) {
+        res.json(createdChild);
+      } else {
+        res.json(err);
+      }
+    }); // closes Child.create and callback
+  } else {
+    res.json({session: false});
+  }
 }); // closes post route function
 
-// ------------------------------- PATCH ROUTE ----------------------------------
+// ------------------------------- PATCH ROUTE ---------------------------------
 
 // *** update activity OR name OR number of badges ***
 // --> tested with curl

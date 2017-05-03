@@ -7,7 +7,7 @@ var childSchema = new Schema({
   numberOfBadges: {type: Number, default: 0},
   activity: [{
     day: { type: Date, default: Date.now },
-    minutes: Number, default: 0
+    minutes: {type: Number, default: 0}
   }]
 });
 
