@@ -5,25 +5,28 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
 
   // get data for today
   ctrl.getTodaysActivityLevels = function () {
-    // set time stamp for today's date to midnight in preparation for comparison
+    // set time stamp for today's date to midnight
+    // this way, all dates will have the exact same time down to the milisecond // and can be compared to today's date
     var today = new Date;
     today.setHours(0);
     today.setMinutes(0);
     today.setSeconds(0);
     today.setMilliseconds(0);
 
+    // loops through all all children
     for (var i = 0; i < ctrl.allChildren.length; i++) {
-        ctrl.allChildren[i].showEdit = false;
-
+       // adds todaysActivity key to respective child object and initializes it
+       // with zero
+        ctrl.allChildren[i].todaysActivity = 0;
+        ctrl.allChildren[i].showEdit = false; // hide edit option
         if (ctrl.allChildren[i].activity.length > 0) {
+          // if there already is an activity in the activity array
           for (var j = 0; j < ctrl.allChildren[i].activity.length; j++) {
             // find the activity that corresponds with today's date
             if (today.toJSON() === ctrl.allChildren[i].activity[j].day) {
-              ctrl.allChildren[i].todaysActivity = ctrl.allChildren[i].activity[j].minutes;
+              ctrl.allChildren[i].todaysActivity = ctrl.allChildren[i].activity[j].minutes; // set todaysActivity to that number
             }
           }
-        } else {
-          ctrl.allChildren[i].todaysActivity = 0;
         }
     }
   };
@@ -60,53 +63,73 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
       });
   };
 
-  ctrl.track = function (element) {
-    element.showEdit = true;
-  }
+  ctrl.track = function (element) { // function allows to toggle edit options
+    // for one child at a time
+    if (element.showEdit) {
+      element.showEdit = false;
+    } else {
+      element.showEdit = true;
+    }
+  };
 
-  ctrl.addActiveMinutes = function (child) {
-    var today = new Date;
+  ctrl.addActiveMinutes = function (child) { // function allows to add
+    // activity in minutes for current date only
+
+    // set time stamp for today's date to midnight
+    // this way, all dates will have the exact same time down to the milisecond // and can be compared to today's date
+    var today = new Date();
     today.setHours(0);
     today.setMinutes(0);
     today.setSeconds(0);
     today.setMilliseconds(0);
 
+    // holds today's date and minutes from userInput
     newActivity = {
       day: today,
       minutes: child.newMinutes
     };
 
-    if (child.activity.length > 0) {
-      for (var i = 0; i < child.activity.length; i++) {
-        console.log(child.activity[i].day);
-        console.log(today.valueOf());
-        if (child.activity[i].day === today.toJSON()) {
-          child.activity[i].minutes += newActivity.minutes;
-          console.log('updating');
+    // updates existing activity value if parent has already added activity
+    // levels on current day
+    var updateActivity = function () {
+      for (var i = 0; i < child.activity.length; i++) { // loop over array
+        if (child.activity[i].day === today.toJSON()) { // find entries with
+          // today's date
+          child.activity[i].minutes += newActivity.minutes; // increase
+          // activity by new value
+          return true; // return true and end loop
         }
       }
-    } else {
-      child.activity.push(newActivity);
+      return false // return false since no matches were found
     }
 
-    $http({
+    if (child.activity.length > 0) { // if activity array already holds an
+      // activity
+      var updated = updateActivity(); // call function above to avoid dublicates
+      if (!updated) { // if no previous entry
+        child.activity.push(newActivity); // add new entry to array
+      }
+    } else {
+      child.activity.push(newActivity); // if array is empty add new entry
+    }
+
+    $http({ // http request to update database entry
       method: 'PATCH',
       url: '/children/' + child._id,
       data: child
     }).then(
       function (response) {
-        for (var i = 0; i < ctrl.allChildren.length; i++) {
+        for (var i = 0; i < ctrl.allChildren.length; i++) { // add update to
+          // array holding all children
           if (ctrl.allChildren[i]._id.toString() === response.data._id.toString()) {
-                console.log('found it:');
-                console.log(ctrl.allChildren[i]);
             ctrl.allChildren[i] = response.data;
-            console.log(ctrl.allChildren[i]);
           }
         }
         ctrl.getTodaysActivityLevels();
       }, function (error) {
         console.log(error);
       });
+      // close edit
     child.showEdit = false;
   };
 }]);
