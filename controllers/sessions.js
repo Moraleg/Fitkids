@@ -19,8 +19,9 @@ router.get('/login/', function(req, res) {
 /* Get Current User */
 /* Route for Angular to get session information? Needs testing when we implement AngularJS */
 router.get('/', function(req, res) {
-  // removes password from data before data is being sent back to browser
-  req.session.currentuser.password = '';
+  if (req.session.currentuser) {
+    req.session.currentuser.password = '';
+  }
   res.json(req.session.currentuser);
 });
 

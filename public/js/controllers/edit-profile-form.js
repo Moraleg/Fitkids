@@ -88,7 +88,7 @@ function ($http) {
                   ctrl.displayMessage = true;
                 }
                 ctrl.newPassword  = ''; // clear form
-                ctrl.confirmNewPassword = ';'
+                ctrl.confirmNewPassword = '';
               },
               function (error) { // in case of failure
                 console.log(error);
@@ -96,8 +96,8 @@ function ($http) {
                 ctrl.msgContent = "Sorry, something went wrong! Your changes were not saved. Please try again."
                 ctrl.displayMessage = true;
                 // clear form
-                ctrl.newPassword  = "";
-                ctrl.confirmNewPassword = "";
+                ctrl.newPassword  = '';
+                ctrl.confirmNewPassword = '';
               });
           } else {
             console.log('not logged in');
