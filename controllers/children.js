@@ -11,9 +11,9 @@ var express = require('express'),
 // --> tested with curl
 // find all child entries for a specific parent in the database
 // --> parentId = parent ObjectId
-router.get('/:parentId', function (req, res) {
-  Child.find({parent: req.params.parentId}, function(err, foundChildren) {
-    // if (req.session.currentuser._id === foundChildren.parent) {
+router.get('/', function (req, res) {
+  Child.find({parent: req.session.currentuser}, function(err, foundChildren) {
+    // if (req.session.currentuser && req.session.currentuser._id.toString() === foundChildren.parent.toString()) {
         if (!err) {
           res.json(foundChildren);
         } else {
@@ -57,9 +57,10 @@ router.post('/', function (req, res) {
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 router.patch('/:id', function (req, res) {
+  console.log(req.body);
   Child.findById(req.params.id, function(err, foundChild) {
     if(!err) {
-      // if (req.session.currentuser._id === foundChild.parent) {
+      if (req.session.currentuser && req.session.currentuser._id.toString() === foundChild.parent.toString()) {
         if (req.body.activity !== undefined) {
           // ADD OR EDIT NEW ACTIVITY
           Child.findByIdAndUpdate(req.params.id,
@@ -92,9 +93,9 @@ router.patch('/:id', function (req, res) {
         } else { // no other updates are allowed!
           res.status(403).send('Forbidden');
         }
-      // } else {
-      //   res.status(403).send('Forbidden');
-      // }
+      } else {
+        res.status(403).send('Forbidden');
+      }
     } else {
      res.json(err);
    }
