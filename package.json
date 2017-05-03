@@ -1,0 +1,27 @@
+{
+  "name": "project_3",
+  "version": "1.0.0",
+  "description": "WDIr Hopper Project 3 - Hanna, Geraldine, Dylan",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnialwill/project_3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dnialwill/project_3/issues"
+  },
+  "homepage": "https://github.com/dnialwill/project_3#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "mongoose": "^4.9.6"
+  }
+}
