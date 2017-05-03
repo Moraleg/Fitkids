@@ -39,7 +39,7 @@
     <header>
       <h2 class="logo" ng-click="viewCtrl.changeView('splash')">FIT KIDS</h2>
       <nav>
-        <user-logout ng-if="viewCtrl.sessionData"></user-logout>
+        <user-logout class="reg" ng-if="viewCtrl.sessionData"></user-logout>
         <a class="reg" href="#" ng-click="viewCtrl.changeView('favorites')">FAVORITES</a>
         <a class="reg" href="#" ng-click="viewCtrl.changeView('child')">TRACK PROGRESS</a>
         <a class="reg" href="#" ng-click="viewCtrl.changeView('activities')">ACTIVITIES</a>
