@@ -310,8 +310,8 @@ edit-profile-form  h2 {
 
 /**********************CREATE ACTIVITY MODAL*******************/
 #activity-modal {
-  /*overflow: auto;*/
-  /*display: none;*/
+  overflow: auto;
+  display: none;
 }
 
 activities {
