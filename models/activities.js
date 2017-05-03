@@ -9,10 +9,11 @@ var activitySchema = new Schema({
   title: {type: String, required: true},
   description: {type: String, required: true},
   typeOfExercise: String,
-  outdoor: {type: Boolean, required: true} ,
   weather: {type: String, required: true},
   minAge: {type: Number , required: true},
-  tags: [String]
+  date: {type: Date, default: Date.now}
+  // outdoor: {type: Boolean, required: true} ,
+  // tags: [String]
 });
 
 var Activity = mongoose.model('Activity', activitySchema);
