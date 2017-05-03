@@ -35,11 +35,13 @@ function ($http) {
               } else {
                 ctrl.msgContent = "Sorry, something went wrong! Your changes were not saved. Please try again."
               }
+              this.newUsername = "";
             },
             function (error) {
               console.log(error);
               ctrl.msgContent = "Sorry, something went wrong! Your changes were not saved. Please try again."
               ctrl.displayMessage = true;
+              this.newUsername = "";
             });
         } else {
           console.log('not logged-in');
@@ -48,7 +50,6 @@ function ($http) {
         console.log(error);
       });
     // clears form
-    this.newUsername = "";
   };
 
   // *** password update ***
@@ -84,6 +85,9 @@ function ($http) {
                   ctrl.msgContent = "Sorry, something went wrong! Your changes were not saved. Please try again."
                   ctrl.displayMessage = true;
                 }
+                // clears form
+                ctrl.newPassword  = "";
+                ctrl.confirmNewPassword = "";
               },
               // in case of failure
               function (error) {
@@ -91,6 +95,9 @@ function ($http) {
                 // displays success message with the following content
                 ctrl.msgContent = "Sorry, something went wrong! Your changes were not saved. Please try again."
                 ctrl.displayMessage = true;
+                // clears form
+                ctrl.newPassword  = "";
+                ctrl.confirmNewPassword = "";
               });
           } else {
             console.log('not logged in');
@@ -103,9 +110,5 @@ function ($http) {
       ctrl.msgContent = "Sorry, the passwords you entered did not match."
       ctrl.displayMessage  = true;
     }
-    // clears form
-    this.newUsername = "";
-    this.newPassword  = "";
-    this.confirmNewPassword = "";
   };
 }]);

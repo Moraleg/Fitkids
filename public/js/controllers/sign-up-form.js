@@ -32,19 +32,22 @@ angular.module('MyApp').controller('signUpFormCtrl', ['$http', function ($http) 
             ctrl.msgContent = 'Sorry, something went wrong. Please try again.';
             ctrl.displayMessage = true;
           }
+          ctrl.username = '';
+          ctrl.password = '';
+          ctrl.confirmPassword = '';
         }, function (error) {
           console.log(error);
           // displays fail message with the following content
           ctrl.msgContent = 'Sorry, something went wrong. Please try again.';
           ctrl.displayMessage = true;
+          ctrl.username = '';
+          ctrl.password = '';
+          ctrl.confirmPassword = '';
         });
     } else {
       // displays fail message with the following content
       ctrl.msgContent = 'Sorry, the passwords you entered did not match.';
       ctrl.displayMessage = true;
     }
-    ctrl.username = '';
-    ctrl.password = '';
-    ctrl.confirmPassword = '';
   };
 }]);

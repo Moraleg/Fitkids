@@ -49,6 +49,7 @@ router.post('/', function(req, res){
 // user profile update
 router.patch('/:id', function(req, res) {
   // search for user
+  console.log(req.body);
   User.findById(req.params.id, function(err, foundUser) {
     // check if session data identical to database entry --> authorization
     if (req.session.currentuser && req.session.currentuser._id.toString() === foundUser._id.toString()) {

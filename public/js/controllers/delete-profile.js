@@ -2,7 +2,7 @@ angular.module('MyApp').controller('deleteProfileController', ['$http', '$window
    var ctrl = this;
    this.showConfirm = false;
    this.showMsg = false;
-   this.msg;
+   this.msgContent;
 
    this.confirmDelete = function () {
      this.showConfirm = true;
@@ -27,17 +27,19 @@ angular.module('MyApp').controller('deleteProfileController', ['$http', '$window
                }).then(
                  function (response) {
                    console.log(response);
-                   ctrl.msg = 'Your profile was successfully deleted.'
+                   ctrl.msgContent = 'Your profile was successfully deleted.'
                    ctrl.showMsg = true;
                     setTimeout(function() {
                       console.log('logging out now');
                       $window.location.reload();
+                      this.showConfirm = false;
                     }, 3000);
                  },
                  function (error) {
                    console.log(error);
                    ctrl.showMsg = true;
-                   ctrl.msg = 'Sorry, something went wrong. Please try again.'
+                   ctrl.msgContent = 'Sorry, something went wrong. Please try again.'
+                   this.showConfirm = false;
                  });
              } else {
                console.log('not logged in');
@@ -45,6 +47,5 @@ angular.module('MyApp').controller('deleteProfileController', ['$http', '$window
            }, function (error) {
              console.log(error);
            });
-           this.showConfirm = false;
    };
 }]);
