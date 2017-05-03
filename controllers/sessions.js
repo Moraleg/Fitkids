@@ -3,24 +3,30 @@
 // DEPENDENCIES //
 const express = require('express');
 const router = express.Router();
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+
 
 // MODELS //
 const Users = require('../models/users.js');
 
 // ROUTES //
 /* Log In */
-app.get('/login/', function(req, res) {
+router.get('/login/', function(req, res) {
   /* Do we need a route for log in, or will this be an element in our HTML? */
 });
 
 /* Get Current User */
 /* Route for Angular to get session information? Needs testing when we implement AngularJS */
-app.get('/', function(req, res) {
+router.get('/', function(req, res) {
+  if (req.session.currentuser) {
+    req.session.currentuser.password = '';
+  }
   res.json(req.session.currentuser);
 });
 
 /* Create Session */
-app.post('/', function(req, res) {
+router.post('/', function(req, res) {
   Users.findOne({ username: req.body.username }, function(err, foundUser) { // Finds user based on login information
     var foundUserBoolean = !!foundUser; // Coerces foundUser to boolean
     if (foundUserBoolean) { // If a user is found in the database...
@@ -37,8 +43,10 @@ app.post('/', function(req, res) {
 });
 
 /* Destroy Session */
-app.delete('/', function(req, res) {
-  req.session.destroy(/* Callback goes here */);
+router.delete('/', function(req, res) {
+  req.session.destroy(function(){
+    res.json({currentStatus: 'logged-out'});
+  });
 });
 
 // EXPORT //
