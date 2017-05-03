@@ -1,18 +1,21 @@
 <form ng-submit="editProfileCtrl.editUsername()">
-  <legend>Change your username</legend>
-    <label for="username">new username: </label>
+  <div class="legend-container">
+    <legend><h2>Change Username</h2></legend>
+  </div>
+    <label for="username">New Username: </label>
     <input id="username" type="text" placeholder="new username" ng-model="editProfileCtrl.newUsername" required/>
-    <input type="submit" />
+    <input class="edit-submit" type="submit" />
 </form>
 <br />
 <form ng-submit="editProfileCtrl.editPassword()">
-  <legend>Change your password</legend>
-    <label for="password">New password: </label>
+  <div class="legend-container">
+    <legend><h2>Change Password</h2></legend>
+  </div>
+    <label for="password">New Password: </label>
     <input id="password" type="password" ng-model="editProfileCtrl.newPassword" placeholder="new password" required minlength="8" />
     <br />
-    <label for="confirmPassword">Confirm new password: </label>
+    <label for="confirmPassword">Confirm New Password: </label>
     <input id="confirmPassword" type="password" placeholder="confirm new password" ng-model="editProfileCtrl.confirmNewPassword" required minlength="8"/>
-    <br />
-    <input type="submit" />
+    <input class="edit-submit" type="submit" />
 </form>
-<p ng-if="editProfileCtrl.displayMessage">{{editProfileCtrl.msgContent}}</p>
+<p class="modal-text" ng-if="editProfileCtrl.displayMessage">{{editProfileCtrl.msgContent}}</p>

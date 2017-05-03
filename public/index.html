@@ -2,7 +2,7 @@
 <html ng-app="MyApp">
   <head>
     <meta charset="utf-8">
-    <title>Site Blueprint</title>
+    <title>FIT KIDS</title>
     <link rel="stylesheet" href="/css/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
@@ -116,10 +116,12 @@
     <!--END CHILD EDIT MODAL-->
 
     <!--USER EDIT MODAL-->
-    <section>
-      <edit-profile-form></edit-profile-form>
-      <br />
-      <delete-profile></delete-profile>
+    <section id="edit-user-modal" class="modal">
+      <section class="modal-input-box">
+        <edit-profile-form></edit-profile-form>
+        <br />
+        <delete-profile></delete-profile>
+      </section>
     </section>
     <!--END USER EDIT MODAL-->
 
