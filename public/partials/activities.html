@@ -21,7 +21,7 @@
   </form>
 </div>
 <div id="activity-sidebar">
-  <button id="btn-viewfavorites">View Favorites</button>
+  <button id="btn-viewfavorites" ng-if="viewCtrl.sessionData" ng-click="activCtrl.getFavorites()">View Favorites</button>
   <div>
     <h4>Exercise Type</h4>
     <input id="type-aerobic" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Aerobic" ng-init="activCtrl.filter.typeOfExercise.Aerobic = false"> <label for="type-aerobic">Aerobic</label><br>

@@ -1,6 +1,7 @@
 // Filter functions adapted from http://stackoverflow.com/questions/23983322/angularjs-checkbox-filter
 
 angular.module('MyApp').controller('ActivitiesController', ['$http', '$scope', function($http, $scope) {
+  console.log($scope.viewCtrl.sessionData);
   var ctrl = this;
   ctrl.activities = [];
   ctrl.query = { title: "" }
@@ -56,7 +57,7 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', '$scope', f
     if (string.length) {
       if (string === '*') {
         string = '';
-        ctrl.query = '';
+        ctrl.query.title = '';
       }
       $http({
         method: 'POST',
@@ -139,8 +140,18 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', '$scope', f
       console.log(error);
     });
   };
-  // Favorites check adapted from http://stackoverflow.com/questions/6116474/how-to-find-if-an-array-contains-a-specific-string-in-javascript-jquery
   ctrl.isFavorite = function(activity) {
-    return ($scope.viewCtrl.sessionData.favorites.indexOf(activity._id) > -1);
+    var result = false;
+    for (var i = 0; i < $scope.viewCtrl.sessionData.favorites.length; i++) {
+      if ($scope.viewCtrl.sessionData.favorites[i]._id.toString() === activity._id.toString()) {
+        result = true;
+      }
+    }
+    return result;
+  };
+  ctrl.getFavorites = function() {
+    ctrl.query.title = "";
+    ctrl.lastQuery.title = "";
+    ctrl.activities = $scope.viewCtrl.sessionData.favorites;
   }
 }]);

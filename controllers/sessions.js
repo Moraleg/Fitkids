@@ -27,7 +27,7 @@ router.get('/', function(req, res) {
 
 /* Create Session */
 router.post('/', function(req, res) {
-  Users.findOne({ username: req.body.username }, function(err, foundUser) { // Finds user based on login information
+  Users.findOne({ username: req.body.username }).populate('favorites').exec(function(err, foundUser) { // Finds user based on login information
     var foundUserBoolean = !!foundUser; // Coerces foundUser to boolean
     if (foundUserBoolean) { // If a user is found in the database...
       if (bcrypt.compareSync(req.body.password, foundUser.password)) { // ...and password matches...
