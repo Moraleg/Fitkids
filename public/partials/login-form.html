@@ -10,4 +10,4 @@
   <br/>
   <input id="login-btn" type="submit" value="LOGIN"/>
 </form>
-<p class="modal-text">Forgot your Password? <a class="login-anchor" href="#">Reset</a></p>
+<p class="modal-text" ng-if="login.showMsg">{{login.msgContent}}</p>
