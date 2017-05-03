@@ -1,4 +1,4 @@
-angular.module('MyApp').controller('loginFormCtrl', ['$http', function($http){
+angular.module('MyApp').controller('loginFormCtrl', ['$http', '$scope', function($http,$scope){
   var ctrl = this;
   this.username = '';
   this.password = '';
@@ -17,6 +17,7 @@ angular.module('MyApp').controller('loginFormCtrl', ['$http', function($http){
     }).then(function(response){
       console.log(response);
       if (response.data.success === true) {
+        $scope.viewCtrl.getSession();
         console.log('Hooray! You\'re logged in!');
       } else if (response.data.success === false) {
         ctrl.msgContent = 'Sorry the password or username you entered did not match our records.';

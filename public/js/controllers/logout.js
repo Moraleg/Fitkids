@@ -1,4 +1,4 @@
-angular.module('MyApp').controller('logoutCtrl', ['$http', function($http){
+angular.module('MyApp').controller('logoutCtrl', ['$http', '$scope', function($http,$scope){
   var controller = this;
 
   this.logoutUser = function(){
@@ -7,7 +7,7 @@ angular.module('MyApp').controller('logoutCtrl', ['$http', function($http){
       url: '/sessions'
     }).then(function(response){
       console.log(response);
-
+      $scope.viewCtrl.getSession();
     }, function(error){
       console.log(error);
     });
