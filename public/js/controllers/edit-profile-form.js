@@ -2,54 +2,59 @@ angular.module('MyApp').controller('editProfileFormController', ['$http',
 function ($http) {
   // initialize variables
   var ctrl = this;
-  this.newUsername;
-  this.newPassword;
-  this.confirmNewPassword;
-  this.msgContent;
+  this.newUsername = '';
+  this.newPassword = '';
+  this.confirmNewPassword = '';
+  this.msgContent = '';
   this.displayMessage = false;
 
+  // function for updating username
   this.editUsername = function () {
-    $http({
+    $http({ // http request to get sessions data
       method: 'GET',
       url: '/sessions'
     }).then(
-      function (response) {
-        console.log(response);
-        // only make request if the user is logged in
-        if (response.data) {
-          $http({
+      function (response) { // in case of success
+        console.log(response); // log server response
+        if (response.data) { // if session exists
+          $http({ // http request to update username
             method: 'PATCH',
             url: '/users/' + response.data._id,
             data: {
               username: ctrl.newUsername
             }
           }).then(
-            function (response) {
-              console.log(response);
-              if (response.data.username !== undefined) {
-                ctrl.msgContent = "Thank you! Your username was changed to " + response.data.username;
+            function (response) { // in case of success
+              console.log(response); // log server response
+              if (response.data.username !== undefined) { // if username
+                // data exists, show  success message
+                ctrl.msgContent = 'Thank you! Your username was changed to ' +
+                 response.data.username;
                 ctrl.displayMessage = true;
-              } else if (response.data.errmsg !== undefined && response.data.codeName === 'DuplicateKey') {
-                ctrl.msgContent = "Sorry, the username you picked is already taken. Please choose another one.";
+              } else if (response.data.code === 11000) { // if db responded
+                // with dublicate key error, ask user to pick different username
+                ctrl.msgContent =
+                "Sorry, the username you picked is already taken. Please choose another one.";
                 ctrl.displayMessage = true;
-              } else {
-                ctrl.msgContent = "Sorry, something went wrong! Your changes were not saved. Please try again."
+              } else { // else display error message
+                ctrl.msgContent =
+                'Sorry, something went wrong! Your changes were not saved. Please try again.'
               }
-              this.newUsername = "";
+              this.newUsername = ''; // clear form
             },
-            function (error) {
-              console.log(error);
-              ctrl.msgContent = "Sorry, something went wrong! Your changes were not saved. Please try again."
+            function (error) { // in case of failure
+              console.log(error); // log error
+              ctrl.msgContent = // else display error message
+              'Sorry, something went wrong! Your changes were not saved. Please try again.'
               ctrl.displayMessage = true;
-              this.newUsername = "";
+              this.newUsername = ""; // clear form
             });
-        } else {
-          console.log('not logged-in');
+        } else { // for testing
+          console.log('not logged-in'); // log that user is not logged-in
         }
-      }, function (error) {
-        console.log(error);
+      }, function (error) { // in case of failure
+        console.log(error); // log error
       });
-    // clears form
   };
 
   // *** password update ***
@@ -58,44 +63,39 @@ function ($http) {
     if (this.newPassword === this.confirmNewPassword) {
       // removes fail message after failed update attempt
       this.displayMessage = false;
-      $http({
+      $http({ // http request to get session data
         method: 'GET',
         url: '/sessions'
       }).then(
-        function (response) {
-          console.log(response);
-          // only make request if the user is logged in
-          if(response.data) {
-            // HTTP PUT request to server
-            $http({
+        function (response) { // in case of success
+          console.log(response); // log response
+          if(response.data) { // if session data exists
+            $http({// HTTP patch request to update password
               method: 'PATCH',
               url: '/users/' + response.data._id,
               data: {
                 password: ctrl.newPassword
               }
             }).then(
-              // in case of success
-              function (response) {
-                console.log(response);
-                if (!response.data.errmsg) {
-                  // displays success message with the following content
-                  ctrl.msgContent = "Thank you! Your password was changed."
+              function (response) { // in case of success
+                console.log(response); // log response
+                if (!response.data.errmsg) { // if no errmsg
+                  // display success message
+                  ctrl.msgContent = 'Thank you! Your password was changed.'
                   ctrl.displayMessage = true;
-                } else {
-                  ctrl.msgContent = "Sorry, something went wrong! Your changes were not saved. Please try again."
+                } else { // else display failure message
+                  ctrl.msgContent = 'Sorry, something went wrong! Your changes were not saved. Please try again.'
                   ctrl.displayMessage = true;
                 }
-                // clears form
-                ctrl.newPassword  = "";
-                ctrl.confirmNewPassword = "";
+                ctrl.newPassword  = ''; // clear form
+                ctrl.confirmNewPassword = ';'
               },
-              // in case of failure
-              function (error) {
+              function (error) { // in case of failure
                 console.log(error);
-                // displays success message with the following content
+                // display success message with the following content
                 ctrl.msgContent = "Sorry, something went wrong! Your changes were not saved. Please try again."
                 ctrl.displayMessage = true;
-                // clears form
+                // clear form
                 ctrl.newPassword  = "";
                 ctrl.confirmNewPassword = "";
               });
