@@ -14,21 +14,45 @@ var seedData = [
   {
     /*creator: '5908ab38137910051a6e14ae', */
     title: 'This is an exercise',
+    creator: 'Hannah',
     description: 'It is so much fun!',
-    typeOfExercise: 'aerobic',
+    typeOfExercise: 'Aerobic',
     outdoor: 'true',
-    weather: 'sunny',
-    ageRange: ['Toddler', 'Kindergardener'],
+    weather: 'Sunny',
+    minAge: 3,
     tags: ['fun', 'splash', 'splish']
   },
   {
     /*creator: 'create user first and insert user id here', */
     title: 'This is another exercise',
+    creator: 'Hannah',
     description: 'It is so much more fun!',
-    typeOfExercise: 'anaerobic',
-    outdoor: 'false',
-    weather: 'rainy',
-    ageRange: ['Teen'],
+    typeOfExercise: 'Balance',
+    outdoor: false,
+    weather: 'Rainy',
+    minAge: 16,
+    tags: ['bla', 'splash', 'blo']
+  },
+  {
+    /*creator: 'create user first and insert user id here', */
+    title: 'This is a third exercise',
+    creator: 'Hannah',
+    description: 'It is even much more fun!',
+    typeOfExercise: 'Cardio',
+    outdoor: true,
+    weather: 'Snow',
+    minAge: 13,
+    tags: ['bla', 'splash', 'blo']
+  },
+  {
+    /*creator: 'create user first and insert user id here', */
+    title: 'This is a fourth exercise',
+    creator: 'Hannah',
+    description: 'It is not fun!',
+    typeOfExercise: 'Flexibility',
+    outdoor: true,
+    weather: 'Rainy',
+    minAge: 6,
     tags: ['bla', 'splash', 'blo']
   }
 ];
@@ -54,8 +78,8 @@ router.get('/seed', function (req, res) {
 // sth like that depending on user stories
 
 router.get('/', function (req, res) {
-  // find all activities in the database
-  Activity.find({}, function (error, allActivities) {
+  // find most recent activities in the database
+  Activity.find({}).sort({"date": -1}).limit(10).exec(function (error, allActivities) {
     if (!error) {
       // if no error occurs, send array of all found database entries as json
       res.json(allActivities);
@@ -206,6 +230,18 @@ router.delete('/:id', function (req, res) {
   });
 });
 
+router.post('/search', function (req, res) {
+  // find activities based on query pattern
+  Activity.find({ title: { $regex: req.body.pattern, $options: 'i' }}).sort({"date": -1}).exec(function (error, foundActivities) {
+    if (!error) {
+      // if no error occurs, send array of all found database entries as json
+      res.json(foundActivities);
+    } else {
+      // else send error
+      res.json(error);
+    }
+  });
+});
 // ------------------------------- ROUTER EXPORT -------------------------------
 
 module.exports = router;

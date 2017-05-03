@@ -1,0 +1,73 @@
+<div id="activity-form-new-container">
+  <div id="activity-form-new-unauth">
+    <p>You must be logged in to use this feature.</p>
+  </div>
+  <div id="activity-form-new">
+    <form ng-submit="activCtrl.addNewActivity()">
+      <legend>Create Activity</legend>
+      <label for="new-activity-title">Activity Title:</label> <input id="new-activity-title" type="text" ng-model="activCtrl.newActivity.title" placeholder="Enter the title of your activity here" required><br>
+      <label for="new-activity-description">Description:</label><br> <textarea id="new-activity-description" rows="8" cols="80" ng-model="activCtrl.newActivity.description" placeholder="Enter a short description of the activity" required></textarea><br>
+      <label for="new-activity-exercise-type">Exercise Type:</label> <select id="new-activity-exercise-type" ng-model="activCtrl.newActivity.typeOfExercise" ng-options="exercise.name as exercise.name for exercise in activCtrl.exerciseTypes" required></select><br>
+      <label for="new-activity-age">Minimum Age:</label> <input type="number" step="1" min="1" max="18" ng-model="activCtrl.newActivity.minAge" required><br>
+      <label for="new-activity-weather-type">Weather:</label> <select id="new-activity-weather-type" ng-model="activCtrl.newActivity.weather" ng-options="weather.name as weather.name for weather in activCtrl.weatherTypes" required></select><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+<div id="activity-search">
+  <form ng-submit="activCtrl.getActivitiesByTitle(activCtrl.query.title)">
+    <input type="text" ng-model="activCtrl.query.title" placeholder="Search and filter...">
+    <input type="submit" value="Search">
+  </form>
+</div>
+<div id="activity-sidebar">
+  <div>
+    <h4>Exercise Type</h4>
+    <input id="type-aerobic" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Aerobic" ng-init="activCtrl.filter.typeOfExercise.Aerobic = false"> <label for="type-aerobic">Aerobic</label><br>
+    <input id="type-balance" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Balance" ng-init="activCtrl.filter.typeOfExercise.Balance = false"> <label for="type-balance">Balance</label><br>
+    <input id="type-cardio" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Cardio" ng-init="activCtrl.filter.typeOfExercise.Cardio = false"> <label for="type-cardio">Cardio</label><br>
+    <input id="type-flexibility" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Flexibility" ng-init="activCtrl.filter.typeOfExercise.Flexibility = false"> <label for="type-flexibility">Flexibility</label><br>
+  </div>
+  <div>
+    <h4>Age</h4>
+    <input id="age-select" type="range" step="1" min="1" max="18" ng-model="activCtrl.filter.minAge" list="age-range">
+    <datalist id="age-range" ng-init="activCtrl.getAgeRange(1,18)">
+      <option ng-repeat="age in activCtrl.ageRange">{{age}}</option>
+    </datalist> <label for="age-select">{{activCtrl.filter.minAge}}</label><br>
+  </div>
+  <div>
+    <h4>Weather</h4>
+    <input id="weather-sunny" type="checkbox" ng-model="activCtrl.filter.weather.Sunny" ng-init="activCtrl.filter.weather.Sunny = false"> <label for="weather-sunny">Sunny</label><br>
+    <input id="weather-rainy" type="checkbox" ng-model="activCtrl.filter.weather.Rainy" ng-init="activCtrl.filter.weather.Rainy = false"> <label for="weather-rainy">Rainy</label><br>
+    <input id="weather-snow" type="checkbox" ng-model="activCtrl.filter.weather.Snow" ng-init="activCtrl.filter.weather.Snow = false"> <label for="weather-snow">Snow</label><br>
+  </div>
+</div>
+<div id="activity-form-edit-container">
+  <div id="activity-form-edit-unauth">
+    <p>You must be logged in as this activity's creator to edit its information.</p>
+  </div>
+  <div id="activity-form-edit">
+    <form ng-submit="activCtrl.updateActivity()">
+      <legend>Edit Activity</legend>
+      <label for="edit-activity-title">Activity Title:</label> <input id="edit-activity-title" type="text" ng-model="activCtrl.editActivity.title" placeholder="Enter the title of your activity here" required><br>
+      <label for="edit-activity-description">Description:</label><br> <textarea id="edit-activity-description" rows="8" cols="80" ng-model="activCtrl.editActivity.description" placeholder="Enter a short description of the activity" required></textarea><br>
+      <label for="edit-activity-exercise-type">Exercise Type:</label> <select id="edit-activity-exercise-type" ng-model="activCtrl.editActivity.typeOfExercise" ng-options="exercise.name as exercise.name for exercise in activCtrl.exerciseTypes" required></select><br>
+      <label for="edit-activity-age">Minimum Age:</label> <input type="number" step="1" min="1" max="18" ng-model="activCtrl.editActivity.minAge" required><br>
+      <label for="edit-activity-weather-type">Weather:</label> <select id="edit-activity-weather-type" ng-model="activCtrl.editActivity.weather" ng-options="weather.name as weather.name for weather in activCtrl.weatherTypes" required></select><br>
+      <input type="submit" value="Submit"> <button ng-click="activCtrl.deleteActivity()">Delete</button>
+    </form>
+  </div>
+</div>
+<div id="activity-container">
+  <div class="activity" ng-repeat="activity in activCtrl.activities | filter:activCtrl.filterActivity | filter:activCtrl.query">
+    <h3 class="activity-title">{{activity.title}}</h3>
+    <p class="activity-attr"><small>submitted by <a href="#">{{activity.creator}}</a></small></p>
+    <div class="activity-info-container">
+      <p class="activity-info">{{activity.typeOfExercise}}</p>
+      <p class="activity-info">{{activity.weather}}</p>
+      <p class="activity-info">{{activity.minAge}}+ yrs</p>
+    </div>
+    <p class="activity-desc">{{activity.description}}</p>
+    <button>Favorite</button> <button ng-click="activCtrl.edit(activity)">Edit</button>
+  </div>
+</div>
