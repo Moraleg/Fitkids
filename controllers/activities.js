@@ -79,7 +79,7 @@ router.get('/seed', function (req, res) {
 
 router.get('/', function (req, res) {
   // find most recent activities in the database
-  Activity.find({}).sort({"date": -1}).limit(10).exec(function (error, allActivities) {
+  Activity.find({}).populate('creator').sort({"date": -1}).limit(10).exec(function (error, allActivities) {
     if (!error) {
       // if no error occurs, send array of all found database entries as json
       res.json(allActivities);
@@ -139,7 +139,8 @@ router.put('/:id/favorite/:userID', function (req, res) {
   // find activity by id
       User.findByIdAndUpdate(req.params.userID,
         // update by pushing the id of foundActivity into favorites array on user
-        { $addToSet: { 'favorites': req.params.id } }, {new: true},
+        { $addToSet: { 'favorites': req.params.id } }, {new: true})
+        .populate('favorites').exec(
          function (error, updatedUser) {
            if (!error) {
              // if no error occurs, send json of updated user entry
@@ -151,6 +152,16 @@ router.put('/:id/favorite/:userID', function (req, res) {
       });
 });
 
+router.delete('/:id/favorite/:userID', function(req, res) {
+  User.findByIdAndUpdate(req.params.userID,
+    { $pull: { favorites: req.params.id } }, {new:true}).populate('favorites').exec(function(error, updatedUser) {
+      if (!error) {
+        res.json(updatedUser);
+      } else {
+        res.json(error);
+      }
+    });
+});
 
 // *** UPDATE an existing activity ***
 // --> tested with curl
