@@ -54,6 +54,10 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', function($h
   };
   ctrl.getActivitiesByTitle = function(string) {
     if (string.length) {
+      if (string === '*') {
+        string = '';
+        ctrl.query = '';
+      }
       $http({
         method: 'POST',
         url: '/activities/search',
