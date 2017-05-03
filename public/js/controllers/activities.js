@@ -1,14 +1,14 @@
 // Filter functions adapted from http://stackoverflow.com/questions/23983322/angularjs-checkbox-filter
 
-angular.module('MyApp').controller('ActivitiesController', ['$http', function($http) {
+angular.module('MyApp').controller('ActivitiesController', ['$http', '$scope', function($http, $scope) {
   var ctrl = this;
   ctrl.activities = [];
   ctrl.query = { title: "" }
   ctrl.lastQuery = { title: "" }
   ctrl.filter = { minAge: 18 };
-  ctrl.newActivity = { typeOfExercise: 'Aerobic', weather: 'Sunny', creator: 'Test' };
+  ctrl.newActivity = { typeOfExercise: 'Aerobic', weather: 'Sunny' };
   ctrl.editActivity = {};
-  ctrl.newActivityTemplate = { typeOfExercise: 'Aerobic', weather: 'Sunny', creator: 'Test' };
+  ctrl.newActivityTemplate = { typeOfExercise: 'Aerobic', weather: 'Sunny' };
   ctrl.ageRange = [];
   ctrl.exerciseTypes = [
     { name: 'Aerobic' },
@@ -81,6 +81,7 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', function($h
     }
   };
   ctrl.addNewActivity = function() {
+    ctrl.newActivity.creator = $scope.viewCtrl.sessionData;
     $http({
       method: 'POST',
       url: '/activities/new',

@@ -5,7 +5,7 @@ var activitySchema = new Schema({
   // NOTE: I had to remove the ObjectId keyword from the array to make this work for
   // testing my routes properly, bc req.params.id comes back as string
   // Revert after REVIEW!
-  creator: {type: String, required: true},
+  creator: {type: Schema.Types.ObjectId, ref: 'User', required: true},
   title: {type: String, required: true},
   description: {type: String, required: true},
   typeOfExercise: String,

@@ -79,7 +79,7 @@ router.get('/seed', function (req, res) {
 
 router.get('/', function (req, res) {
   // find most recent activities in the database
-  Activity.find({}).sort({"date": -1}).limit(10).exec(function (error, allActivities) {
+  Activity.find({}).populate('creator').sort({"date": -1}).limit(10).exec(function (error, allActivities) {
     if (!error) {
       // if no error occurs, send array of all found database entries as json
       res.json(allActivities);

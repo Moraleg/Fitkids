@@ -1,8 +1,8 @@
 <div id="activity-form-new-container">
-  <div id="activity-form-new-unauth">
+  <div id="activity-form-new-unauth" ng-if="!viewCtrl.sessionData">
     <p>You must be logged in to use this feature.</p>
   </div>
-  <div id="activity-form-new">
+  <div id="activity-form-new" ng-if="viewCtrl.sessionData">
     <form ng-submit="activCtrl.addNewActivity()">
       <legend>Create Activity</legend>
       <label for="new-activity-title">Activity Title:</label> <input id="new-activity-title" type="text" ng-model="activCtrl.newActivity.title" placeholder="Enter the title of your activity here" required><br>
@@ -43,10 +43,10 @@
   </div>
 </div>
 <div id="activity-form-edit-container">
-  <div id="activity-form-edit-unauth">
+  <div id="activity-form-edit-unauth" ng-if="viewCtrl.sessionData._id.toString() !== activCtrl.editActivity.creator._id.toString() || !viewCtrl.sessionData">
     <p>You must be logged in as this activity's creator to edit its information.</p>
   </div>
-  <div id="activity-form-edit">
+  <div id="activity-form-edit" ng-if="viewCtrl.sessionData._id.toString() === activCtrl.editActivity.creator._id.toString()">
     <form ng-submit="activCtrl.updateActivity()">
       <legend>Edit Activity</legend>
       <label for="edit-activity-title">Activity Title:</label> <input id="edit-activity-title" type="text" ng-model="activCtrl.editActivity.title" placeholder="Enter the title of your activity here" required><br>
@@ -59,9 +59,9 @@
   </div>
 </div>
 <div id="activity-container">
-  <div class="activity" ng-repeat="activity in activCtrl.activities | filter:activCtrl.filterActivity | filter:activCtrl.query">
+  <div class="activity" pagination-id="activities" dir-paginate="activity in activCtrl.activities | filter:activCtrl.filterActivity | filter:activCtrl.query | itemsPerPage: 5">
     <h3 class="activity-title">{{activity.title}}</h3>
-    <p class="activity-attr"><small>submitted by <a href="#">{{activity.creator}}</a></small></p>
+    <p class="activity-attr"><small>submitted by <b>{{activity.creator.username}}</b></small></p>
     <div class="activity-info-container">
       <p class="activity-info">{{activity.typeOfExercise}}</p>
       <p class="activity-info">{{activity.weather}}</p>
@@ -70,4 +70,5 @@
     <p class="activity-desc">{{activity.description}}</p>
     <button>Favorite</button> <button ng-click="activCtrl.edit(activity)">Edit</button>
   </div>
+  <dir-pagination-controls pagination-id="activities"></dir-pagination-controls>
 </div>
