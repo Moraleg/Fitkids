@@ -16,128 +16,116 @@ router.get('/', function(req, res){
     res.json(foundUsers);
   });
 });
+
 //---------------------------------
 //get user by ID
 router.get('/:id', function(req, res){
-  User.find({user: req.params.id}, function(err, foundUser){
+  User.find({user: req.params.id}, function(err, foundUser){ // find user
+    // check if session exists and if current user is authorized to view data
     if (req.session.currentuser &&
       req.session.currentuser._id.toString() === foundUser._id.toString()) {
-      if (!err) {
-        res.json(foundUser);
-      } else {
-        res.json(err);
+      if (!err) { // if no error occurs ...
+        createdUser.password = ''; // password data is cleared out before ...
+        res.json(foundUser); // ... user data is send to browser
+      } else { // if error occurs ...
+        res.json(err); // send error
       }
     }
   });
 });
 
-//POST ROUTE
-//tested with curl
+// POST ROUTE
+// tested
 router.post('/', function(req, res){
-  req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-  User.create(req.body, function(err, createdUser){
-    if (!err) {
-      res.json(createdUser);
-    } else {
-      res.json(err);
+  req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)); //encrypts password
+  User.create(req.body, function(err, createdUser){ // creates user
+    if (!err) { // if no error occurrs ...
+      createdUser.password = ''; // password data is cleared out before ...
+      res.json(createdUser); // userData is sent to browser
+    } else { // if error occurrs ...
+      res.json(err); // error is sent to browser
     }
   });
 });
 
-//PATCH ROUTES
-
-// user profile update
-router.patch('/:id', function(req, res) {
-  // search for user
-  console.log(req.body);
-  User.findById(req.params.id, function(err, foundUser) {
-    // check if session data identical to database entry --> authorization
+// PATCH ROUTES
+// tested
+router.patch('/:id', function(req, res) { // user profile update
+  User.findById(req.params.id, function(err, foundUser) { // search for user
+    // check if session exists and if data is identical to database entry
     if (req.session.currentuser && req.session.currentuser._id.toString() === foundUser._id.toString()) {
-      if(!err) {
-        // check if request body contains password information and if the password
-        // is at least 8 characters long ( --> also checked in front end, this is to
-        // cover curl requests)
+      if(!err) { // if no error occurrs ...
+        // check if request body contains password information and if the
+        // password is at least 8 characters long ( --> also checked in
+        // front end, this is to cover curl requests)
           if (req.body.password !== undefined && req.body.password.length >= 8) {
-            console.log('in changing PW');
-            // encrypt password
-            req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-            // update user's password and respond with information as json
-            User.findByIdAndUpdate(req.params.id,
+            req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)); // encrypt password
+            User.findByIdAndUpdate(req.params.id, // update user's password
               { $set: { password: req.body.password } }, {new:true},
               function(err, updatedUser){
-                if(!err) {
-                  // save updated user data in session
-                  req.session.currentuser = updatedUser;
-                  // remove password before sending response with updatedUser to
-                  // the browser (I tried to delete the key, but that did not
-                  // work)
-                  updatedUser.password = "";
-                  res.json(updatedUser);
-                } else {
-                  // if error, send error
-                  res.json(err);
+                if(!err) { // if no error occurrs ...
+                  req.session.currentuser = updatedUser; // save updated
+                  // user data in session
+                  updatedUser.password = ''; // clear password data
+                  res.json(updatedUser); // send user data to browser
+                } else { // if error occurrs ...
+                  res.json(err); // ... send error
                 }
             });
-            // check if request body contains user name information and if username
-            // is not an empty string or only spaces ( --> also checked in front
-            // end, this is to cover curl requests)
-          } else if (req.body.username !== undefined && req.body.username.trim() !== "") {
-              // update user's username and respond with information as json
-              console.log('in changing username');
-              User.findByIdAndUpdate(req.params.id,
+            // check if request body contains user name information and if
+            // username is not an empty string or only spaces ( --> also
+            // checked in front end, this is to cover curl requests)
+          } else if (req.body.username !== undefined && req.body.username.trim() !== '') {
+              User.findByIdAndUpdate(req.params.id, // update user's username
               { $set: { username: req.body.username } }, {new:true},
               function(err, updatedUser){
                 if(!err) {
-                  // save updated user data in session
-                  req.session.currentuser = updatedUser;
-                  // remove password before sending response with updatedUser to
-                  // the browser (I tried to delete the key, but that did not
-                  // work)
-                  updatedUser.password = "";
-                  res.json(updatedUser);
+                  req.session.currentuser = updatedUser; // save updated
+                  // user data in session
+                  updatedUser.password = ""; // clear password data
+                  res.json(updatedUser); /// send user data to browser
                 } else {
-                  // if error, send error
-                  res.json(err);
+                  // if error occurrs ...
+                  res.json(err); // send error
                 }
             });
           } else {
             // do not allow any other patch requests to this route
-            console.log('Forbidden request');
             res.status(403).send('Forbidden');
           }
-      } else {
-        res.json(err);
+      } else { // if error occurrs ...
+        res.json(err); // send error
       }
-    } else {
-      console.log('Not authrized!');
+    } else { // do not allow updates if user is not authorized
       res.status(403).send('Forbidden');
     }
   });
 });
 
 //DELETE ROUTE
-//user delete route needs to loop through existing children and delete those who have this particular user's ObjectId as value listed under key 'parent'
 router.delete('/:id', function(req, res){
-  User.findById(req.params.id, function(err, foundUser){
-    if(req.session.currentuser && req.session.currentuser._id.toString() === foundUser._id.toString()){
-      if (!err) {
+  User.findById(req.params.id, function(err, foundUser){ // find user
+    if(req.session.currentuser && req.session.currentuser._id.toString() === foundUser._id.toString()){ // check if session exists and if user is
+      // authorized to delete this database entry
+      if (!err) { // if no error occurrs, delete user
         User.findByIdAndRemove(req.params.id, function(err, deletedUser){
-          if (!err) {
-            // remove all activities authored by the user
+          if (!err) { // if no error occurs, remove all activities authored
+            // by the deleted user
             Activity.find({creator: deletedUser._id}).remove(function(err, deletedActivities) {
               console.log(deletedActivities);
             });
-            req.session.destroy(function() {
-              res.json({data: 'success'})
+            req.session.destroy(function() { // log user out
+              res.json({data: 'success'}); // send confirmation that session
+              // has been destroyed
             });
-          } else {
-            res.json(err);
+          } else { // if error occurs
+            res.json(err); // send error
           }
         });
-      } else {
-        res.json(err);
+      } else { // if error occurs
+        res.json(err);  // send error
       }
-    } else {
+    } else { // do not allow updates if user is not authorized
       res.status(403).send('Forbidden');
     }
   });
