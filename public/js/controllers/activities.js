@@ -53,17 +53,32 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', function($h
     ctrl.ageRange = agesArr;
   };
   ctrl.getActivitiesByTitle = function(string) {
-    $http({
-      method: 'POST',
-      url: '/activities/search',
-      data: { pattern: string }
-    }).then(function(response) {
-      ctrl.lastQuery = Object.assign({}, ctrl.query);
-      ctrl.hasSearched = true;
-      ctrl.activities = response.data;
-    }, function(error) {
-      console.log('Error');
-    });
+    if (string.length) {
+      if (string === '*') {
+        string = '';
+        ctrl.query = '';
+      }
+      $http({
+        method: 'POST',
+        url: '/activities/search',
+        data: { pattern: string }
+      }).then(function(response) {
+        ctrl.lastQuery = Object.assign({}, ctrl.query);
+        ctrl.hasSearched = true;
+        ctrl.activities = response.data;
+      }, function(error) {
+        console.log('Error');
+      });
+    } else {
+      ctrl.getActivities();
+    }
+  };
+  ctrl.refreshActivities = function() {
+    if (ctrl.hasSearched) {
+      ctrl.getActivitiesByTitle(ctrl.lastQuery.title);
+    } else {
+      ctrl.getActivities();
+    }
   };
   ctrl.addNewActivity = function() {
     $http({
@@ -72,15 +87,37 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', function($h
       data: ctrl.newActivity
     }).then(function(response) {
       ctrl.newActivity = Object.assign({}, ctrl.newActivityTemplate);
-      if (ctrl.hasSearched) {
-        ctrl.getActivitiesByTitle(ctrl.lastQuery.title);
-      } else {
-        ctrl.getActivities();
-      }
+      ctrl.refreshActivities();
     }, function(error) {
       console.log(error);
     });
   };
+  ctrl.edit = function(activity) {
+    ctrl.editActivity = activity;
+  };
+  ctrl.updateActivity = function() {
+    $http({
+      method: 'PUT',
+      url: '/activities/' + ctrl.editActivity._id,
+      data: ctrl.editActivity
+    }).then(function(response) {
+      ctrl.editActivity = {};
+      ctrl.refreshActivities();
+    }, function(error) {
+      console.log(error);
+    });
+  };
+  ctrl.deleteActivity = function() {
+    $http({
+      method: 'DELETE',
+      url: '/activities/' + ctrl.editActivity._id
+    }).then(function(response) {
+      ctrl.editActivity = {};
+      ctrl.refreshActivities();
+    }, function(error) {
+      console.log(error);
+    });
+  }
   // ctrl.seed = function() {
   //   $http({
   //     method: 'GET',
