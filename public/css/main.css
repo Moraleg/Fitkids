@@ -447,12 +447,12 @@ textarea {
 
 /*******************ACTIVITY POSTS*******************/
 .main-activity {
-  display: inline-block;
+  /*display: inline-block;*/
 }
 
 #activity-container {
-  margin: 0 auto;
-  display: inline-block;
+  /*margin: 0 auto;*/
+  /*display: inline-block;*/
 }
 .activity {
   width: 45%;
@@ -528,7 +528,7 @@ hr {
 /*******************ACTIVITY SIDEBAR*******************/
 .filters-side {
   background-color: white;
-  display: inline-block;
+  /*display: inline-block;*/
   margin: 25px;
   padding: 25px;
 }

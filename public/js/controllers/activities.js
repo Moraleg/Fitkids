@@ -96,7 +96,7 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', '$scope', f
   };
   ctrl.edit = function(activity){
     ctrl.editActivity = activity;
-    $('#activity-form-edit-container').css('display', 'block');  
+    $('#activity-form-edit-container').css('display', 'block');
   };
   ctrl.updateActivity = function() {
     $http({
@@ -151,8 +151,10 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', '$scope', f
     return result;
   };
   ctrl.getFavorites = function() {
+    console.log($scope.viewCtrl.sessionData.favorites);
     ctrl.query.title = "";
     ctrl.lastQuery.title = "";
     ctrl.activities = $scope.viewCtrl.sessionData.favorites;
+    console.log(ctrl.activities);
   }
 }]);
