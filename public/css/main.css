@@ -146,7 +146,6 @@ nav a:hover:before {
   text-align: center;
   margin: 0 12px 0 auto;
   width: 32%;
-  border-left: 1px solid #ACACAC;
 }
 
 .mid h3 {
@@ -155,6 +154,11 @@ nav a:hover:before {
 
 .mid p {
   color: #ACACAC;
+}
+
+#mid {
+  border-left: 1px solid #ACACAC;
+  border-right: 1px solid #ACACAC;
 }
 
 /*****************UNIVERSAL MODAL CODE*******************/
@@ -211,6 +215,12 @@ label {
 
 .close:hover {
   color: #333;
+}
+
+.benefit {
+  margin-top: 25px;
+  font-size: 30px;
+  color: #2BCEC5;
 }
 
 /*****************GET STARTED MODAL*******************/

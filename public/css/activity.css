@@ -1,5 +1,25 @@
-#activity {
-  z-index: 10;
+.filter-activity-btn {
+  background-color: #2BCEC5;
+  color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
+  height: 30px;
+  border: solid;
+  cursor: pointer;
+  margin-bottom: -3px;
+}
+
+.fav-fil {
+  color: white;
+}
+
+.filter-activity-btn:focus {
+  outline: 0;
+}
+
+#fav-span {
+  position: relative;
+  bottom: 3px;
 }
 
 .main-activity {
@@ -57,6 +77,19 @@ div.btn-container-center > button, div.btn-container-center > input {
 
 #activity-container > div.activity {
   margin: 20px;
+  position: relative;
+}
+
+section.icons > i.fa-heart-o {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+}
+
+section.icons > i.fa-pencil-square-o {
+  position: absolute;
+  top: 43px;
+  right: 13px;
 }
 
 div.activity-info-container {
@@ -73,6 +106,111 @@ div.activity-info-container > p.activity-info {
   border-color: #2BCEC5;
 }
 
+ul.pagination {
+  list-style: none;
+  background: #2BCEC5;
+  padding: 10px 5px;
+  border-radius: 20px;
+}
+
+ul.pagination > li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+ul.pagination > li > a {
+  text-decoration: none;
+  color: white;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 5.6px 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6.8px;
+  cursor: pointer;
+  box-shadow: 0px 0px 4px #333333, 0px 0px 0px #404040;
+  background: #2bcec5;
+  border-radius: 25px;
+  border: 0px solid #ffffff;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1.1px 1.1px 4.4px #333333, 0px 0px 1.1px #404040;
+  border: 0px solid #333333;
+  height: 18px;
+  width: 7px;
+  border-radius: 6px;
+  background: #95e6e2;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5.6px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #88e6e1;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 6.8px;
+  cursor: pointer;
+  box-shadow: 0px 0px 4px #333333, 0px 0px 0px #404040;
+  background: #2bcec5;
+  border-radius: 25px;
+  border: 0px solid #ffffff;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1.1px 1.1px 4.4px #333333, 0px 0px 1.1px #404040;
+  border: 0px solid #333333;
+  height: 18px;
+  width: 7px;
+  border-radius: 6px;
+  background: #95e6e2;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  min-width: 100%;
+  max-width: 100%;
+  height: 6.8px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #176d68;
+  border: 0px solid #ffffff;
+  border-radius: 50px;
+  box-shadow: 0px 0px 4px #333333, 0px 0px 0px #404040;
+}
+input[type=range]::-ms-fill-upper {
+  background: #2bcec5;
+  border: 0px solid #ffffff;
+  border-radius: 50px;
+  box-shadow: 0px 0px 4px #333333, 0px 0px 0px #404040;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1.1px 1.1px 4.4px #333333, 0px 0px 1.1px #404040;
+  border: 0px solid #333333;
+  height: 18px;
+  width: 7px;
+  border-radius: 6px;
+  background: #95e6e2;
+  cursor: pointer;
+  height: 6.8px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #2bcec5;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #88e6e1;
+}
+
+
 @media(min-width: 917px) {
   #activity-container > div.activity {
     width: 28%;
@@ -83,17 +221,16 @@ div.activity-info-container > p.activity-info {
 @media (max-width: 916px) {
   #activity-container > div.activity {
     width: 90%;
-    min-width: 272px;
+    min-width: 359px;
   }
-}
-
-@media (max-width: 738px) {
   #activity-container-outer {
     position: relative;
     top: 50px;
   }
   #activity {
     position: absolute;
-    top: 5px;
+    top: 55px;
+    left: 55%;
+    min-width: 135px;
   }
 }
