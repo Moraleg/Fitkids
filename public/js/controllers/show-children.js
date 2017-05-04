@@ -73,6 +73,8 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
     }
   };
 
+  ctrl.getAllChildren();
+
   ctrl.addActiveMinutes = function (child) { // function allows to add
     // activity in minutes for current date only
 
@@ -193,6 +195,7 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
       data: graphData
     });
 
-    $('#child-post').show();
+    $('#graph').show();
   };
+
 }]);

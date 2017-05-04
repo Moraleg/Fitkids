@@ -1,4 +1,9 @@
-#child-post {
+* {
+  box-sizing: border-box;
+  border: 1px dotted black;
+}
+
+#graph {
   background: #F7F7F7;
   margin: auto;
   width: 60%;
@@ -10,4 +15,31 @@
 canvas {
   margin: auto;
   width: 100%;
+}
+
+#child-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-flow: row wrap;
+}
+
+.child {
+  background: white;
+  width: 45%;
+  margin-top: 2vh;
+  padding: 1vh 1vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-flow: row wrap;
+}
+
+.child h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.child-right {
+  text-align: center;
 }
