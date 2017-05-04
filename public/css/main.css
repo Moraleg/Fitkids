@@ -1,9 +1,9 @@
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
-
+/*
 * {
   box-sizing: border-box;
   border: 1px dotted black;
-}
+}*/
 html {
   margin: 0;
   padding: 0;
@@ -90,7 +90,7 @@ nav a:hover:before {
 
 .banner {
   /*position: relative;*/
-  /*height: 60vh;*/
+  height: 460px;
   background-image: url('/images/banner-img.png');
   background-repeat: no-repeat;
   background-position: 65%;
@@ -189,7 +189,7 @@ nav a:hover:before {
 }
 
 label {
-  margin-left: 12px;
+  margin-left: 21px;
 }
 
 #username, #password, #confirmPassword {
@@ -305,7 +305,7 @@ edit-profile-form  h2 {
   background-color: white;
   color: #2BCEC5;
   padding: 2px 18px;
-  margin: 10px 10px 0 10px;
+  margin: 10px 10px 0 22px;
   border-radius: 20px;
   cursor: pointer;
 

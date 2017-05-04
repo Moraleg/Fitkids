@@ -16,7 +16,7 @@
     <label for="confirmPassword">Confirm password: </label><br/>
     <input id="confirmPassword" type="password" placeholder="confirm password" ng-model="signUp.confirmPassword" required minlength="8"/>
     <br />
-    <input id="create-account-btn" type="submit" value="CREATE ACCOUNT" />
+    <input class="close" id="create-account-btn" type="submit" value="CREATE ACCOUNT" />
 </form>
 <p class="modal-text" ng-if="signUp.displayMessage">{{signUp.msgContent}}</p>
 <p class="modal-text">Already have an account? <a class="login-anchor">Login Here</a></p>
