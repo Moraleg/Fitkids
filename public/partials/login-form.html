@@ -1,3 +1,8 @@
+<!--Button to close modal-->
+<div>
+<a class="close">X</a>
+</div>
+<!-- Button to close the modal END-->
 <form ng-submit="login.submitLogin()">
   <div class="legend-container">
     <legend><h2>Login</h2></legend>
@@ -8,6 +13,6 @@
   <label for="password">Password:</label>
   <input id="password" type="password" placeholder="password" ng-model="login.password" required min-length="8"/>
   <br/>
-  <input id="login-btn" type="submit" value="LOGIN"/>
+  <input class="close" id="login-btn" type="submit" value="LOGIN"/>
 </form>
 <p class="modal-text" ng-if="login.showMsg">{{login.msgContent}}</p>

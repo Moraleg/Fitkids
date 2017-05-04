@@ -50,6 +50,7 @@
     <input id="weather-snow" type="checkbox" ng-model="activCtrl.filter.weather.Snow" ng-init="activCtrl.filter.weather.Snow = false"> <label for="weather-snow">Snow</label><br>
   </div>
 </div>
+<!---->
 <div id="activity-form-edit-container">
   <div id="activity-form-edit-unauth" ng-if="viewCtrl.sessionData._id.toString() !== activCtrl.editActivity.creator._id.toString() || !viewCtrl.sessionData">
     <p>You must be logged in as this activity's creator to edit its information.</p>
@@ -66,6 +67,7 @@
     </form>
   </div>
 </div>
+<!---->
 <div id="activity-container">
   <div class="activity" pagination-id="activities" dir-paginate="activity in activCtrl.activities | filter:activCtrl.filterActivity | filter:activCtrl.query | itemsPerPage: 5">
     <h3 class="activity-title">{{activity.title}}</h3>
