@@ -9,7 +9,7 @@ $(function(){
   console.log($activityBtn);
   var $login = $('#login-modal');
   var $signUp = $('#signup-modal');
-  var $child = $('#edit-user-modal')
+  var $child = $('#edit-user-modal');
   var $activity = $('#activity-modal');
   var $closeBtn= $('.close');
 
@@ -43,8 +43,8 @@ $(function(){
 
   //Event handlers to open and close create new activity
   var openActivity = function(){
-    console.log('create activity has been clicked');
-    // $activity.css('display', 'block');
+    // console.log('create activity has been clicked');
+    $activity.css('display', 'block');
   };
 
 
@@ -58,8 +58,8 @@ $(function(){
   $closeBtn.on('click', closeModal);
 
   // //Event handlers for sign up
-  // $activityBtn.on('click', openActivity);
-  // $closeBtn.on('click', closeModal);
+  $activityBtn.on('click', openActivity);
+  $closeBtn.on('click', closeModal);
   //
   //
   // //Event handlers for edit activity

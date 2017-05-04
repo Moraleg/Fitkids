@@ -51,9 +51,9 @@
       <h2 class="logo" ng-click="viewCtrl.changeView('splash')">FIT KIDS</h2>
       <nav>
         <user-logout class="reg underline" ng-if="viewCtrl.sessionData"></user-logout>
-        <a class="reg underline" ng-click="viewCtrl.changeView('favorites')">FAVORITES</a>
-        <a class="reg underline" ng-click="viewCtrl.changeView('child')">TRACK PROGRESS</a>
-        <a class="reg underline" ng-click="viewCtrl.changeView('activities')">ACTIVITIES</a>
+        <a class="reg underline" href='#' ng-if="viewCtrl.sessionData">EDIT PROFILE</a>
+        <a class="reg underline" ng-click="viewCtrl.changeView('child')" ng-if="viewCtrl.sessionData">TRACK PROGRESS</a>
+        <a class="reg underline" ng-click="viewCtrl.changeView('activities')" ng-if="viewCtrl.sessionData">ACTIVITIES</a>
         <a id="open-signup" class="signup" ng-if="!viewCtrl.sessionData">GET STARTED</a>
         <a id="open-login" class="reg underline" ng-if="!viewCtrl.sessionData">LOGIN</a>
       </nav>
@@ -63,7 +63,7 @@
     <!--MAIN PAGE-->
     <div id="splash" ng-if="viewCtrl.currentView === 'splash'">
       <section class="banner">
-        <img class="banner-img" src="/images/banner-img.png" alt="banner image">
+        <!-- <img class="banner-img" src="/images/banner-img.png" alt="banner image"> -->
         <h1 class="banner-h1">Browse hundreds of exercise and activity ideas<br/> to get your kids moving</h1>
         <a class="browse" href="#" ng-click="viewCtrl.changeView('activities')">BROWSE ACTIVITIES</a>
       </section>
@@ -101,7 +101,7 @@
     <!--END LOGIN MODAL-->
 
     <!-- CREATE ACTIVITY -->
-    <main ng-if="viewCtrl.currentView === 'activities'">
+    <main ng-show="viewCtrl.currentView === 'activities'">
     <a id="activity" class="create-activity-btn">CREATE ACTIVITY</a>
     <activities></activities>
     </main>
