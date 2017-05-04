@@ -29,7 +29,10 @@
 
 .filters-side {
   margin-bottom: auto;
-  min-width: 130px;
+  display: flex;
+  flex-flow: column nowrap;
+  min-width: 180px;
+  max-width: 180px;
 }
 
 div.btn-container-center {
@@ -211,14 +214,14 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
-@media(min-width: 917px) {
+@media(min-width: 1051px) {
   #activity-container > div.activity {
     width: 28%;
     min-width: 258px;
   }
 }
 
-@media (max-width: 916px) {
+@media (max-width: 1050px) {
   #activity-container > div.activity {
     width: 90%;
     min-width: 359px;
@@ -230,7 +233,7 @@ input[type=range]:focus::-ms-fill-upper {
   #activity {
     position: absolute;
     top: 55px;
-    left: 55%;
-    min-width: 135px;
+    left: 53%;
+    min-width: 190px;
   }
 }
