@@ -169,20 +169,30 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
     }
 
     var ctx = $("#canvas"); // get canvas element from DOM
+    ctx.fillStyle = '#F7F7F7';
 
-    var data = { // set data for graph
+    var graphData = { // set data for graph
       labels: labels, // date strings as labels
       datasets: [
         {
-          label: "activity levels",
+          label: "active minutes",
+          pointRadius: 0,
+          pointHitRadius: 0,
+          pointHoverRadius: 0,
+          backgroundColor: 'rgba(43,206,197, .7)',
+          borderColor: 'rgba(43,206,197, 1)',
           data: activityThisWeek, // activity levels in mins for past 7 days
+          fontColor: '#ccc',
+          fontFamily: 'Helvetica Neue, sans-serif',
         }
       ]
     };
 
     var scatterChart = new Chart(ctx, { // draw graph
       type: 'line',
-      data: data
+      data: graphData
     });
+
+    $('#child-post').show();
   };
 }]);

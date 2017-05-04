@@ -1,7 +1,7 @@
 <button ng-click="showChildren.getAllChildren();">click me</button>
-<div class="child-post">
+<div id="child-post">
   <h3><span>{{showChildren.thisChild.name}}'s</span> activity in the past 7 days</h3>
-  <canvas id="canvas" width="50%" height="30vh"></canvas>
+  <canvas id="canvas"></canvas>
 </div>
 <div class="" ng-repeat="child in showChildren.allChildren">
   <h3>{{child.name}}</h3>
