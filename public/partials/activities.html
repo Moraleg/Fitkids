@@ -4,6 +4,11 @@
       <p>You must be logged in to use this feature.</p>
     </div>
     <div id="activity-form-new" ng-if="viewCtrl.sessionData">
+      <!--Button to close modal-->
+      <div>
+      <a class="close">X</a>
+      </div>
+      <!-- Button to close the modal END-->
       <form ng-submit="activCtrl.addNewActivity()">
         <div class="legend-container">
           <legend><h2>Create Activity</h2></legend>
