@@ -1,4 +1,4 @@
-angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http) {
+angular.module('MyApp').controller('showChildrenCtrl', ['$http', '$scope', function ($http, $scope) {
   // initialize variables
   var ctrl = this;
   ctrl.allChildren = [];
@@ -145,7 +145,6 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
 
   ctrl.addActiveMinutes = function (child) { // function allows to add
     // activity in minutes for current date only
-
     // holds today's date and minutes from userInput
     newActivity = {
       day: ctrl.today,
@@ -189,7 +188,7 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
           }
         }
         ctrl.getTodaysActivityLevels();
-        ctrl.showGraph(child);
+        ctrl.showGraph(response.data);
       }, function (error) {
         console.log(error);
       });
@@ -197,6 +196,13 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
     child.showEdit = false;
   };
 
-  ctrl.getAllChildren();
+  $scope.$on('addedChild', function () {
+    ctrl.getAllChildren();
+  });
+
+ ctrl.getAllChildren();
+
+
+
 
 }]);

@@ -22,6 +22,7 @@ canvas {
   justify-content: space-around;
   align-items: flex-start;
   flex-flow: row wrap;
+  padding-bottom: 2.5vh;
 }
 
 .child {
@@ -42,12 +43,12 @@ canvas {
 
 .child-right {
   text-align: center;
-  width: 40%;
+  width: 50%;
   padding: 1vh 1vw;
 }
 
 .child-left {
-  width: 60%;
+  width: 50%;
   display: flex;
   align-items: flex-start;
   flex-flow: row wrap;
@@ -58,17 +59,91 @@ canvas {
   width: 100%;
 }
 
+.child-left span {
+  width: 25%;
+  font-size: 10px;
+  line-height: 22px;
+  text-align: center;
+}
+
 .child-status-bar {
-  height: 2vh;
-  min-height: 10px;
-  width: 100%;
+  display: inline-block;
+  min-height: 20px;
+  width: 75%;
   border: 1px solid #ccc;
   border-radius: 20px;
 }
 
+.child-right p {
+  font-weight: bold;
+}
+
 .child-status {
-  height: 100%;
+  height: 20px;
   width:0%;
   border-radius: 20px;
-  background-color: rgba(43,206,197, 1);
+  background: rgba(43,206,197, 1);
+  background: -webkit-linear-gradient(left, rgba(43,206,197, 1) , rgba(43,206,197, .3));
+  background: -o-linear-gradient(right, rgba(43,206,197, 1), rgba(43,206,197, .3));
+  background: -moz-linear-gradient(right, rgba(43,206,197, 1), rgba(43,206,197, .3));
+  background: linear-gradient(to right, rgba(43,206,197, 1) , rgba(43,206,197, .3));
+}
+
+.childBtn {
+  background-color: #fff;
+  color: #2BCEC5;
+  border-radius: 20px;
+  border: 0;
+  font-size: 1em;
+  padding: .5vh 1vw;
+  margin: 1vh 0;
+  font-family: 'Hevetica Neue', sans-serif;
+  border: 2px solid #2BCEC5;
+  cursor: pointer;
+}
+
+.childBtn:hover {
+  background-color: #2BCEC5;
+  color: #fff;
+}
+
+.childBtn:active {
+  background-color: #ccc;
+  border: 2px solid #ccc;
+  color: #fff;
+}
+
+.track-form {
+  margin-top: 2vh;
+  padding: 1vh 1vw;
+  border-top: 1px dotted black;
+}
+
+.input-min-active {
+  width: 10%;
+  min-width: 40px;
+}
+
+@media (max-width: 700px) {
+
+  #child-container {
+    margin-top: 10vh;
+  }
+
+  .child {
+    width: 100%;
+    margin-top: 2vh;
+  }
+
+  .child-right {
+    width: 100%;
+  }
+
+  .child-left {
+    width: 100%;
+  }
+
+  #graph {
+    width: 100%;
+  }
 }
