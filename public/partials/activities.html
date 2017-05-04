@@ -33,10 +33,12 @@
       <form ng-submit="activCtrl.getActivitiesByTitle(activCtrl.query.title)">
         <input class="search-field" type="text" ng-model="activCtrl.query.title" placeholder="Search and filter...">
         <div class="btn-container-center">
-          <input type="submit" value="Search">
-          <button id="btn-viewfavorites" ng-if="viewCtrl.sessionData" ng-click="activCtrl.getFavorites()"><i class="fa fa-heart-o" aria-hidden="true"></i> &nbsp;Favorites</button>
+          <input class="create-activity-btn" type="submit" value="Search">
         </div>
       </form>
+      <div class="btn-container-center">
+        <button id="btn-viewfavorites" class="create-activity-btn" ng-if="viewCtrl.sessionData" ng-click="activCtrl.getFavorites()"><i class="fa fa-heart-o" aria-hidden="true"></i> &nbsp;Favorites</button>
+      </div>
     </div>
     <div id="activity-sidebar">
       <div class="exercise-filter">
@@ -66,10 +68,11 @@
     <!---->
     <div id="activity-container-outer">
       <div id="activity-container">
-        <div class="activity" pagination-id="activities" dir-paginate="activity in activCtrl.activities | filter:activCtrl.filterActivity | filter:activCtrl.query | itemsPerPage: 10">
+        <div class="activity" pagination-id="activities" dir-paginate="activity in activCtrl.activities | filter:activCtrl.filterActivity | filter:activCtrl.query | itemsPerPage: 6">
           <div class="activity-contents">
-            <section class="icons">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <section class="icons activity-btn-container" ng-if="viewCtrl.sessionData">
+              <i class="fa fa-heart-o fav-add" ng-if="!activCtrl.isFavorite(activity)" ng-click="activCtrl.addToFavorites(activity)" aria-hidden="true"></i>
+              <i class="fa fa-heart-o fav-rem" ng-if="activCtrl.isFavorite(activity)" ng-click="activCtrl.removeFromFavorites(activity)" aria-hidden="true"></i>
               <i ng-click="activCtrl.edit(activity)" id="open-edit" class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </section>
             <h3 class="activity-title">{{activity.title}}</h3>
@@ -80,10 +83,6 @@
               <p class="activity-info">{{activity.minAge}}+ yrs</p>
             </div>
             <p class="activity-desc">{{activity.description}}</p>
-          </div>
-          <div class="activity-btn-container" ng-if="viewCtrl.sessionData">
-            <button ng-if="!activCtrl.isFavorite(activity)" ng-click="activCtrl.addToFavorites(activity)">Favorite</button><button ng-if="activCtrl.isFavorite(activity)" ng-click="activCtrl.removeFromFavorites(activity)">Unfavorite</button>
-            <!-- <button ng-click="activCtrl.edit(activity)">Edit</button> -->
           </div>
         </div>
       </div>
