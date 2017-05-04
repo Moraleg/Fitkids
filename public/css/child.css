@@ -122,6 +122,7 @@ canvas {
 .input-min-active {
   width: 10%;
   min-width: 40px;
+  border: 1px solid #ccc
 }
 
 @media (max-width: 700px) {
@@ -145,5 +146,14 @@ canvas {
 
   #graph {
     width: 100%;
+    display: none;
+  }
+
+  canvas {
+    display: none;
+  }
+
+  #graphBtn {
+    display: none;
   }
 }
