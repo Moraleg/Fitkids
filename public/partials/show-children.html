@@ -1,0 +1,21 @@
+<h2>Daily Progress</h2>
+<button ng-click="showChildren.getAllChildren();">click me</button>
+<div class="">
+  <h3><span>{{showChildren.thisChild.name}}'s</span> activity in the past 7 days</h3>
+  <canvas id="canvas" width="50%" height="30vh"></canvas>
+</div>
+<div class="" ng-repeat="child in showChildren.allChildren">
+  <h3>{{child.name}}</h3>
+  <div class="">
+    <p>{{child.todaysActivity}} minute(s) active today.</p>
+    <button ng-click="showChildren.showGraph(child);">show as graph</button>
+    <button ng-click="showChildren.track(child);">track activity</button>
+    <div class="" ng-if="child.showEdit">
+      <form ng-submit="showChildren.addActiveMinutes(child);">
+        <legend>Today my child was active for ... </legend>
+        <input type="number" min="0" ng-model='child.newMinutes'> minutes <br/>
+        <input type="submit" value="add">
+      </form>
+    </div>
+  </div>
+</div>
