@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="/css/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
     <script src="js/app.js" charset="utf-8"></script>
     <!-- view controller -->
     <script src="js/controllers/view.js" charset="utf-8"></script>
@@ -29,6 +34,12 @@
     <script src="js/controllers/activities.js" charset="utf-8"></script>
     <!-- Pagination module -->
     <script src="/js/directives/dirPagination.js" charset="utf-8"></script>
+    <!-- Add child directive and controller -->
+    <script src="js/directives/add-child.js" charset="utf-8"></script>
+    <script src="js/controllers/add-child.js" charset="utf-8"></script>
+    <!-- Show children directive and controller -->
+    <script src="js/directives/show-children.js" charset="utf-8"></script>
+    <script src="js/controllers/show-children.js" charset="utf-8"></script>
   </head>
   <body ng-controller="ViewController as viewCtrl">
 
@@ -99,9 +110,15 @@
         <h2>Daily Progress</h2>
         <a href="#">ADD CHILD</a>
       </section>
-      <section></section>
+      <show-children></show-children>
     </main>
     <!--END CHILD'S DAILY PROGRESS-->
+
+    <!--ADD CHILD MODAL-->
+    <section>
+      <add-child></add-child>
+    </section>
+    <!--END ADD CHILD MODAL-->
 
     <!--CHILD EDIT MODAL-->
     <section>

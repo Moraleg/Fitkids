@@ -1,0 +1,8 @@
+<form class="" ng-submit="newChild.addChild()">
+  <legend>Add a child</legend>
+    <label for="name">Name: </label>
+    <input id="name" type="text" placeholder="name" ng-model="newChild.name" required/>
+    <br />
+    <input type="submit" />
+</form>
+<p ng-if="newChild.displayMessage">{{newChild.msgContent}}</p>
