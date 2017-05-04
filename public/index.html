@@ -51,8 +51,8 @@
     <header>
       <h2 class="logo" ng-click="viewCtrl.changeView('splash')">FIT KIDS</h2>
       <nav>
-        <a id="open-login" class="underline" ng-if="!viewCtrl.sessionData">LOGIN</a>
-        <a id="open-signup" class="signup" ng-if="!viewCtrl.sessionData">GET STARTED</a>
+        <a id="open-login" class="underline" ng-show="!viewCtrl.sessionData">LOGIN</a>
+        <a id="open-signup" class="signup" ng-show="!viewCtrl.sessionData">GET STARTED</a>
         <a class="underline" ng-click="viewCtrl.changeView('activities')" ng-if="viewCtrl.sessionData">ACTIVITIES</a>
         <a class="underline" ng-click="viewCtrl.changeView('child')" ng-if="viewCtrl.sessionData">TRACK PROGRESS</a>
         <a id="edit-user" class="underline" ng-show="viewCtrl.sessionData">EDIT PROFILE</a>
