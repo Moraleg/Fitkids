@@ -400,9 +400,9 @@ textarea {
 }
 
 #new-activity-exercise-type, #new-activity-weather-type  {
-  width: 95%;
+  width: 90%;
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 20px;
   margin-bottom: 10px;
 }
 
