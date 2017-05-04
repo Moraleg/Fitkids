@@ -14,7 +14,7 @@
     <div class="child-right">
       <p>{{child.todaysActivity}} min active today</p>
       <button class='childBtn' id="graphBtn" ng-click="showChildren.showGraph(child);">show graph</button>
-      <button class='childBtn' ng-click="showChildren.track(child);">track</button>
+      <button class='childBtn' ng-click="showChildren.track(child);">update</button>
       <div class="" ng-if="child.showEdit">
         <form class='track-form' ng-submit="showChildren.addActiveMinutes(child);">
           <input class="input-min-active" type="number" min="0" ng-model='child.newMinutes'> min active today <br/>

@@ -90,21 +90,27 @@ canvas {
 }
 
 .childBtn {
-  background-color: #2BCEC5;
+  background-color: #fff;
+  color: #2BCEC5;
   border-radius: 20px;
   border: 0;
   font-size: 1em;
   padding: .5vh 1vw;
   margin: 1vh 0;
   font-family: 'Hevetica Neue', sans-serif;
-  color: #fff;
   border: 2px solid #2BCEC5;
   cursor: pointer;
 }
 
 .childBtn:hover {
-  background-color: #fff;
-  color: #2BCEC5;
+  background-color: #2BCEC5;
+  color: #fff;
+}
+
+.childBtn:active {
+  background-color: #ccc;
+  border: 2px solid #ccc;
+  color: #fff;
 }
 
 .track-form {
