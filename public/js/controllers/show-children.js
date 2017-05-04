@@ -120,7 +120,6 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
               if (response.data) { // if response contains data
                 ctrl.allChildren = response.data // set all children to data
                 ctrl.getTodaysActivityLevels();
-                ctrl.getProgress();
               } else {
                 console.log('sth went wrong'); // log error
               }
@@ -143,8 +142,6 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
       element.showEdit = true;
     }
   };
-
-  ctrl.getAllChildren();
 
   ctrl.addActiveMinutes = function (child) { // function allows to add
     // activity in minutes for current date only
@@ -199,4 +196,7 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
       // close edit
     child.showEdit = false;
   };
+
+  ctrl.getAllChildren();
+
 }]);
