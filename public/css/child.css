@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  border: 1px dotted black;
+  /*border: 1px dotted black;*/
 }
 
 #graph {
@@ -31,7 +31,7 @@ canvas {
   padding: 1vh 1vw;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
   flex-flow: row wrap;
 }
 
@@ -42,4 +42,33 @@ canvas {
 
 .child-right {
   text-align: center;
+  width: 40%;
+  padding: 1vh 1vw;
+}
+
+.child-left {
+  width: 60%;
+  display: flex;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  padding: 1vh 1vw;
+}
+
+.child-left h3 {
+  width: 100%;
+}
+
+.child-status-bar {
+  height: 2vh;
+  min-height: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.child-status {
+  height: 100%;
+  width:0%;
+  border-radius: 20px;
+  background-color: rgba(43,206,197, 1);
 }

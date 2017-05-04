@@ -1,4 +1,3 @@
-<button ng-click="showChildren.getAllChildren();">click me</button>
 <div id="graph">
   <h3><span>{{showChildren.thisChild.name}}'s</span> activity in the past 7 days</h3>
   <canvas id="canvas"></canvas>
@@ -7,10 +6,12 @@
   <div class="child" ng-repeat="child in showChildren.allChildren">
     <div class="child-left">
       <h3>{{child.name}}</h3>
-      <div class="status-bar"></div>
+      <div class="child-status-bar">
+        <div class="child-status" ng-style="{'width':child.todaysActivity * (100/60)+'%'}"></div>
+      </div>
     </div>
     <div class="child-right">
-      <p>{{child.todaysActivity}} min active today</p>
+      <p>{{child.todaysActivity}} of the recommended 60 min active today</p>
       <button ng-click="showChildren.track(child);">track</button>
       <button ng-click="showChildren.showGraph(child);">show graph</button>
       <div class="" ng-if="child.showEdit">
