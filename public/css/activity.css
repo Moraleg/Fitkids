@@ -103,10 +103,19 @@ div.activity-info-container {
 }
 
 div.activity-info-container > p.activity-info {
-  font-size: 16px;
+  font-size: 14px;
   padding: 4px 8px;
   color: #2BCEC5;
   border-color: #2BCEC5;
+}
+
+div.activity {
+  height: 250px;
+}
+
+div.activity-desc-container {
+  overflow: auto;
+  height: 108px;
 }
 
 ul.pagination {
