@@ -8,6 +8,7 @@ angular.module('MyApp').controller('logoutCtrl', ['$http', '$scope', function($h
     }).then(function(response){
       console.log(response);
       $scope.viewCtrl.getSession();
+      $scope.viewCtrl.changeView('splash');
     }, function(error){
       console.log(error);
     });

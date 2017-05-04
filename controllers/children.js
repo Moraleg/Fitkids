@@ -29,13 +29,17 @@ router.get('/', function (req, res) {
 // *** create a new child ***
 // --> tested with curl
 router.post('/', function (req, res) {
+  console.log('in post');
   // set logged-in user as parent
   if (req.session.currentuser) {
+    console.log('in conditional');
     req.body.parent = req.session.currentuser._id
     Child.create(req.body, function (err, createdChild) {
+      console.log('in crete');
       if(!err) {
         res.json(createdChild);
       } else {
+        console.log('in create error');
         res.json(err);
       }
     }); // closes Child.create and callback

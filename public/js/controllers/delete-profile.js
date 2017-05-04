@@ -1,4 +1,4 @@
-angular.module('MyApp').controller('deleteProfileController', ['$http', '$window', function ($http, $window) {
+angular.module('MyApp').controller('deleteProfileController', ['$http', '$scope', function ($http, $scope) {
   // initialise needed variables
    var ctrl = this;
    this.showConfirm = false;
@@ -35,7 +35,8 @@ angular.module('MyApp').controller('deleteProfileController', ['$http', '$window
                    ctrl.msgContent = 'Your profile was successfully deleted.'
                    ctrl.showMsg = true;
                     setTimeout(function() { // reload page after 3 seconds
-                      $window.location.reload();
+                      $scope.viewCtrl.getSession();
+                      $scope.viewCtrl.changeView('splash');
                       this.showConfirm = false;
                     }, 3000);
                  },
