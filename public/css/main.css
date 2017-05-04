@@ -1,6 +1,11 @@
 /*Imported cross for opening / closing menu section*/
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 
+/** {
+  box-sizing: border-box;
+  border: 1px dotted black;
+}*/
+
 body {
   margin: 0;
   padding: 0;
@@ -12,26 +17,35 @@ header {
   position: static;
   top: 0;
   width: 100%;
-  height: 74px;
+  max-height: 140px;
   background-color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  display: inline-block;
-  float: left;
+  display: block;
+  /*float: left;*/
+  font-size: 3vw;
   color: #333;
-  margin: 25px 0 17px 3.2%;
+  /*margin: 25px 0 17px 3.2%;*/
   letter-spacing: 0.49px;
-
+  width: 30%;
+  padding-left: 2.5%;
 }
 
 nav {
   display: inline-block;
-  float: right;
-  margin-top: 18px;
-  margin-right: 3.2%;
+  /*float: right;*/
+  /*margin-top: 18px;
+  margin-right: 3.2%;*/
   letter-spacing: 0.46px;
-  width: 800px;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 nav a {
@@ -69,9 +83,9 @@ nav a:hover:before {
   transform: scaleX(1);
 }
 
-.reg {
+/*.reg {
   margin-top: 12px;
-}
+}*/
 
 .signup {
   border: 2px solid #2BCEC5;
@@ -82,29 +96,47 @@ nav a:hover:before {
 
 .banner {
   position: relative;
+  height: 60vh;
+  background-image: url('/images/banner-img.png');
+  background-repeat: no-repeat;
+  background-position: 65%;
+  background-size: cover;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .banner-img {
-  width: 100vw;
+  width: 100%;
   background-color: #333;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  filter: opacity(.8)
 }
 
 .banner-h1 {
   text-align: center;
-  position: absolute;
+  /*position: absolute;
   top: 200px;
-  left: 27%;
+  left: 27%;*/
   color: white;
   line-height: 40px;
   letter-spacing: 2px;
   font-family: 'Apercu', 'sans-serif';
   font-weight: normal;
+  text-shadow: 1px 1px 1px #333;
+  margin-top: 14vw;
+  font-size: 2vw;
 }
 
 .browse {
-  position: absolute;
+  /*position: absolute;
   bottom: 35%;
-  left: 43%;
+  left: 43%;*/
   font-size: 14px;
   text-decoration: none;
   letter-spacing: 0.46px;
@@ -117,6 +149,10 @@ nav a:hover:before {
 
 .main-content {
   margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5vw
+  /*background-color: white;*/
 }
 .mid {
   display: inline-block;
