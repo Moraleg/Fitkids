@@ -50,12 +50,12 @@
     <header>
       <h2 class="logo" ng-click="viewCtrl.changeView('splash')">FIT KIDS</h2>
       <nav>
-        <user-logout class="reg" ng-if="viewCtrl.sessionData"></user-logout>
-        <a class="reg" href="#" ng-click="viewCtrl.changeView('favorites')">FAVORITES</a>
-        <a class="reg" href="#" ng-click="viewCtrl.changeView('child')">TRACK PROGRESS</a>
-        <a class="reg" href="#" ng-click="viewCtrl.changeView('activities')">ACTIVITIES</a>
-        <a id="open-signup" class="signup" href="#" ng-if="!viewCtrl.sessionData">GET STARTED</a>
-        <a id="open-login" class="reg" ng-if="!viewCtrl.sessionData">LOGIN</a>
+        <user-logout class="reg underline" ng-if="viewCtrl.sessionData"></user-logout>
+        <a class="reg underline" ng-click="viewCtrl.changeView('favorites')">FAVORITES</a>
+        <a class="reg underline" ng-click="viewCtrl.changeView('child')">TRACK PROGRESS</a>
+        <a class="reg underline" ng-click="viewCtrl.changeView('activities')">ACTIVITIES</a>
+        <a id="open-signup" class="signup" ng-if="!viewCtrl.sessionData">GET STARTED</a>
+        <a id="open-login" class="reg underline" ng-if="!viewCtrl.sessionData">LOGIN</a>
       </nav>
     </header>
     <!--END HEADER-->
@@ -100,26 +100,28 @@
     </section>
     <!--END LOGIN MODAL-->
 
-    <!--ACTIVITIES FEED-->
+    <!-- CREATE ACTIVITY -->
     <main ng-if="viewCtrl.currentView === 'activities'">
     <a id="activity" class="create-activity-btn">CREATE ACTIVITY</a>
     <activities></activities>
     </main>
-    <!--END ACTIVITIES FEED-->
+    <!--END CREATE ACTIVITY -->
 
     <!--CHILD'S DAILY PROGRESS-->
     <main ng-if="viewCtrl.currentView === 'child'">
       <section class="child-header">
         <h2>Daily Progress</h2>
-        <a href="#">ADD CHILD</a>
+        <a id="open-add-child">ADD CHILD</a>
       </section>
       <show-children></show-children>
     </main>
     <!--END CHILD'S DAILY PROGRESS-->
 
     <!--ADD CHILD MODAL-->
-    <section>
-      <add-child></add-child>
+    <section id="add-child-modal" class="modal">
+      <section class="modal-input-box">
+        <add-child></add-child>
+      </section>
     </section>
     <!--END ADD CHILD MODAL-->
 

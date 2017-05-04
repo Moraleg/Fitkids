@@ -21,38 +21,68 @@
   </div>
 </section>
 <!---->
-<div id="activity-search">
-  <form ng-submit="activCtrl.getActivitiesByTitle(activCtrl.query.title)">
-    <input type="text" ng-model="activCtrl.query.title" placeholder="Search and filter...">
-    <input type="submit" value="Search">
-  </form>
-</div>
-<div id="activity-sidebar">
-  <button id="btn-viewfavorites" ng-if="viewCtrl.sessionData" ng-click="activCtrl.getFavorites()">View Favorites</button>
-  <div>
-    <h4>Exercise Type</h4>
-    <input id="type-aerobic" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Aerobic" ng-init="activCtrl.filter.typeOfExercise.Aerobic = false"> <label for="type-aerobic">Aerobic</label><br>
-    <input id="type-balance" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Balance" ng-init="activCtrl.filter.typeOfExercise.Balance = false"> <label for="type-balance">Balance</label><br>
-    <input id="type-cardio" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Cardio" ng-init="activCtrl.filter.typeOfExercise.Cardio = false"> <label for="type-cardio">Cardio</label><br>
-    <input id="type-flexibility" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Flexibility" ng-init="activCtrl.filter.typeOfExercise.Flexibility = false"> <label for="type-flexibility">Flexibility</label><br>
+<main class="main-activity">
+  <section class="filters-side">
+  <div id="activity-search">
+    <form ng-submit="activCtrl.getActivitiesByTitle(activCtrl.query.title)">
+      <input class="search-field" type="text" ng-model="activCtrl.query.title" placeholder="Search and filter...">
+      <input type="submit" value="Search">
+    </form>
   </div>
-  <div>
-    <h4>Age</h4>
-    <input id="age-select" type="range" step="1" min="1" max="18" ng-model="activCtrl.filter.minAge" list="age-range">
-    <datalist id="age-range" ng-init="activCtrl.getAgeRange(1,18)">
-      <option ng-repeat="age in activCtrl.ageRange">{{age}}</option>
-    </datalist> <label for="age-select">{{activCtrl.filter.minAge}}</label><br>
+  <div id="activity-sidebar">
+    <button id="btn-viewfavorites" ng-if="viewCtrl.sessionData" ng-click="activCtrl.getFavorites()">View Favorites</button>
+    <div class="exercise-filter">
+      <h4>Type of Exercise</h4>
+      <input id="type-aerobic" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Aerobic" ng-init="activCtrl.filter.typeOfExercise.Aerobic = false"> <label for="type-aerobic">Aerobic</label><br>
+      <input id="type-balance" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Balance" ng-init="activCtrl.filter.typeOfExercise.Balance = false"> <label for="type-balance">Balance</label><br>
+      <input id="type-cardio" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Cardio" ng-init="activCtrl.filter.typeOfExercise.Cardio = false"> <label for="type-cardio">Cardio</label><br>
+      <input id="type-flexibility" type="checkbox" ng-model="activCtrl.filter.typeOfExercise.Flexibility" ng-init="activCtrl.filter.typeOfExercise.Flexibility = false"> <label for="type-flexibility">Flexibility</label><br>
+    </div>
+    <hr/>
+    <div class="age-filter">
+      <h4>Age</h4>
+      <input id="age-select" type="range" step="1" min="1" max="18" ng-model="activCtrl.filter.minAge" list="age-range">
+      <datalist id="age-range" ng-init="activCtrl.getAgeRange(1,18)">
+        <option ng-repeat="age in activCtrl.ageRange">{{age}}</option>
+      </datalist> <label for="age-select">{{activCtrl.filter.minAge}}</label><br>
+    </div>
+    <hr/>
+    <div class="weather-filter">
+      <h4>Weather</h4>
+      <input id="weather-sunny" type="checkbox" ng-model="activCtrl.filter.weather.Sunny" ng-init="activCtrl.filter.weather.Sunny = false"> <label for="weather-sunny">Sunny</label><br>
+      <input id="weather-rainy" type="checkbox" ng-model="activCtrl.filter.weather.Rainy" ng-init="activCtrl.filter.weather.Rainy = false"> <label for="weather-rainy">Rainy</label><br>
+      <input id="weather-snow" type="checkbox" ng-model="activCtrl.filter.weather.Snow" ng-init="activCtrl.filter.weather.Snow = false"> <label for="weather-snow">Snow</label><br>
+    </div>
   </div>
-  <div>
-    <h4>Weather</h4>
-    <input id="weather-sunny" type="checkbox" ng-model="activCtrl.filter.weather.Sunny" ng-init="activCtrl.filter.weather.Sunny = false"> <label for="weather-sunny">Sunny</label><br>
-    <input id="weather-rainy" type="checkbox" ng-model="activCtrl.filter.weather.Rainy" ng-init="activCtrl.filter.weather.Rainy = false"> <label for="weather-rainy">Rainy</label><br>
-    <input id="weather-snow" type="checkbox" ng-model="activCtrl.filter.weather.Snow" ng-init="activCtrl.filter.weather.Snow = false"> <label for="weather-snow">Snow</label><br>
+  </section>
+  <!---->
+  <div id="activity-container">
+    <div class="activity" pagination-id="activities" dir-paginate="activity in activCtrl.activities | filter:activCtrl.filterActivity | filter:activCtrl.query | itemsPerPage: 5">
+      <div class="activity-contents">
+        <section class="icons">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <i ng-click="activCtrl.edit(activity)" id ="open-edit" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </section>
+        <h3 class="activity-title">{{activity.title}}</h3>
+        <p class="activity-attr"><small><span class="activity-post-nametag">submitted by</span> <b>{{activity.creator.username}}</b></small></p>
+        <div class="activity-info-container">
+          <p class="activity-info">{{activity.typeOfExercise}}</p>
+          <p class="activity-info">{{activity.weather}}</p>
+          <p class="activity-info">{{activity.minAge}}+ yrs</p>
+        </div>
+        <p class="activity-desc">{{activity.description}}</p>
+      </div>
+      <div class="activity-btn-container" ng-if="viewCtrl.sessionData">
+        <button ng-if="!activCtrl.isFavorite(activity)" ng-click="activCtrl.addToFavorites(activity)">Favorite</button><button ng-if="activCtrl.isFavorite(activity)" ng-click="activCtrl.removeFromFavorites(activity)">Unfavorite</button>
+        <!-- <button ng-click="activCtrl.edit(activity)">Edit</button> -->
+      </div>
+    </div>
+    <dir-pagination-controls pagination-id="activities"></dir-pagination-controls>
   </div>
-</div>
+</main>
 <!---->
-<div id="activity-form-edit-container">
-  <div id="activity-form-edit-unauth" ng-if="viewCtrl.sessionData._id.toString() !== activCtrl.editActivity.creator._id.toString() || !viewCtrl.sessionData">
+<div id="activity-form-edit-container" class="modal edit-activity">
+  <div id="activity-form-edit-unauth" class="modal-input-box" ng-if="viewCtrl.sessionData._id.toString() !== activCtrl.editActivity.creator._id.toString() || !viewCtrl.sessionData">
     <p>You must be logged in as this activity's creator to edit its information.</p>
   </div>
   <div id="activity-form-edit" ng-if="viewCtrl.sessionData._id.toString() === activCtrl.editActivity.creator._id.toString()">
@@ -66,21 +96,4 @@
       <input type="submit" value="Submit"> <button ng-click="activCtrl.deleteActivity()">Delete</button>
     </form>
   </div>
-</div>
-<!---->
-<div id="activity-container">
-  <div class="activity" pagination-id="activities" dir-paginate="activity in activCtrl.activities | filter:activCtrl.filterActivity | filter:activCtrl.query | itemsPerPage: 5">
-    <h3 class="activity-title">{{activity.title}}</h3>
-    <p class="activity-attr"><small>submitted by <b>{{activity.creator.username}}</b></small></p>
-    <div class="activity-info-container">
-      <p class="activity-info">{{activity.typeOfExercise}}</p>
-      <p class="activity-info">{{activity.weather}}</p>
-      <p class="activity-info">{{activity.minAge}}+ yrs</p>
-    </div>
-    <p class="activity-desc">{{activity.description}}</p>
-    <div class="activity-btn-container" ng-if="viewCtrl.sessionData">
-      <button ng-if="!activCtrl.isFavorite(activity)" ng-click="activCtrl.addToFavorites(activity)">Favorite</button><button ng-if="activCtrl.isFavorite(activity)" ng-click="activCtrl.removeFromFavorites(activity)">Unfavorite</button> <button ng-click="activCtrl.edit(activity)">Edit</button>
-    </div>
-  </div>
-  <dir-pagination-controls pagination-id="activities"></dir-pagination-controls>
 </div>

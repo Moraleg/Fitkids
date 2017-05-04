@@ -1,3 +1,6 @@
+/*Imported cross for opening / closing menu section*/
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+
 body {
   margin: 0;
   padding: 0;
@@ -37,13 +40,15 @@ nav a {
   text-decoration: none;
   color: #929292;
   margin-right: 3%;
+  position: relative;
+  cursor: pointer;
 }
 
 nav a:hover {
   color: #333;
 }
 
-nav a:before {
+.underline:before {
   content: "";
  position: absolute;
  width: 100%;
@@ -151,7 +156,8 @@ nav a:hover:before {
 }
 
 .legend-container {
-  display: flex
+  display: flex;
+  margin: auto;
 }
 
 .legend-container legend {
@@ -373,11 +379,107 @@ textarea {
   margin-bottom: 10px;
 }
 
-/**********************ACTIVITY POSTS*******************/
+/*******************ACTIVITY POSTS*******************/
+.main-activity {
+  display: inline-block;
+}
 
 #activity-container {
+  margin: 0 auto;
+  display: inline-block;
+}
+.activity {
+  width: 45%;
+  height: 200px;
+  margin: 14px 40px;
   background-color: white;
-  border: 2px solid red;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.activity-contents{
+  margin: 14px 22px;
+}
+
+.icons {
+  display: block;
+}
+.fa-heart-o {
+  display: inline-block;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.fa-pencil-square-o{
+  font-size: 20px;
+  display: inline-block;
+  margin-left: 88%;
+
+}
+
+.activity p {
+  margin-top: 0;
+}
+.activity-title {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.activity-post-nametag {
+  color: #ACACAC;
+}
+
+.activity-info-container {
+  display: block;
+}
+
+.activity-info {
+  display: inline-block;
+  border: 1px solid #ACACAC;
+  color: #ACACAC;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-left: 4px;
+}
+
+.activity-desc {
+  color: #ACACAC;
+}
+
+.edit-activity {
+  overflow: auto;
+  display: none;
+}
+
+hr {
+  width: 90%;
+  border-style: double;
+  border-color: #ACACAC;
+}
+
+/*******************ACTIVITY SIDEBAR*******************/
+.filters-side {
+  background-color: white;
+  display: inline-block;
+  margin: 25px;
+  padding: 10px;
+}
+
+.search-field {
+  border-radius: 8px;
+  border: 1px solid #ACACAC;
+  padding: 3px;
+}
+
+.exercise-filter {
+  margin-left: 4%;
+}
+
+.age-filter {
+  margin-left: 4%;
+}
+.weather-filter {
+  margin-left: 4%;
 }
 
 /**********************TRACK PROGRESS*******************/
@@ -403,4 +505,42 @@ textarea {
   float: right;
   margin-right: 3.5%;
   margin-top: 20px;
+}
+
+/**********************ADD CHILD MODAL*******************/
+add-child h2 {
+  font-weight: normal;
+  text-align: center;
+}
+
+#name {
+  padding: 10px;
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+}
+
+#add-child-modal {
+  overflow: auto;
+  display: none;
+}
+
+.add-child-button {
+  letter-spacing: 0.46px;
+  color: white;
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  padding: 10px 55px;
+  border-radius: 20px;
+  text-align: center;
+  display: block;
+  margin: 15px auto;
+  cursor: pointer;
+}
+
+/**********************CHILD POST*******************/
+
+.child-post {
+  background-color: white;
+  display: inline-block;
 }

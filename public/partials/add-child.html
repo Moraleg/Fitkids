@@ -1,8 +1,12 @@
+<!--Button to close modal-->
+<div>
+<a class="close">X</a>
+</div>
 <form class="" ng-submit="newChild.addChild()">
-  <legend>Add a child</legend>
+  <legend class="legend-container"><h2>Add Your Child</h2></legend>
     <label for="name">Name: </label>
     <input id="name" type="text" placeholder="name" ng-model="newChild.name" required/>
     <br />
-    <input type="submit" />
+    <input class="add-child-button" type="submit" />
 </form>
 <p ng-if="newChild.displayMessage">{{newChild.msgContent}}</p>
