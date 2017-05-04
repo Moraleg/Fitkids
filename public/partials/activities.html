@@ -33,11 +33,11 @@
       <form ng-submit="activCtrl.getActivitiesByTitle(activCtrl.query.title)">
         <input class="search-field" type="text" ng-model="activCtrl.query.title" placeholder="Search and filter...">
         <div class="btn-container-center">
-          <input class="create-activity-btn" type="submit" value="Search">
+          <input class="filter-activity-btn" type="submit" value="Search">
         </div>
       </form>
       <div class="btn-container-center">
-        <button id="btn-viewfavorites" class="create-activity-btn" ng-if="viewCtrl.sessionData" ng-click="activCtrl.getFavorites()"><i class="fa fa-heart-o" aria-hidden="true"></i> &nbsp;Favorites</button>
+        <button id="btn-viewfavorites" class="filter-activity-btn" ng-if="viewCtrl.sessionData" ng-click="activCtrl.getFavorites()"><i class="fa fa-heart-o fav-fil" aria-hidden="true"></i> &nbsp;<span id="fav-span">Favorites</span></button>
       </div>
     </div>
     <div id="activity-sidebar">

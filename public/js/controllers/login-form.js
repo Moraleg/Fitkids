@@ -8,7 +8,7 @@ angular.module('MyApp').controller('loginFormCtrl', ['$http', '$scope', function
   this.submitLogin = function(){
     this.showMsg = false;
     this.msgContent= '';
-    
+
     $http({
       method: 'POST',
       url: '/sessions',
@@ -25,8 +25,8 @@ angular.module('MyApp').controller('loginFormCtrl', ['$http', '$scope', function
         ctrl.msgContent = 'Sorry the password or username you entered did not match our records.';
         ctrl.showMsg = true;
       }
-      this.username = '';
-      this.password = '';
+      ctrl.username = '';
+      ctrl.password = '';
     }, function(error) {
       console.log(error);
       ctrl.msgContent = 'Sorry, something went wrong. Please try again.';
