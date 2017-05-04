@@ -51,12 +51,12 @@
     <header>
       <h2 class="logo" ng-click="viewCtrl.changeView('splash')">FIT KIDS</h2>
       <nav>
-        <user-logout class="reg underline" ng-if="viewCtrl.sessionData"></user-logout>
-        <a class="reg underline" href='#' ng-if="viewCtrl.sessionData">EDIT PROFILE</a>
-        <a class="reg underline" ng-click="viewCtrl.changeView('child')" ng-if="viewCtrl.sessionData">TRACK PROGRESS</a>
-        <a class="reg underline" ng-click="viewCtrl.changeView('activities')" ng-if="viewCtrl.sessionData">ACTIVITIES</a>
+        <a id="open-login" class="underline" ng-if="!viewCtrl.sessionData">LOGIN</a>
         <a id="open-signup" class="signup" ng-if="!viewCtrl.sessionData">GET STARTED</a>
-        <a id="open-login" class="reg underline" ng-if="!viewCtrl.sessionData">LOGIN</a>
+        <a class="underline" ng-click="viewCtrl.changeView('activities')" ng-if="viewCtrl.sessionData">ACTIVITIES</a>
+        <a class="underline" ng-click="viewCtrl.changeView('child')" ng-if="viewCtrl.sessionData">TRACK PROGRESS</a>
+        <a id="edit-user" class="underline" ng-show="viewCtrl.sessionData">EDIT PROFILE</a>
+        <user-logout class="underline" ng-if="viewCtrl.sessionData"></user-logout>
       </nav>
     </header>
     <!--END HEADER-->
@@ -109,7 +109,7 @@
     <!--END CREATE ACTIVITY -->
 
     <!--CHILD'S DAILY PROGRESS-->
-    <main ng-if="viewCtrl.currentView === 'child'">
+    <main ng-show="viewCtrl.currentView === 'child'">
       <section class="child-header">
         <h2>Daily Progress</h2>
         <a id="open-add-child">ADD CHILD</a>

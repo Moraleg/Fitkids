@@ -83,9 +83,6 @@ nav a:hover:before {
   transform: scaleX(1);
 }
 
-/*.reg {
-  margin-top: 12px;
-}*/
 
 .signup {
   border: 2px solid #2BCEC5;
@@ -151,8 +148,7 @@ nav a:hover:before {
   margin-top: 25px;
   display: flex;
   justify-content: space-between;
-  font-size: 1.5vw
-  /*background-color: white;*/
+  font-size: 1.5vw;
 }
 .mid {
   display: inline-block;
@@ -219,7 +215,11 @@ label {
 .close {
   background-color: white;
   color: #2BCEC5;
+  cursor: pointer;
+}
 
+.close:hover {
+  color: #333;
 }
 
 /*****************GET STARTED MODAL*******************/
@@ -413,6 +413,45 @@ textarea {
   display: inline-block;
   margin-left: 10px;
   margin-bottom: 10px;
+}
+
+#activity-form-new-unauth p {
+  text-align: center;
+}
+
+/*******************EDIT ACTIVITY POSTS*******************/
+
+#edit-activity-description, #edit-activity-title, #edit-activity-exercise-type, #edit-activity-age, #edit-activity-weather-type {
+  width: 95%;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+#activity-form-edit-unauth p {
+  text-align: center;
+}
+
+.edit-act-btn {
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  color: white;
+  padding: 7px 44px;
+  margin: 10px auto;
+  border-radius: 20px;
+  cursor: pointer;
+  display: block;
+}
+
+.del-act-btn {
+  border: 2px solid #f65C5B;
+  background-color: #f65C5B;
+  color: white;
+  padding: 7px 44px;
+  margin: 10px auto;
+  border-radius: 20px;
+  cursor: pointer;
+  display: block;
 }
 
 /*******************ACTIVITY POSTS*******************/
