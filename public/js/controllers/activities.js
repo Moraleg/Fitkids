@@ -94,8 +94,9 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', '$scope', f
       console.log(error);
     });
   };
-  ctrl.edit = function(activity) {
+  ctrl.edit = function(activity){
     ctrl.editActivity = activity;
+    $('#activity-form-edit-container').css('display', 'block');  
   };
   ctrl.updateActivity = function() {
     $http({

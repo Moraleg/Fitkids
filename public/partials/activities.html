@@ -1,14 +1,14 @@
 <section id="activity-modal" class="modal">
   <div class="modal-input-box" id="activity-form-new-container">
+    <!--Button to close modal-->
+    <div>
+    <a class="close">X</a>
+    </div>
+    <!-- Button to close the modal END-->
     <div id="activity-form-new-unauth" ng-if="!viewCtrl.sessionData">
       <p>You must be logged in to use this feature.</p>
     </div>
     <div id="activity-form-new" ng-if="viewCtrl.sessionData">
-      <!--Button to close modal-->
-      <div>
-      <a class="close">X</a>
-      </div>
-      <!-- Button to close the modal END-->
       <form ng-submit="activCtrl.addNewActivity()">
         <div class="legend-container">
           <legend><h2>Create Activity</h2></legend>
@@ -87,18 +87,25 @@
 </main>
 <!---->
 <div id="activity-form-edit-container" class="modal edit-activity">
-  <div id="activity-form-edit-unauth" class="modal-input-box" ng-if="viewCtrl.sessionData._id.toString() !== activCtrl.editActivity.creator._id.toString() || !viewCtrl.sessionData">
-    <p>You must be logged in as this activity's creator to edit its information.</p>
-  </div>
-  <div id="activity-form-edit" ng-if="viewCtrl.sessionData._id.toString() === activCtrl.editActivity.creator._id.toString()">
-    <form ng-submit="activCtrl.updateActivity()">
-      <legend>Edit Activity</legend>
-      <label for="edit-activity-title">Activity Title:</label> <input id="edit-activity-title" type="text" ng-model="activCtrl.editActivity.title" placeholder="Enter the title of your activity here" required><br>
-      <label for="edit-activity-description">Description:</label><br> <textarea id="edit-activity-description" rows="8" cols="80" ng-model="activCtrl.editActivity.description" placeholder="Enter a short description of the activity" required></textarea><br>
-      <label for="edit-activity-exercise-type">Exercise Type:</label> <select id="edit-activity-exercise-type" ng-model="activCtrl.editActivity.typeOfExercise" ng-options="exercise.name as exercise.name for exercise in activCtrl.exerciseTypes" required></select><br>
-      <label for="edit-activity-age">Minimum Age:</label> <input type="number" step="1" min="1" max="18" ng-model="activCtrl.editActivity.minAge" required><br>
-      <label for="edit-activity-weather-type">Weather:</label> <select id="edit-activity-weather-type" ng-model="activCtrl.editActivity.weather" ng-options="weather.name as weather.name for weather in activCtrl.weatherTypes" required></select><br>
-      <input type="submit" value="Submit"> <button ng-click="activCtrl.deleteActivity()">Delete</button>
-    </form>
+  <div class="modal-input-box">
+    <!--Button to close modal-->
+    <div>
+    <a class="close">X</a>
+    </div>
+    <!-- Button to close the modal END-->
+    <div id="activity-form-edit-unauth" ng-if="viewCtrl.sessionData._id.toString() !== activCtrl.editActivity.creator._id.toString() || !viewCtrl.sessionData">
+      <p>You must be logged in as this activity's creator to edit its information.</p>
+    </div>
+    <div id="activity-form-edit" ng-if="viewCtrl.sessionData._id.toString() === activCtrl.editActivity.creator._id.toString()">
+      <form ng-submit="activCtrl.updateActivity()">
+        <legend class="legend-container">Edit Activity</legend>
+        <label for="edit-activity-title">Activity Title:</label> <input id="edit-activity-title" type="text" ng-model="activCtrl.editActivity.title" placeholder="Enter the title of your activity here" required><br>
+        <label for="edit-activity-description">Description:</label><br> <textarea id="edit-activity-description" rows="8" cols="80" ng-model="activCtrl.editActivity.description" placeholder="Enter a short description of the activity" required></textarea><br>
+        <label for="edit-activity-exercise-type">Exercise Type:</label> <select id="edit-activity-exercise-type" ng-model="activCtrl.editActivity.typeOfExercise" ng-options="exercise.name as exercise.name for exercise in activCtrl.exerciseTypes" required></select><br>
+        <label for="edit-activity-age">Minimum Age:</label><br/> <input id="edit-activity-age" type="number" step="1" min="1" max="18" ng-model="activCtrl.editActivity.minAge" required><br>
+        <label for="edit-activity-weather-type">Weather:</label> <select id="edit-activity-weather-type" ng-model="activCtrl.editActivity.weather" ng-options="weather.name as weather.name for weather in activCtrl.weatherTypes" required></select><br>
+        <input class="edit-act-btn" type="submit" value="Edit Activity"> <button class="del-act-btn" ng-click="activCtrl.deleteActivity()">Delete Activity</button>
+      </form>
+    </div>
   </div>
 </div>
