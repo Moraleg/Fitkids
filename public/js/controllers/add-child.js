@@ -28,22 +28,27 @@ angular.module('MyApp').controller('newChildCtrl', ['$http', function ($http) {
                 ctrl.msgContent = 'Thank you! You created a profile for ' +
                 response.data.name + '.';
                 ctrl.displayMessage = true;
+                ctrl.name = '';
               } else if (!response.data || response.data.errors) {
                 ctrl.msgContent = 'Sorry, something went wrong! Please try again.';
                 ctrl.displayMessage = true;
+                ctrl.name = '';
               }
               console.log(response); // log server response
             }, function (error) { // in case of failure
               ctrl.msgContent = 'Sorry, something went wrong! Please try again.';
               ctrl.displayMessage = true;
+              ctrl.name = '';
               console.log(error); // log error
             });
         } else { // if session does not exists (just for testing) ...
           console.log('not logged in!'); // log that user is not logged in
+          ctrl.name = '';
         }
       }, function (error) { // in case of failure
         ctrl.msgContent = 'Sorry, something went wrong! Please try again.';
         ctrl.displayMessage = true;
+        ctrl.name = '';
         console.log(error); // log error
       });
   };

@@ -2,6 +2,7 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
   // initialize variables
   var ctrl = this;
   ctrl.allChildren = [];
+  ctrl.thisChild = {};
   // set time stamp for today's date to midnight
   // this way, all dates will have the exact same time down to the milisecond // and can be compared to today's date
   ctrl.today = new Date();
@@ -123,5 +124,65 @@ angular.module('MyApp').controller('showChildrenCtrl', ['$http', function ($http
       });
       // close edit
     child.showEdit = false;
+  };
+
+  ctrl.showGraph = function (child) {
+    // set ctrl.thisChild to selected child
+    ctrl.thisChild = child;
+
+    // create range of 7 days starting with current date
+    var now = Date.now();
+    var dateRange = [];
+    for (var i = 0; i < 7; i++) {
+      now -= 86400000;
+      var modified = new Date(now);
+      modified.setHours(24);
+      modified.setMinutes(0);
+      modified.setSeconds(0);
+      modified.setMilliseconds(0);
+      dateRange.push(modified);
+    }
+
+    // sort range ascending
+    // (based on: http://stackoverflow.com/questions/10123953/sort-javascript-object-array-by-date)
+    dateRange.sort(function (a,b) {
+      return new Date(a) - new Date(b)
+    });
+
+    // create labels for x-axis based on date range
+    var labels = [];
+    for (var i = 0; i < dateRange.length; i++) {
+      labels.push(dateRange[i].toDateString());
+    }
+
+    // create data for graph
+    var activityThisWeek = []; // to store minutes active
+    for (var i = 0; i < dateRange.length; i++) {
+      var minutes = 0; // initialize with zero
+      for (var j = 0; j < child.activity.length; j++) {
+        if (child.activity[j].day == dateRange[i].toJSON()) {
+          minutes = child.activity[j].minutes; // if entry for day within range
+          // present in database, replace 0 with that number
+        }
+      }
+      activityThisWeek.push(minutes) // add to storage array
+    }
+
+    var ctx = $("#canvas"); // get canvas element from DOM
+
+    var data = { // set data for graph
+      labels: labels, // date strings as labels
+      datasets: [
+        {
+          label: "activity levels",
+          data: activityThisWeek, // activity levels in mins for past 7 days
+        }
+      ]
+    };
+
+    var scatterChart = new Chart(ctx, { // draw graph
+      type: 'line',
+      data: data
+    });
   };
 }]);
