@@ -219,7 +219,11 @@ label {
 .close {
   background-color: white;
   color: #2BCEC5;
+  cursor: pointer;
+}
 
+.close:hover {
+  color: #333;
 }
 
 /*****************GET STARTED MODAL*******************/
