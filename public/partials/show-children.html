@@ -1,24 +1,24 @@
-<div id="graph">
-  <h3><span>{{showChildren.thisChild.name}}'s</span> activity in the past 7 days</h3>
-  <canvas id="canvas"></canvas>
-</div>
 <section id="child-container">
+  <div id="graph">
+    <h3><span>{{showChildren.thisChild.name}}'s</span> activity in the past 7 days</h3>
+    <canvas id="canvas"></canvas>
+  </div>
   <div class="child" ng-repeat="child in showChildren.allChildren">
     <div class="child-left">
       <h3>{{child.name}}</h3>
       <div class="child-status-bar">
-        <div class="child-status" ng-style="{'width':child.todaysActivity * (100/60)+'%'}"></div>
+        <div class="child-status" ng-style="{'width':child.todaysActivity * (100/60)+'%', 'max-width': '100%'}"></div>
       </div>
+      <span>60 min</span>
     </div>
     <div class="child-right">
-      <p>{{child.todaysActivity}} of the recommended 60 min active today</p>
-      <button ng-click="showChildren.track(child);">track</button>
-      <button ng-click="showChildren.showGraph(child);">show graph</button>
+      <p>{{child.todaysActivity}} min active today</p>
+      <button class='childBtn' id="graphBtn" ng-click="showChildren.showGraph(child);">show graph</button>
+      <button class='childBtn' ng-click="showChildren.track(child);">track</button>
       <div class="" ng-if="child.showEdit">
-        <form ng-submit="showChildren.addActiveMinutes(child);">
-          <legend>Today my child was active for ... </legend>
-          <input type="number" min="0" ng-model='child.newMinutes'> minutes <br/>
-          <input type="submit" value="add">
+        <form class='track-form' ng-submit="showChildren.addActiveMinutes(child);">
+          <input class="input-min-active" type="number" min="0" ng-model='child.newMinutes'> min active today <br/>
+          <input class="childBtn" type="submit" value="add">
         </form>
       </div>
     </div>

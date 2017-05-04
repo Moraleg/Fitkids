@@ -1,4 +1,4 @@
-angular.module('MyApp').controller('newChildCtrl', ['$http', function ($http) {
+angular.module('MyApp').controller('newChildCtrl', ['$http', '$rootScope', function ($http, $rootScope) {
   // initialize variables
   var ctrl = this;
   ctrl.name = '';
@@ -29,6 +29,7 @@ angular.module('MyApp').controller('newChildCtrl', ['$http', function ($http) {
                 response.data.name + '.';
                 ctrl.displayMessage = true;
                 ctrl.name = '';
+                $rootScope.$broadcast('addedChild', {message: 'new'});
               } else if (!response.data || response.data.errors) {
                 ctrl.msgContent = 'Sorry, something went wrong! Please try again.';
                 ctrl.displayMessage = true;
