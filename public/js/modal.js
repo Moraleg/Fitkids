@@ -63,34 +63,35 @@ $(function(){
     $child.css('display', 'none');
     $activityEdit.css('display', 'none');
     $userEdit.css('display', 'none');
-    
+
   };
 
 //===================EVENT LISTENERS=============/
   //Event listeners for login
   $loginBtn.on('click', openLogin);
-  $closeBtn.on('click', closeModal);
+
 
   //Event listeners for sign up
   $signupBtn.on('click', openSignup);
-  $closeBtn.on('click', closeModal);
+
 
   //Event listeners for create activity
   $activityBtn.on('click', openActivity);
-  $closeBtn.on('click', closeModal);
+
 
 
   //Event listenersfor edit activity
   $editActivityBtn.on('click', editActivity);
-  $closeBtn.on('click', closeModal);
+
 
   //Event listeners for edit user
   $editUserBtn.on('click', editUser);
-  $closeBtn.on('click', closeModal);
-  console.log($closeBtn);
+
 
   //Event listeners for add child
   $childBtn.on('click', addChild);
+
+  //Event listener to close modals
   $closeBtn.on('click', closeModal);
 
 });
