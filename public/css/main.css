@@ -182,7 +182,7 @@ nav a:hover:before {
 
 .modal-input-box {
   background-color: white;
-  width: 450px;
+  max-width: 450px;
   border-radius: 4px;
   margin: 150px auto;
   padding: 2%;
@@ -404,6 +404,7 @@ edit-profile-form  h2 {
   padding: 10px 18px;
   border-radius: 20px;
   cursor: pointer;
+  float: right;
   margin-right: 3.5%;
   margin-top: 20px;
 }
@@ -706,5 +707,13 @@ add-child h2 {
   nav {
     font-size: .7em;
     width: 70%;
+  }
+
+  .modal-input-box {
+    margin: 10vh 3vw;
+  }
+
+  input {
+    border: 1px solid #ccc;
   }
 }
