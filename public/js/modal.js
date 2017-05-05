@@ -31,16 +31,16 @@ $(function(){
   };
 
   //Event handlers to open create new activity
-  var openActivity = function(){
-    // console.log('create activity has been clicked');
-    $activity.css('display', 'block');
-  };
+  // var openActivity = function(){
+  //   // console.log('create activity has been clicked');
+  //   $activity.css('display', 'block');
+  // };
 
-  //Event handlers to open edit activity
-  var editActivity = function(){
-    console.log('edit activity has been clicked');
-    $activityEdit.css('display', 'block');
-  };
+  // //Event handlers to open edit activity
+  // var editActivity = function(){
+  //   console.log('edit activity has been clicked');
+  //   $activityEdit.css('display', 'block');
+  // };
 
   //Event handlers to open edit user
   var editUser = function(){
@@ -53,11 +53,11 @@ $(function(){
     // console.log('add child has been clicked');
     $child.css('display', 'block');
   };
-  // 
+
   // //Event handler to close modals
   // var closeModal = function(){
   //   // console.log('close has been clicked');
-  //   $login.css('display', 'none');
+  //   // $login.css('display', 'none');
   //   $signUp.css('display', 'none');
   //   $activity.css('display', 'none');
   //   $child.css('display', 'none');
@@ -65,7 +65,6 @@ $(function(){
   //   $userEdit.css('display', 'none');
   //
   // };
-
 //===================EVENT LISTENERS=============/
   //Event listeners for login
   $loginBtn.on('click', openLogin);
@@ -75,10 +74,10 @@ $(function(){
 
 
   //Event listeners for create activity
-  $activityBtn.on('click', openActivity);
+  // $activityBtn.on('click', openActivity);
 
   //Event listenersfor edit activity
-  $editActivityBtn.on('click', editActivity);
+  // $editActivityBtn.on('click', editActivity);
 
   //Event listeners for edit user
   $editUserBtn.on('click', editUser);
@@ -86,7 +85,7 @@ $(function(){
   //Event listeners for add child
   $childBtn.on('click', addChild);
 
-  // //Event listener to close modals
+  //Event listener to close modals
   // $closeBtn.on('click', closeModal);
 
 });

@@ -111,4 +111,8 @@ function ($http) {
       ctrl.displayMessage  = true;
     }
   };
+
+  $('.close').on('click', function () {
+    $('#edit-user-modal').css('display', 'none');
+  });
 }]);
