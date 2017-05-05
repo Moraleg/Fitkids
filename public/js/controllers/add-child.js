@@ -53,4 +53,8 @@ angular.module('MyApp').controller('newChildCtrl', ['$http', '$rootScope', funct
         console.log(error); // log error
       });
   };
+
+  $('.close').on('click', function () {
+    $('#add-child-modal').css('display', 'none');
+  });
 }]);

@@ -53,7 +53,7 @@ $(function(){
     // console.log('add child has been clicked');
     $child.css('display', 'block');
   };
-  // 
+  //
   // //Event handler to close modals
   // var closeModal = function(){
   //   // console.log('close has been clicked');
