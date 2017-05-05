@@ -2,9 +2,20 @@
 <html ng-app="MyApp">
   <head>
     <meta charset="utf-8">
-    <title>Site Blueprint</title>
+    <title>FIT KIDS</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/activity.css">
+    <link rel="stylesheet" href="/css/child.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
     <script src="js/app.js" charset="utf-8"></script>
+    <!-- view controller -->
+    <script src="js/controllers/view.js" charset="utf-8"></script>
     <!-- sign up form directive and controller -->
     <script src="js/directives/sign-up-form.js" charset="utf-8"></script>
     <script src="js/controllers/sign-up-form.js" charset="utf-8"></script>
@@ -23,84 +34,100 @@
     <!-- activities directive and controller -->
     <script src="js/directives/activities.js" charset="utf-8"></script>
     <script src="js/controllers/activities.js" charset="utf-8"></script>
+    <!-- Pagination module -->
+    <script src="/js/directives/dirPagination.js" charset="utf-8"></script>
+    <!--Modal JS & jQuery Links-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/modal.js"></script>
+    <!-- Add child directive and controller -->
+    <script src="js/directives/add-child.js" charset="utf-8"></script>
+    <script src="js/controllers/add-child.js" charset="utf-8"></script>
+    <!-- Show children directive and controller -->
+    <script src="js/directives/show-children.js" charset="utf-8"></script>
+    <script src="js/controllers/show-children.js" charset="utf-8"></script>
   </head>
-  <body>
-    <!--MAIN PAGE-->
+  <body ng-controller="ViewController as viewCtrl">
+
+    <!-- HEADER -->
     <header>
-      <h1>LOGO</h1>
+      <h2 class="logo" ng-click="viewCtrl.changeView('splash')">FIT KIDS</h2>
       <nav>
-        <a href="#">LOGIN</a>
-        <a href="#">GET STARTED</a>
-        <a href="#">ACTIVITIES</a>
-        <a href="#">TRACK PROGRESS</a>
-        <a href="#">FAVORITES</a>
-        <user-logout></user-logout>
+        <a id="open-signup" class="signup" ng-show="!viewCtrl.sessionData">GET STARTED</a>
+        <a id="open-login" class="underline" ng-show="!viewCtrl.sessionData">LOGIN</a>
+        <a class="underline" ng-click="viewCtrl.changeView('activities')" ng-if="viewCtrl.sessionData">ACTIVITIES</a>
+        <a class="underline" ng-click="viewCtrl.changeView('child')" ng-if="viewCtrl.sessionData">TRACK</a>
+        <a id="edit-user" class="underline" ng-show="viewCtrl.sessionData">PROFILE</a>
+        <user-logout class="underline" ng-if="viewCtrl.sessionData"></user-logout>
       </nav>
     </header>
-    <main>
-      <section>
-        <img src="/" alt="">
-        <h2>Browse hundreds of exercise and activity ideas to get your kids moving</h2>
-        <a href="#">GET STARTED</a>
+    <!--END HEADER-->
+
+    <!--MAIN PAGE-->
+    <div id="splash" ng-if="viewCtrl.currentView === 'splash'">
+      <section class="banner">
+        <!-- <img class="banner-img" src="/images/banner-img.png" alt="banner image"> -->
+        <h1 class="banner-h1">Find exciting activity ideas to get your kids moving.</h1>
+        <a class="browse" href="#" ng-click="viewCtrl.changeView('activities')">BROWSE ACTIVITIES</a>
       </section>
-      <section>
-        <h3>Benefit</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
-      </section>
-      <section>
-        <h3>Benefit</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
-      </section>
-      <section>
-        <h3>Benefit</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
-      </section>
-    </main>
+      <main class="main-content">
+        <section class="mid">
+          <!-- <h3>Search</h3> -->
+          <i class="fa fa-search benefit" aria-hidden="true"></i>
+          <p>Share and find exercises for your child.</p>
+        </section>
+        <section id="mid" class="mid">
+          <!-- <h3>Save</h3> -->
+          <i class="fa fa-heart benefit" aria-hidden="true"></i>
+          <p>Save your favorite ideas for later.</p>
+        </section>
+        <section class="mid">
+          <!-- <h3>Track Progress</h3> -->
+          <i class="fa fa-line-chart benefit" aria-hidden="true"></i>
+          <p>Track your child's physical activity.</p>
+        </section>
+      </main>
+    </div>
     <!--END MAIN PAGE-->
 
     <!--CREATE ACCOUNT MODAL-->
-    <section>
-      <section>
+    <section id="signup-modal" class="modal">
+      <section class="modal-input-box">
         <sign-up-form></sign-up-form>
       </section>
     </section>
     <!--END CREATE ACCOUNT MODAL-->
 
     <!--LOGIN MODAL-->
-    <section>
-      <section>
+    <section id="login-modal" class="modal">
+      <section class="modal-input-box">
         <login-form></login-form>
       </section>
     </section>
     <!--END LOGIN MODAL-->
 
-    <!--ACTIVITIES FEED-->
-    <main>
-    <activities><activities>
+    <!-- CREATE ACTIVITY -->
+    <main ng-show="viewCtrl.currentView === 'activities'">
+    <activities></activities>
     </main>
-    <!--END ACTIVITIES FEED-->
-
-    <!--CREATE ACTIVITIES MODAL-->
-    <section>
-      <section></section>
-    </section>
-    <!--END ACTIVITIES MODAL-->
-
-    <!--EDIT ACTIVITIES MODAL-->
-    <section>
-      <section></section>
-    </section>
-    <!--END EDIT ACTIVITIES MODAL-->
+    <!--END CREATE ACTIVITY -->
 
     <!--CHILD'S DAILY PROGRESS-->
-    <main>
-      <section>
+    <main ng-show="viewCtrl.currentView === 'child'">
+      <section class="child-header">
         <h2>Daily Progress</h2>
-        <a href="#">ADD CHILD</a>
+        <a id="open-add-child">ADD CHILD</a>
       </section>
-      <section></section>
+      <show-children ng-if="viewCtrl.currentView === 'child'"></show-children>
     </main>
     <!--END CHILD'S DAILY PROGRESS-->
+
+    <!--ADD CHILD MODAL-->
+    <section id="add-child-modal" class="modal">
+      <section class="modal-input-box">
+        <add-child></add-child>
+      </section>
+    </section>
+    <!--END ADD CHILD MODAL-->
 
     <!--CHILD EDIT MODAL-->
     <section>
@@ -109,13 +136,15 @@
     <!--END CHILD EDIT MODAL-->
 
     <!--USER EDIT MODAL-->
-    <section>
-      <edit-profile-form></edit-profile-form>
-      <br />
-      <delete-profile></delete-profile>
+    <section id="edit-user-modal" class="modal">
+      <section class="modal-input-box">
+        <edit-profile-form></edit-profile-form>
+        <br />
+        <delete-profile></delete-profile>
+      </section>
     </section>
     <!--END USER EDIT MODAL-->
-
-
+    <!--FOOTER-->
+    <footer></footer>
   </body>
 </html>

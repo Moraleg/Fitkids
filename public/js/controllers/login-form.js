@@ -1,11 +1,13 @@
-angular.module('MyApp').controller('loginFormCtrl', ['$http', function($http){
+angular.module('MyApp').controller('loginFormCtrl', ['$http', '$scope', function($http,$scope){
   var ctrl = this;
   this.username = '';
   this.password = '';
   this.showMsg = false;
-  this.msgContent;
+  this.msgContent= '';
 
   this.submitLogin = function(){
+    this.showMsg = false;
+    this.msgContent= '';
 
     $http({
       method: 'POST',
@@ -17,13 +19,15 @@ angular.module('MyApp').controller('loginFormCtrl', ['$http', function($http){
     }).then(function(response){
       console.log(response);
       if (response.data.success === true) {
+        $scope.viewCtrl.getSession();
+        $('#login-modal').hide();
         console.log('Hooray! You\'re logged in!');
       } else if (response.data.success === false) {
         ctrl.msgContent = 'Sorry the password or username you entered did not match our records.';
         ctrl.showMsg = true;
       }
-      this.username = '';
-      this.password = '';
+      ctrl.username = '';
+      ctrl.password = '';
     }, function(error) {
       console.log(error);
       ctrl.msgContent = 'Sorry, something went wrong. Please try again.';
