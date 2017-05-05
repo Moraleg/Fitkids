@@ -13,6 +13,6 @@
   <label for="password">Password:</label>
   <input id="password" type="password" placeholder="password" ng-model="login.password" required min-length="8"/>
   <br/>
-  <input id="login-btn" type="submit" value="LOGIN"/>
+  <input ng-click="login.submitLogin()" id="login-btn" type="submit" value="LOGIN"/>
 </form>
 <p class="modal-text" ng-if="login.showMsg">{{login.msgContent}}</p>

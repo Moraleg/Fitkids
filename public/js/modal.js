@@ -63,6 +63,7 @@ $(function(){
     $child.css('display', 'none');
     $activityEdit.css('display', 'none');
     $userEdit.css('display', 'none');
+    
   };
 
 //===================EVENT LISTENERS=============/
@@ -77,9 +78,9 @@ $(function(){
   //Event listeners for create activity
   $activityBtn.on('click', openActivity);
   $closeBtn.on('click', closeModal);
-  //
-  //
-  // //Event listenersfor edit activity
+
+
+  //Event listenersfor edit activity
   $editActivityBtn.on('click', editActivity);
   $closeBtn.on('click', closeModal);
 
@@ -88,7 +89,7 @@ $(function(){
   $closeBtn.on('click', closeModal);
   console.log($closeBtn);
 
-  // //Event listeners for add child
+  //Event listeners for add child
   $childBtn.on('click', addChild);
   $closeBtn.on('click', closeModal);
 
