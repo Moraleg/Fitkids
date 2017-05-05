@@ -8,6 +8,7 @@ WDIr Hopper Project 3 - Hanna, Geraldine, Dylan
 - HTML
 - CSS
 - JavaScript (Node.js and jQuery)
+- AngularJS
 - MongoDB (Mongoose)
 - Express.js
 - Bcrypt
