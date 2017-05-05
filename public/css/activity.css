@@ -17,6 +17,11 @@
   outline: 0;
 }
 
+.filter-activity-btn:hover {
+  border: 2px solid #6adcd6;
+  background-color: #6adcd6;
+}
+
 #fav-span {
   position: relative;
   bottom: 3px;
