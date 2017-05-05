@@ -29,6 +29,9 @@
   <!---->
   <main class="main-activity">
     <section class="filters-side">
+      <div class="btn-container-center">
+        <a id="activity" class="create-activity-btn" ng-show="viewCtrl.sessionData">ADD ACTIVITY</a>
+      </div>
     <div id="activity-search">
       <form ng-submit="activCtrl.getActivitiesByTitle(activCtrl.query.title)">
         <input class="search-field" type="text" ng-model="activCtrl.query.title" placeholder="Search and filter...">
@@ -82,7 +85,9 @@
               <p class="activity-info">{{activity.weather}}</p>
               <p class="activity-info">{{activity.minAge}}+ yrs</p>
             </div>
-            <p class="activity-desc">{{activity.description}}</p>
+            <div class="activity-desc-container">
+              <p class="activity-desc">{{activity.description}}</p>
+            </div>
           </div>
         </div>
       </div>

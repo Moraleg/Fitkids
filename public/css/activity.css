@@ -9,6 +9,12 @@
   margin-bottom: -3px;
 }
 
+#activity {
+  padding: 10px 9px;
+  position: relative;
+  bottom: 15px;
+}
+
 .fav-fil {
   color: white;
 }
@@ -34,7 +40,10 @@
 
 .filters-side {
   margin-bottom: auto;
-  min-width: 130px;
+  display: flex;
+  flex-flow: column nowrap;
+  min-width: 180px;
+  max-width: 180px;
 }
 
 div.btn-container-center {
@@ -45,7 +54,7 @@ div.btn-container-center {
   margin: 0.5rem auto;
 }
 
-div.btn-container-center > button, div.btn-container-center > input {
+div.btn-container-center > button, div.btn-container-center > input, div.btn-container-center > a {
     margin: 0.25rem auto;
 }
 
@@ -105,10 +114,19 @@ div.activity-info-container {
 }
 
 div.activity-info-container > p.activity-info {
-  font-size: 16px;
+  font-size: 14px;
   padding: 4px 8px;
   color: #2BCEC5;
   border-color: #2BCEC5;
+}
+
+div.activity {
+  height: 250px;
+}
+
+div.activity-desc-container {
+  overflow: auto;
+  height: 108px;
 }
 
 ul.pagination {
@@ -215,27 +233,40 @@ input[type=range]:focus::-ms-fill-upper {
   background: #88e6e1;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2BCEC5;
+  border: 0px none #ffffff;
+  border-radius: 8px;
+}
 
-@media(min-width: 917px) {
+::-webkit-scrollbar-track {
+  background: #95e6e2;
+  border: 0px none #ffffff;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@media(min-width: 901px) {
   #activity-container > div.activity {
     width: 28%;
     min-width: 258px;
   }
 }
 
-@media (max-width: 916px) {
+@media (max-width: 900px) {
   #activity-container > div.activity {
     width: 90%;
     min-width: 359px;
-  }
-  #activity-container-outer {
-    position: relative;
-    top: 50px;
-  }
-  #activity {
-    position: absolute;
-    top: 55px;
-    left: 55%;
-    min-width: 135px;
   }
 }
