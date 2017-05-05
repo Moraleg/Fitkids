@@ -12,8 +12,9 @@ $(function(){
   var $child = $('#add-child-modal');
   var $activity = $('#activity-modal');
   var $activityEdit = $('#activity-form-edit-container');
-  var $closeBtn= $('.close');
-  console.log($closeBtn);
+  var $loginClose = $('#loginClose');
+  // var $closeBtn= $('.close');
+  // console.log($closeBtn);
 
 
 //===============EVENT HANDLERS================/
@@ -69,28 +70,24 @@ $(function(){
 //===================EVENT LISTENERS=============/
   //Event listeners for login
   $loginBtn.on('click', openLogin);
-  // $closeBtn.on('click', closeModal);
 
   //Event listeners for sign up
   $signupBtn.on('click', openSignup);
-  // $closeBtn.on('click', closeModal);
+
 
   //Event listeners for create activity
   $activityBtn.on('click', openActivity);
-  // $closeBtn.on('click', closeModal);
-
 
   //Event listenersfor edit activity
   $editActivityBtn.on('click', editActivity);
-  // $closeBtn.on('click', closeModal);
 
   //Event listeners for edit user
   $editUserBtn.on('click', editUser);
-  // $closeBtn.on('click', closeModal);
-  // console.log($closeBtn);
 
   //Event listeners for add child
   $childBtn.on('click', addChild);
-  $closeBtn.on('click', closeModal);
+
+  //Event listener to close modals
+  $loginClose.on('click', closeModal);
 
 });
