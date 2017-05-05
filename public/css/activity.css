@@ -9,6 +9,12 @@
   margin-bottom: -3px;
 }
 
+#activity {
+  padding: 10px 9px;
+  position: relative;
+  bottom: 15px;
+}
+
 .fav-fil {
   color: white;
 }
@@ -43,7 +49,7 @@ div.btn-container-center {
   margin: 0.5rem auto;
 }
 
-div.btn-container-center > button, div.btn-container-center > input {
+div.btn-container-center > button, div.btn-container-center > input, div.btn-container-center > a {
     margin: 0.25rem auto;
 }
 
@@ -246,26 +252,16 @@ input[type=range]:focus::-ms-fill-upper {
   background: transparent;
 }
 
-@media(min-width: 1051px) {
+@media(min-width: 901px) {
   #activity-container > div.activity {
     width: 28%;
     min-width: 258px;
   }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 900px) {
   #activity-container > div.activity {
     width: 90%;
     min-width: 359px;
-  }
-  #activity-container-outer {
-    position: relative;
-    top: 50px;
-  }
-  #activity {
-    position: absolute;
-    top: 55px;
-    left: 53%;
-    min-width: 190px;
   }
 }
