@@ -1,14 +1,15 @@
 // Filter functions adapted from http://stackoverflow.com/questions/23983322/angularjs-checkbox-filter
 
-angular.module('MyApp').controller('ActivitiesController', ['$http', function($http) {
+angular.module('MyApp').controller('ActivitiesController', ['$http', '$scope', function($http, $scope) {
+  console.log($scope.viewCtrl.sessionData);
   var ctrl = this;
   ctrl.activities = [];
   ctrl.query = { title: "" }
   ctrl.lastQuery = { title: "" }
   ctrl.filter = { minAge: 18 };
-  ctrl.newActivity = { typeOfExercise: 'Aerobic', weather: 'Sunny', creator: 'Test' };
+  ctrl.newActivity = { typeOfExercise: 'Aerobic', weather: 'Sunny' };
   ctrl.editActivity = {};
-  ctrl.newActivityTemplate = { typeOfExercise: 'Aerobic', weather: 'Sunny', creator: 'Test' };
+  ctrl.newActivityTemplate = { typeOfExercise: 'Aerobic', weather: 'Sunny' };
   ctrl.ageRange = [];
   ctrl.exerciseTypes = [
     { name: 'Aerobic' },
@@ -53,43 +54,107 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', function($h
     ctrl.ageRange = agesArr;
   };
   ctrl.getActivitiesByTitle = function(string) {
-    $http({
-      method: 'POST',
-      url: '/activities/search',
-      data: { pattern: string }
-    }).then(function(response) {
-      ctrl.lastQuery = Object.assign({}, ctrl.query);
-      ctrl.hasSearched = true;
-      ctrl.activities = response.data;
-    }, function(error) {
-      console.log('Error');
-    });
+    if (string.length) {
+      if (string === '*') {
+        string = '';
+        ctrl.query.title = '';
+      }
+      $http({
+        method: 'POST',
+        url: '/activities/search',
+        data: { pattern: string }
+      }).then(function(response) {
+        ctrl.lastQuery = Object.assign({}, ctrl.query);
+        ctrl.hasSearched = true;
+        ctrl.activities = response.data;
+      }, function(error) {
+        console.log('Error');
+      });
+    } else {
+      ctrl.getActivities();
+    }
+  };
+  ctrl.refreshActivities = function() {
+    if (ctrl.hasSearched) {
+      ctrl.getActivitiesByTitle(ctrl.lastQuery.title);
+    } else {
+      ctrl.getActivities();
+    }
   };
   ctrl.addNewActivity = function() {
+    ctrl.newActivity.creator = $scope.viewCtrl.sessionData;
     $http({
       method: 'POST',
       url: '/activities/new',
       data: ctrl.newActivity
     }).then(function(response) {
       ctrl.newActivity = Object.assign({}, ctrl.newActivityTemplate);
-      if (ctrl.hasSearched) {
-        ctrl.getActivitiesByTitle(ctrl.lastQuery.title);
-      } else {
-        ctrl.getActivities();
-      }
+      ctrl.refreshActivities();
     }, function(error) {
       console.log(error);
     });
   };
-  // ctrl.seed = function() {
-  //   $http({
-  //     method: 'GET',
-  //     url: '/activities/seed'
-  //   }).then(function(response) {
-  //     console.log('Seed successful');
-  //   }, function(error) {
-  //     console.log('Error');
-  //   });
-  // }
-  // ctrl.seed();
+  ctrl.edit = function(activity){
+    ctrl.editActivity = activity;
+    $('#activity-form-edit-container').css('display', 'block');
+  };
+  ctrl.updateActivity = function() {
+    $http({
+      method: 'PUT',
+      url: '/activities/' + ctrl.editActivity._id,
+      data: ctrl.editActivity
+    }).then(function(response) {
+      ctrl.editActivity = {};
+      ctrl.refreshActivities();
+    }, function(error) {
+      console.log(error);
+    });
+  };
+  ctrl.deleteActivity = function() {
+    $http({
+      method: 'DELETE',
+      url: '/activities/' + ctrl.editActivity._id
+    }).then(function(response) {
+      ctrl.editActivity = {};
+      ctrl.refreshActivities();
+    }, function(error) {
+      console.log(error);
+    });
+  };
+  ctrl.addToFavorites = function(activity) {
+    $http({
+      method: 'PUT',
+      url: '/activities/' + activity._id + '/favorite/' + $scope.viewCtrl.sessionData._id
+    }).then(function(response) {
+      $scope.viewCtrl.sessionData = response.data;
+    }, function(error) {
+      console.log(error);
+    });
+  };
+  ctrl.removeFromFavorites = function(activity) {
+    $http({
+      method: 'DELETE',
+      url: '/activities/' + activity._id + '/favorite/' + $scope.viewCtrl.sessionData._id
+    }).then(function(response) {
+      $scope.viewCtrl.sessionData = response.data;
+    }, function(error) {
+      console.log(error);
+    });
+  };
+  ctrl.isFavorite = function(activity) {
+    var result = false;
+    for (var i = 0; i < $scope.viewCtrl.sessionData.favorites.length; i++) {
+      if ($scope.viewCtrl.sessionData.favorites[i]._id.toString() === activity._id.toString()) {
+        result = true;
+      }
+    }
+    return result;
+  };
+  ctrl.getFavorites = function() {
+    console.log($scope.viewCtrl.sessionData.favorites);
+    ctrl.query.title = "";
+    ctrl.lastQuery.title = "";
+    ctrl.activities = $scope.viewCtrl.sessionData.favorites;
+    console.log(ctrl.activities);
+  }
 }]);

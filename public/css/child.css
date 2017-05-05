@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+  /*border: 1px dotted black;*/
+}
+
+#graph {
+  background: #F7F7F7;
+  margin: auto;
+  width: 60%;
+  text-align: center;
+  font-size: 2vw;
+  display: none;
+}
+
+canvas {
+  margin: auto;
+  width: 100%;
+}
+
+#child-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  padding-bottom: 2.5vh;
+}
+
+.child {
+  background: white;
+  width: 45%;
+  margin-top: 2vh;
+  padding: 1vh 1vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-flow: row wrap;
+}
+
+.child h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.child-right {
+  text-align: center;
+  width: 50%;
+  padding: 1vh 1vw;
+}
+
+.child-left {
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  padding: 1vh 1vw;
+}
+
+.child-left h3 {
+  width: 100%;
+}
+
+.child-left span {
+  width: 25%;
+  font-size: 10px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.child-status-bar {
+  display: inline-block;
+  min-height: 20px;
+  width: 75%;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.child-right p {
+  font-weight: bold;
+}
+
+.child-status {
+  height: 20px;
+  width:0%;
+  border-radius: 20px;
+  background: rgba(43,206,197, 1);
+  background: -webkit-linear-gradient(left, rgba(43,206,197, 1) , rgba(43,206,197, .3));
+  background: -o-linear-gradient(right, rgba(43,206,197, 1), rgba(43,206,197, .3));
+  background: -moz-linear-gradient(right, rgba(43,206,197, 1), rgba(43,206,197, .3));
+  background: linear-gradient(to right, rgba(43,206,197, 1) , rgba(43,206,197, .3));
+}
+
+.childBtn {
+  background-color: #fff;
+  color: #2BCEC5;
+  border-radius: 20px;
+  border: 0;
+  font-size: 1em;
+  padding: .5vh 1vw;
+  margin: 1vh 0;
+  font-family: 'Hevetica Neue', sans-serif;
+  border: 2px solid #2BCEC5;
+  cursor: pointer;
+}
+
+.childBtn:hover {
+  background-color: #2BCEC5;
+  color: #fff;
+  transition: 1s
+}
+
+.childBtn:active {
+  background-color: #ccc;
+  border: 2px solid #ccc;
+  color: #fff;
+}
+
+.track-form {
+  margin-top: 2vh;
+  padding: 1vh 1vw;
+  border-top: 1px dotted black;
+}
+
+.input-min-active {
+  width: 10%;
+  min-width: 40px;
+  border: 1px solid #ccc
+}
+
+@media (max-width: 700px) {
+
+  #child-container {
+    margin-top: 10vh;
+  }
+
+  .child {
+    width: 100%;
+    margin-top: 2vh;
+    font-size: .9em;
+  }
+
+  .child-right {
+    width: 100%;
+  }
+
+  .child-left {
+    width: 100%;
+  }
+
+  #graph {
+    width: 100%;
+    display: none;
+  }
+
+  canvas {
+    display: none;
+  }
+
+  #graphBtn {
+    display: none;
+  }
+}
