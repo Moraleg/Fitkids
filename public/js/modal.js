@@ -32,7 +32,7 @@ $(function(){
 
   //Event handlers to open create new activity
   var openActivity = function(){
-    // console.log('create activity has been clicked');
+    console.log('create activity has been clicked');
     $activity.css('display', 'block');
   };
 
