@@ -105,6 +105,7 @@ canvas {
 .childBtn:hover {
   background-color: #2BCEC5;
   color: #fff;
+  transition: 1s
 }
 
 .childBtn:active {

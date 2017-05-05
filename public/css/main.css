@@ -137,7 +137,7 @@ nav a:hover:before {
 .browse:hover {
   border: 2px solid #6adcd6;
   background-color: #6adcd6;
-
+  transition: .5s;
 }
 
 .main-content {
@@ -263,6 +263,7 @@ sign-up-form h2 {
 #create-account-btn:hover {
   border: 2px solid #6adcd6;
   background-color: #6adcd6;
+  transition: .5s;
 }
 
 .login-anchor {
@@ -304,6 +305,7 @@ login-form h2 {
 #login-btn:hover {
   border: 2px solid #6adcd6;
   background-color: #6adcd6;
+  transition: .5s
 }
 /**********************EDIT USER MODAL*******************/
 
@@ -359,6 +361,7 @@ edit-profile-form  h2 {
 #delete-acc:hover {
   border: 2px solid #f77c7b;
   background-color: #f77c7b;
+  transition: .5s;
 }
 
 #no-delete {
@@ -374,6 +377,7 @@ edit-profile-form  h2 {
 #no-delete:hover {
   border: 2px solid #6adcd6;
   background-color: #6adcd6;
+  transition: .5s;
 }
 
 #yes-delete {
@@ -392,6 +396,7 @@ edit-profile-form  h2 {
 #yes-delete:hover {
   border: 2px solid #f77c7b;
   background-color: #f77c7b;
+  transition: .5s;
 }
 
 /**********************CREATE ACTIVITY MODAL*******************/
@@ -412,6 +417,7 @@ edit-profile-form  h2 {
 .create-activity-btn:hover {
   border: 2px solid #6adcd6;
   background-color: #6adcd6;
+  transition: .5s;
 }
 
 #activity-modal {
@@ -666,6 +672,7 @@ add-child h2 {
 .add-child-button:hover {
   border: 2px solid #6adcd6;
   background-color: #6adcd6;
+  transition: .5s;
 }
 
 /**********************CHILD POST*******************/
