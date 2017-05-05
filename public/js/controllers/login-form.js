@@ -36,4 +36,9 @@ angular.module('MyApp').controller('loginFormCtrl', ['$http', '$scope', function
       this.password = '';
     });
   };//End submitLogin()
+
+  //Event listener to close modal
+  $('.close').on('click', function() {
+    $('#login-modal').css('display', 'none');
+  });
 }]); //End Controller
