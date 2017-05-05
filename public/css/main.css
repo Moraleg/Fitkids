@@ -20,7 +20,6 @@ header {
   position: static;
   top: 0;
   width: 100%;
-  max-height: 140px;
   background-color: white;
   display: flex;
   flex-flow: row nowrap;
@@ -30,29 +29,29 @@ header {
 
 .logo {
   display: block;
-  font-size: 2vw;
+  font-size: 2em;
   color: #333;
   letter-spacing: 0.49px;
-  width: 30%;
+  width: 40%;
   padding-left: 2.5%;
 }
 
 nav {
-  /*display: inline-block;*/
   letter-spacing: 0.46px;
-  width: 70%;
+  width: 60%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-around;
 }
 
 nav a {
   display: inline-block;
   text-decoration: none;
   color: #929292;
-  margin-right: 3%;
+  /*margin-right: 3%;*/
   position: relative;
   cursor: pointer;
+  text-align: right;
 }
 
 nav a:hover {
@@ -89,8 +88,6 @@ nav a:hover:before {
 }
 
 .banner {
-  /*position: relative;*/
-  height: 460px;
   background-image: url('/images/banner-img.png');
   background-repeat: no-repeat;
   background-position: 65%;
@@ -100,17 +97,19 @@ nav a:hover:before {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  min-height: 460px;
+  height: 60vh;
 }
 
-.banner-img {
+/*.banner-img {
   width: 100%;
-  background-color: #333;
+  background-color: #333;*/
   /*position: absolute;*/
-  top: 0;
+  /*top: 0;
   left: 0;
   z-index: -1;
   filter: opacity(.8)
-}
+}*/
 
 .banner-h1 {
   text-align: center;
@@ -121,11 +120,11 @@ nav a:hover:before {
   font-weight: normal;
   text-shadow: 1px 1px 1px #333;
   margin-top: 14vw;
-  font-size: 2vw;
+  font-size: 2em;
 }
 
 .browse {
-  font-size: 14px;
+  font-size: 1em;
   text-decoration: none;
   letter-spacing: 0.46px;
   color: white;
@@ -145,13 +144,14 @@ nav a:hover:before {
   margin-top: 25px;
   display: flex;
   justify-content: space-between;
-  font-size: 1.5vw;
+  font-size: 1em;
+  flex-flow: row wrap;
 }
 
 .mid {
   display: inline-block;
   text-align: center;
-  margin: 0 12px 0 auto;
+  padding: 1vh 1vw;
   width: 32%;
 }
 
@@ -673,4 +673,39 @@ add-child h2 {
 .child-post {
   background-color: white;
   display: inline-block;
+}
+
+
+/* media breakpoint */
+@media (max-width: 700px) {
+  .mid {
+    width: 100%;
+    /*font-size: 3.5em;*/
+  }
+
+  .banner-h1 {
+    font-size: 1.3em;
+    line-height: normal;
+  }
+
+  #mid {
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid #ACACAC;
+    border-top: 1px solid #ACACAC;
+  }
+
+  .main-content {
+    margin: 5vh 5vw;
+  }
+
+  .logo {
+    font-size: 1em;
+    width: 30%;
+  }
+
+  nav {
+    font-size: .7em;
+    width: 70%;
+  }
 }
