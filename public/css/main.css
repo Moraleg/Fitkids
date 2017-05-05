@@ -135,6 +135,12 @@ nav a:hover:before {
   border-radius: 20px;
 }
 
+.browse:hover {
+  border: 2px solid #6adcd6;
+  background-color: #6adcd6;
+
+}
+
 .main-content {
   margin-top: 25px;
   display: flex;
@@ -253,6 +259,11 @@ sign-up-form h2 {
   cursor: pointer;
 }
 
+#create-account-btn:hover {
+  border: 2px solid #6adcd6;
+  background-color: #6adcd6;
+}
+
 .login-anchor {
   text-decoration: none;
   color: #2BCEC5;
@@ -289,6 +300,10 @@ login-form h2 {
   cursor: pointer;
 }
 
+#login-btn:hover {
+  border: 2px solid #6adcd6;
+  background-color: #6adcd6;
+}
 /**********************EDIT USER MODAL*******************/
 
 #edit-user-modal {
@@ -321,6 +336,12 @@ edit-profile-form  h2 {
 
 }
 
+.edit-submit:hover {
+  border: 2px solid #2BCEC5;
+  background-color: #2BCEC5;
+  color: white;
+}
+
 #delete-acc {
   letter-spacing: 0.46px;
   color: white;
@@ -334,6 +355,11 @@ edit-profile-form  h2 {
   cursor: pointer;
 }
 
+#delete-acc:hover {
+  border: 2px solid #f77c7b;
+  background-color: #f77c7b;
+}
+
 #no-delete {
   border: 2px solid #2BCEC5;
   background-color: #2BCEC5;
@@ -342,6 +368,11 @@ edit-profile-form  h2 {
   margin: 18px 10px 0 10px;
   border-radius: 20px;
   cursor: pointer;
+}
+
+#no-delete:hover {
+  border: 2px solid #6adcd6;
+  background-color: #6adcd6;
 }
 
 #yes-delete {
@@ -357,6 +388,11 @@ edit-profile-form  h2 {
   cursor: pointer;
 }
 
+#yes-delete:hover {
+  border: 2px solid #f77c7b;
+  background-color: #f77c7b;
+}
+
 /**********************CREATE ACTIVITY MODAL*******************/
 
 .create-activity-btn {
@@ -369,6 +405,11 @@ edit-profile-form  h2 {
   cursor: pointer;
   margin-right: 3.5%;
   margin-top: 20px;
+}
+
+.create-activity-btn:hover {
+  border: 2px solid #6adcd6;
+  background-color: #6adcd6;
 }
 
 #activity-modal {
@@ -584,6 +625,11 @@ hr {
   margin-top: 20px;
 }
 
+.child-header a:hover {
+  border: 2px solid #6adcd6;
+  background-color: #6adcd6;
+}
+
 /**********************ADD CHILD MODAL*******************/
 add-child h2 {
   font-weight: normal;
@@ -613,6 +659,11 @@ add-child h2 {
   display: block;
   margin: 15px auto;
   cursor: pointer;
+}
+
+.add-child-button:hover {
+  border: 2px solid #6adcd6;
+  background-color: #6adcd6;
 }
 
 /**********************CHILD POST*******************/
