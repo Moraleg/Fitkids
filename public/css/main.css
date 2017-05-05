@@ -224,16 +224,6 @@ label {
   color: #333;
 }
 
-#loginClose {
-  background-color: white;
-  color: #2BCEC5;
-  cursor: pointer;
-}
-
-#loginClose:hover {
-  color: #333;
-}
-
 .benefit {
   margin-top: 25px;
   font-size: 30px;

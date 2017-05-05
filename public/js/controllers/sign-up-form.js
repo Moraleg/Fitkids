@@ -50,4 +50,9 @@ angular.module('MyApp').controller('signUpFormCtrl', ['$http', function ($http) 
       ctrl.displayMessage = true;
     }
   };
+
+  //Event listener to close modal
+  $('.close').on('click', function () {
+    $('#signup-modal').css('display', 'none');
+  });
 }]);

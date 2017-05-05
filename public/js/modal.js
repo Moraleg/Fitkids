@@ -12,9 +12,8 @@ $(function(){
   var $child = $('#add-child-modal');
   var $activity = $('#activity-modal');
   var $activityEdit = $('#activity-form-edit-container');
-  var $loginClose = $('#loginClose');
-  // var $closeBtn= $('.close');
-  // console.log($closeBtn);
+  var $closeBtn= $('.close');
+  console.log($closeBtn);
 
 
 //===============EVENT HANDLERS================/
@@ -54,18 +53,18 @@ $(function(){
     // console.log('add child has been clicked');
     $child.css('display', 'block');
   };
-
-  //Event handler to close modals
-  var closeModal = function(){
-    // console.log('close has been clicked');
-    $login.css('display', 'none');
-    $signUp.css('display', 'none');
-    $activity.css('display', 'none');
-    $child.css('display', 'none');
-    $activityEdit.css('display', 'none');
-    $userEdit.css('display', 'none');
-
-  };
+  // 
+  // //Event handler to close modals
+  // var closeModal = function(){
+  //   // console.log('close has been clicked');
+  //   $login.css('display', 'none');
+  //   $signUp.css('display', 'none');
+  //   $activity.css('display', 'none');
+  //   $child.css('display', 'none');
+  //   $activityEdit.css('display', 'none');
+  //   $userEdit.css('display', 'none');
+  //
+  // };
 
 //===================EVENT LISTENERS=============/
   //Event listeners for login
@@ -87,7 +86,7 @@ $(function(){
   //Event listeners for add child
   $childBtn.on('click', addChild);
 
-  //Event listener to close modals
-  $loginClose.on('click', closeModal);
+  // //Event listener to close modals
+  // $closeBtn.on('click', closeModal);
 
 });
