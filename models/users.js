@@ -1,19 +1,12 @@
 //USER MODEL
 
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var userSchema = mongoose.Schema({
+var userSchema = new Schema({
   username: {type: String, required: true, unique: true },
   password: {type: String, required: true},
-  // NOTE: I had to remove the ObjectId keyword from the array to make this work for
-  // testing my routes properly, bc req.params.id comes back as string
-  // Revert after REVIEW!
-  favorites: [],
-  stats: [{
-    child: String,
-    points: Number,
-    completedActivities: [String]
-  }]
+  favorites: [{type: Schema.Types.ObjectId, ref: 'Activity'}]
 });
 
 var User = mongoose.model('User', userSchema);

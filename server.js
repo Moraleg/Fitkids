@@ -12,9 +12,10 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 
 // CONTROLLERS //
-// const sessionsController = require('./controllers/sessions.js');
+const sessionsController = require('./controllers/sessions.js');
 const usersController = require('./controllers/users.js');
 const activitiesController = require('./controllers/activities.js');
+const childrenController = require('./controllers/children.js');
 
 
 // MIDDLEWARE //
@@ -27,9 +28,11 @@ app.use(session({
 }));
 
 // CONTROLLER ROUTES //
-// app.use('/sessions/', sessionsController);
+app.use('/sessions/', sessionsController);
 app.use('/users/', usersController);
 app.use('/activities/', activitiesController);
+app.use('/children/', childrenController);
+
 
 // CONNECTION //
 mongoose.connect(mongoUri);

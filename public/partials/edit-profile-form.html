@@ -1,0 +1,26 @@
+<!--Button to close modal-->
+<div>
+<a class="close">X</a>
+</div>
+<!-- Button to close the modal END-->
+<form ng-submit="editProfileCtrl.editUsername()">
+  <div class="legend-container">
+    <legend><h2>Change Username</h2></legend>
+  </div>
+    <label for="username">New Username: </label>
+    <input id="username" type="text" placeholder="new username" ng-model="editProfileCtrl.newUsername" required/>
+    <input class="edit-submit" type="submit" />
+</form>
+<br />
+<form ng-submit="editProfileCtrl.editPassword()">
+  <div class="legend-container">
+    <legend><h2>Change Password</h2></legend>
+  </div>
+    <label for="password">New Password: </label>
+    <input id="password" type="password" ng-model="editProfileCtrl.newPassword" placeholder="new password" required minlength="8" />
+    <br />
+    <label for="confirmPassword">Confirm New Password: </label>
+    <input id="confirmPassword" type="password" placeholder="confirm new password" ng-model="editProfileCtrl.confirmNewPassword" required minlength="8"/>
+    <input class="edit-submit" type="submit" />
+</form>
+<p class="modal-text" ng-if="editProfileCtrl.displayMessage">{{editProfileCtrl.msgContent}}</p>

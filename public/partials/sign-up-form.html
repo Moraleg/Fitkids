@@ -1,0 +1,23 @@
+<!--Button to close modal-->
+<div>
+<a class="close">X</a>
+</div>
+<!-- Button to close the modal END-->
+<form class="form" ng-submit="signUp.createAccount()">
+  <div class="legend-container">
+    <legend align="center"><h2>Create Account</h2></legend>
+  </div>
+    <label for="username">Username: </label><br/>
+    <input id="username" type="text" placeholder="username" ng-model="signUp.username" required/>
+    <br />
+    <label for="password">Password: </label><br/>
+    <input id="password" type="password" placeholder="password" ng-model="signUp.password" required min-length="8" />
+    <br />
+    <label for="confirmPassword">Confirm password: </label><br/>
+    <input id="confirmPassword" type="password" placeholder="confirm password" ng-model="signUp.confirmPassword" required minlength="8"/>
+    <br />
+    <input id="create-account-btn" type="submit" value="CREATE ACCOUNT" />
+</form>
+<p class="modal-text" ng-if="signUp.displayMessage">{{signUp.msgContent}}</p>
+<br>
+<!-- <p class="modal-text">Already have an account? <a class="login-anchor">Login Here</a></p> -->

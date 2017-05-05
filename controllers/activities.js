@@ -12,23 +12,47 @@ var express = require('express'),
 
 var seedData = [
   {
-    /*creator: 'create user first and insert user id here', */
+    /*creator: '5908ab38137910051a6e14ae', */
     title: 'This is an exercise',
+    creator: 'Hannah',
     description: 'It is so much fun!',
-    typeOfExercise: 'aerobic',
+    typeOfExercise: 'Aerobic',
     outdoor: 'true',
-    weather: 'sunny',
-    ageRange: ['Toddler', 'Kindergardener'],
+    weather: 'Sunny',
+    minAge: 3,
     tags: ['fun', 'splash', 'splish']
   },
   {
     /*creator: 'create user first and insert user id here', */
     title: 'This is another exercise',
+    creator: 'Hannah',
     description: 'It is so much more fun!',
-    typeOfExercise: 'anaerobic',
-    outdoor: 'false',
-    weather: 'rainy',
-    ageRange: ['Teen'],
+    typeOfExercise: 'Balance',
+    outdoor: false,
+    weather: 'Rainy',
+    minAge: 16,
+    tags: ['bla', 'splash', 'blo']
+  },
+  {
+    /*creator: 'create user first and insert user id here', */
+    title: 'This is a third exercise',
+    creator: 'Hannah',
+    description: 'It is even much more fun!',
+    typeOfExercise: 'Cardio',
+    outdoor: true,
+    weather: 'Snow',
+    minAge: 13,
+    tags: ['bla', 'splash', 'blo']
+  },
+  {
+    /*creator: 'create user first and insert user id here', */
+    title: 'This is a fourth exercise',
+    creator: 'Hannah',
+    description: 'It is not fun!',
+    typeOfExercise: 'Flexibility',
+    outdoor: true,
+    weather: 'Rainy',
+    minAge: 6,
     tags: ['bla', 'splash', 'blo']
   }
 ];
@@ -54,8 +78,8 @@ router.get('/seed', function (req, res) {
 // sth like that depending on user stories
 
 router.get('/', function (req, res) {
-  // find all activities in the database
-  Activity.find({}, function (error, allActivities) {
+  // find most recent activities in the database
+  Activity.find({}).populate('creator').sort({"date": -1}).limit(10).exec(function (error, allActivities) {
     if (!error) {
       // if no error occurs, send array of all found database entries as json
       res.json(allActivities);
@@ -115,7 +139,8 @@ router.put('/:id/favorite/:userID', function (req, res) {
   // find activity by id
       User.findByIdAndUpdate(req.params.userID,
         // update by pushing the id of foundActivity into favorites array on user
-        { $addToSet: { 'favorites': req.params.id } }, {new: true},
+        { $addToSet: { 'favorites': req.params.id } }, {new: true})
+        .populate('favorites').exec(
          function (error, updatedUser) {
            if (!error) {
              // if no error occurs, send json of updated user entry
@@ -127,6 +152,16 @@ router.put('/:id/favorite/:userID', function (req, res) {
       });
 });
 
+router.delete('/:id/favorite/:userID', function(req, res) {
+  User.findByIdAndUpdate(req.params.userID,
+    { $pull: { favorites: req.params.id } }, {new:true}).populate('favorites').exec(function(error, updatedUser) {
+      if (!error) {
+        res.json(updatedUser);
+      } else {
+        res.json(error);
+      }
+    });
+});
 
 // *** UPDATE an existing activity ***
 // --> tested with curl
@@ -206,6 +241,18 @@ router.delete('/:id', function (req, res) {
   });
 });
 
+router.post('/search', function (req, res) {
+  // find activities based on query pattern
+  Activity.find({ title: { $regex: req.body.pattern, $options: 'i' }}).sort({"date": -1}).exec(function (error, foundActivities) {
+    if (!error) {
+      // if no error occurs, send array of all found database entries as json
+      res.json(foundActivities);
+    } else {
+      // else send error
+      res.json(error);
+    }
+  });
+});
 // ------------------------------- ROUTER EXPORT -------------------------------
 
 module.exports = router;
