@@ -156,5 +156,15 @@ angular.module('MyApp').controller('ActivitiesController', ['$http', '$scope', f
     ctrl.lastQuery.title = "";
     ctrl.activities = $scope.viewCtrl.sessionData.favorites;
     console.log(ctrl.activities);
-  }
+  };
+  //Event listener to open modal
+  $('#activity').on('click', function () {
+    $('#activity-modal').css('display', 'block');
+  });
+  //Event listener to close modal
+ $('.close').on('click', function () {
+   $('#activity-modal').css('display', 'none');
+   $('#activity-form-edit-container').css('display', 'none');
+ });
+
 }]);
